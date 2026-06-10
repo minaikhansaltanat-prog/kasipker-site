@@ -1,0 +1,185 @@
+'use client';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { useLang } from '@/lib/LangContext';
+import { t, clusters } from '@/lib/translations';
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut', delay: d } }),
+};
+
+export default function ContactPage() {
+  const { lang } = useLang();
+  const tr = t[lang];
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '', phone: '', email: '', city: '', sector: '', message: '',
+  });
+  const [honeypot, setHoneypot] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (honeypot) return; // bot trap: real users never fill the hidden field
+    setSubmitted(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-white pt-24">
+      <div className="hero-bg py-16">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 text-center">
+          <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
+            <span className="inline-flex items-center gap-2 rounded-full border border-kasipker-gold-400/30 bg-kasipker-gold-400/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-kasipker-gold-400 mb-4">
+              {tr.contact_eyebrow}
+            </span>
+            <h1 className="text-4xl font-black text-white md:text-5xl mb-4">{tr.contact_title}</h1>
+            <p className="text-white/70">
+              {lang === 'kk' ? 'Мүше болу, серіктестік, сұрақтар — бізбен байланысыңыз' :
+               lang === 'ru' ? 'Членство, партнёрство, вопросы — свяжитесь с нами' :
+               'Membership, partnership, questions — get in touch'}
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 py-16 md:px-8">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+          {/* Form */}
+          <motion.div initial="hidden" animate="visible" custom={0.1} variants={fadeUp} className="card-kasipker">
+            {submitted ? (
+              <div className="flex flex-col items-center gap-4 py-12 text-center">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-kasipker-navy-50 text-4xl">✅</div>
+                <h3 className="text-xl font-extrabold text-kasipker-navy-900">{tr.contact_form_success}</h3>
+              </div>
+            ) : (
+              <>
+                <h2 className="text-2xl font-extrabold text-kasipker-navy-900 mb-2">{tr.nav_cta}</h2>
+                <p className="text-sm text-kasipker-navy-400 mb-6">
+                  {lang === 'kk' ? 'Менеджер 24 сағат ішінде байланысады' :
+                   lang === 'ru' ? 'Менеджер свяжется с вами в течение 24 часов' :
+                   'Manager will contact you within 24 hours'}
+                </p>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  {/* Honeypot: hidden from users, catches bots that fill every field */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={honeypot}
+                    onChange={e => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute opacity-0 pointer-events-none h-0 w-0"
+                  />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_name} *</label>
+                      <input
+                        required type="text"
+                        placeholder={tr.contact_form_name}
+                        value={formData.name}
+                        onChange={e => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_phone} *</label>
+                      <input
+                        required type="tel"
+                        placeholder="+7 7__ ___ ____"
+                        value={formData.phone}
+                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_email}</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="email@example.com"
+                      value={formData.email}
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors"
+                    />
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_city} *</label>
+                      <input
+                        required type="text"
+                        placeholder={lang === 'kk' ? 'Алматы' : lang === 'ru' ? 'Алматы' : 'Almaty'}
+                        value={formData.city}
+                        onChange={e => setFormData({ ...formData, city: e.target.value })}
+                        className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_sector}</label>
+                      <select
+                        value={formData.sector}
+                        onChange={e => setFormData({ ...formData, sector: e.target.value })}
+                        className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors bg-white"
+                      >
+                        <option value="">—</option>
+                        {clusters.map(cl => (
+                          <option key={cl.kk} value={cl.kk}>{lang === 'en' ? cl.en : lang === 'ru' ? cl.ru : cl.kk}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_message}</label>
+                    <textarea
+                      rows={4}
+                      placeholder={lang === 'kk' ? 'Хабарламаңыз...' : lang === 'ru' ? 'Ваше сообщение...' : 'Your message...'}
+                      value={formData.message}
+                      onChange={e => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors resize-none"
+                    />
+                  </div>
+                  <button type="submit" className="btn-gold w-full py-4 text-base font-bold">
+                    {tr.contact_form_submit}
+                  </button>
+                </form>
+              </>
+            )}
+          </motion.div>
+
+          {/* Info */}
+          <motion.div initial="hidden" animate="visible" custom={0.2} variants={fadeUp} className="flex flex-col gap-6">
+            {/* Contact cards */}
+            {[
+              { icon: '📍', title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address', text: lang === 'kk' ? 'Алматы қаласы, Қазақстан' : lang === 'ru' ? 'г. Алматы, Казахстан' : 'Almaty, Kazakhstan' },
+              { icon: '📧', title: 'Email', text: 'info@kasipker.kz' },
+              { icon: '🌐', title: lang === 'kk' ? 'Сайт' : lang === 'ru' ? 'Сайт' : 'Website', text: 'kasipker.kz' },
+              { icon: '✈️', title: 'Telegram', text: '@kasipker' },
+            ].map((c, i) => (
+              <div key={i} className="card-kasipker flex items-center gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-kasipker-navy-50 text-2xl">
+                  {c.icon}
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-kasipker-navy-400 uppercase tracking-wider">{c.title}</p>
+                  <p className="font-semibold text-kasipker-navy-800">{c.text}</p>
+                </div>
+              </div>
+            ))}
+
+            {/* Quote */}
+            <blockquote className="rounded-2xl bg-kasipker-navy-900 p-6">
+              <p className="text-kasipker-gold-400 text-xl font-black mb-3">"</p>
+              <p className="text-white/85 italic text-sm leading-relaxed">
+                {lang === 'kk' ? '«Бірге — күштіміз. Бірге — өрлейміз.»' :
+                 lang === 'ru' ? '«Вместе — мы сила. Вместе — мы развиваемся.»' :
+                 '"Together we are stronger. Together we grow."'}
+              </p>
+              <p className="mt-3 text-xs text-white/50">— Kasipker Кәсіпкерлер Альянсы</p>
+            </blockquote>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}

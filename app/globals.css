@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+/* ── KASIPKER Brand CSS Variables ── */
+:root {
+  --kasipker-navy-900: #0D1B4B;
+  --kasipker-navy-800: #152466;
+  --kasipker-navy-700: #1C2E80;
+  --kasipker-navy-600: #1F3399;
+  --kasipker-navy-500: #2540B8;
+  --kasipker-navy-400: #3D5ACF;
+  --kasipker-navy-300: #6A83DC;
+  --kasipker-navy-200: #99ADE8;
+  --kasipker-navy-100: #C8D4F3;
+  --kasipker-navy-50:  #EBF0FA;
+
+  --kasipker-gold-400: #D4A017;
+  --kasipker-gold-500: #C99100;
+  --kasipker-gold-300: #E0B84D;
+  --kasipker-gold-200: #EDD080;
+  --kasipker-gold-50:  #FBF3DC;
+  --kasipker-gold-900: #3D2800;
+
+  --gradient-hero: linear-gradient(160deg, #0D1B4B 0%, #1C2E80 70%, #1F3399 100%);
+  --gradient-brand-to-gold: linear-gradient(135deg, #0D1B4B 0%, #1C2E80 60%, #D4A017 100%);
+  --shadow-card: 0 2px 12px rgba(28,46,128,0.10), 0 1px 4px rgba(28,46,128,0.08);
+  --shadow-gold: 0 4px 14px rgba(212,160,23,0.30);
+  --shadow-elevated: 0 8px 32px rgba(13,27,75,0.18);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #0D1B4B;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* zh font override */
+:lang(zh) h1, :lang(zh) h2, :lang(zh) h3,
+:lang(zh) p, :lang(zh) span {
+  font-family: 'Noto Sans SC', 'Inter', sans-serif;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #EBF0FA; }
+::-webkit-scrollbar-thumb { background: #1C2E80; border-radius: 3px; }
+
+/* ── Utility classes ── */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-white transition-all duration-200;
+  background: var(--kasipker-navy-700);
+  box-shadow: 0 4px 14px rgba(28,46,128,0.25);
+}
+.btn-primary:hover {
+  background: var(--kasipker-navy-600);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(28,46,128,0.35);
+}
+
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold transition-all duration-200;
+  background: var(--kasipker-gold-400);
+  color: var(--kasipker-gold-900);
+  box-shadow: var(--shadow-gold);
+}
+.btn-gold:hover {
+  background: var(--kasipker-gold-500);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212,160,23,0.40);
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl border-2 px-6 py-3 font-bold transition-all duration-200;
+  border-color: var(--kasipker-navy-700);
+  color: var(--kasipker-navy-700);
+}
+.btn-outline:hover {
+  background: var(--kasipker-navy-700);
+  color: white;
+}
+
+.card-kasipker {
+  @apply rounded-2xl bg-white p-6 transition-all duration-300;
+  box-shadow: var(--shadow-card);
+  border: 1px solid #DDE3F0;
+}
+.card-kasipker:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.section-eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-4;
+  background: var(--kasipker-navy-50);
+  color: var(--kasipker-navy-700);
+  border: 1px solid var(--kasipker-navy-100);
+}
+
+.section-title {
+  @apply text-3xl font-extrabold md:text-4xl;
+  color: var(--kasipker-navy-900);
+  letter-spacing: -0.03em;
+}
+
+.gold-bar {
+  @apply h-1 w-16 rounded-full mx-auto mt-3;
+  background: var(--kasipker-gold-400);
+}
+
+/* ── Hero gradient overlay ── */
+.hero-bg {
+  background: var(--gradient-hero);
+}
+
+/* ── Personality card photo ── */
+.personality-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top center;
+  filter: contrast(1.05) saturate(1.1) brightness(1.02);
+}
+
+/* ── Partners marquee ── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 20s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Timeline ── */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--kasipker-navy-100), var(--kasipker-gold-400));
+  transform: translateX(-50%);
+}
+
+/* ── Cluster card accent ── */
+.cluster-card {
+  @apply rounded-2xl p-6 cursor-default transition-all duration-300;
+  background: var(--kasipker-navy-50);
+  border: 1px solid var(--kasipker-navy-100);
+}
+.cluster-card:hover {
+  background: var(--kasipker-navy-700);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+}
+.cluster-card:hover .cluster-title { color: white; }
+.cluster-card:hover .cluster-icon { background: rgba(255,255,255,0.15); }
+
+/* ── Stat counter ── */
+.stat-number {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  background: var(--gradient-brand-to-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── International map card ── */
+.country-card {
+  @apply rounded-2xl p-5 transition-all duration-300 cursor-default;
+  background: white;
+  border: 1px solid #DDE3F0;
+  box-shadow: var(--shadow-card);
+}
+.country-card:hover {
+  border-color: var(--kasipker-gold-400);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-elevated);
+}

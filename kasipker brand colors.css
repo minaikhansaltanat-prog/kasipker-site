@@ -1,0 +1,166 @@
+/* ============================================================
+   KASIPKER — БРЕНД ТҮСТЕР ТІЗІМІ (Brand Color Stylesheet)
+   Жоба логотипінен алынған ресми түстер
+   Дайындалған күні: 12 мамыр 2026
+   ============================================================ */
+
+
+/* ──────────────────────────────────────────────────────────
+   1. НЕГІЗГІ БРЕНД ТҮСТЕРІ (Primary Brand Colors)
+   ────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* 🔵 NAVY BLUE — Логотиптің негізгі түсі (бағандар + жебе + мәтін) */
+  --kasipker-navy-900:    #0D1B4B;   /* Ең қою — мәтін, логотип атауы */
+  --kasipker-navy-800:    #152466;   /* Қою — тақырыптар, түймелер */
+  --kasipker-navy-700:    #1C2E80;   /* Орта — негізгі бренд реңгі */
+  --kasipker-navy-600:    #1F3399;   /* Жарқын — белсенді элементтер */
+  --kasipker-navy-500:    #2540B8;   /* Hover күйі */
+  --kasipker-navy-400:    #3D5ACF;   /* Орташа — белгілер, нышандар */
+  --kasipker-navy-300:    #6A83DC;   /* Ашық — фон элементтері */
+  --kasipker-navy-200:    #99ADE8;   /* Өте ашық — фондық реңктер */
+  --kasipker-navy-100:    #C8D4F3;   /* Ең ашық — нәзік фондар */
+  --kasipker-navy-50:     #EBF0FA;   /* Фон реңгі */
+
+  /* 🟡 GOLD — Логотиптің акцент түсі (ою-өрнек + жебе бөлігі) */
+  --kasipker-gold-900:    #3D2800;   /* Ең қою алтын */
+  --kasipker-gold-800:    #6B4400;   /* Қою — мәтін алтын фонда */
+  --kasipker-gold-700:    #8F5C00;   /* Негізгі алтын реңгі */
+  --kasipker-gold-600:    #B47800;   /* Орта — акцент */
+  --kasipker-gold-500:    #C99100;   /* Ресми алтын (логотип) */
+  --kasipker-gold-400:    #D4A017;   /* Логотиптің негізгі алтын түсі */
+  --kasipker-gold-300:    #E0B84D;   /* Жарқын алтын */
+  --kasipker-gold-200:    #EDD080;   /* Ашық алтын */
+  --kasipker-gold-100:    #F5E4B3;   /* Өте ашық */
+  --kasipker-gold-50:     #FBF3DC;   /* Нәзік фон */
+
+  /* ⚪ WHITE / LIGHT — Фон және негіз */
+  --kasipker-white:       #FFFFFF;   /* Таза ақ — логотип фоны */
+  --kasipker-light-100:   #F5F7FC;   /* Өте ашық көкшіл ақ */
+  --kasipker-light-200:   #EEF1F8;   /* Ашық фон */
+  --kasipker-light-300:   #DDE3F0;   /* Сызықтар, бөлгіштер */
+
+
+  /* ──────────────────────────────────────────────────────────
+     2. СЕМАНТИКАЛЫҚ АЙНЫМАЛЫЛАР (Semantic Variables)
+     ────────────────────────────────────────────────────────── */
+
+  /* Бренд негізі */
+  --color-brand-primary:        var(--kasipker-navy-700);   /* #1C2E80 */
+  --color-brand-primary-dark:   var(--kasipker-navy-900);   /* #0D1B4B */
+  --color-brand-primary-light:  var(--kasipker-navy-300);   /* #6A83DC */
+
+  /* Акцент (алтын) */
+  --color-brand-accent:         var(--kasipker-gold-400);   /* #D4A017 */
+  --color-brand-accent-dark:    var(--kasipker-gold-700);   /* #8F5C00 */
+  --color-brand-accent-light:   var(--kasipker-gold-200);   /* #EDD080 */
+
+  /* Мәтін */
+  --color-text-heading:         var(--kasipker-navy-900);   /* #0D1B4B */
+  --color-text-body:            var(--kasipker-navy-800);   /* #152466 */
+  --color-text-muted:           var(--kasipker-navy-400);   /* #3D5ACF */
+  --color-text-on-dark:         var(--kasipker-white);      /* #FFFFFF */
+  --color-text-on-gold:         var(--kasipker-gold-900);   /* #3D2800 */
+
+  /* Фон */
+  --color-bg-page:              var(--kasipker-white);      /* #FFFFFF */
+  --color-bg-surface:           var(--kasipker-light-100);  /* #F5F7FC */
+  --color-bg-card:              var(--kasipker-white);      /* #FFFFFF */
+  --color-bg-dark:              var(--kasipker-navy-900);   /* #0D1B4B */
+
+  /* Сызықтар мен жиектер */
+  --color-border-default:       var(--kasipker-light-300);  /* #DDE3F0 */
+  --color-border-brand:         var(--kasipker-navy-600);   /* #1F3399 */
+  --color-border-accent:        var(--kasipker-gold-400);   /* #D4A017 */
+
+  /* Түймелер */
+  --color-btn-primary-bg:       var(--kasipker-navy-700);   /* #1C2E80 */
+  --color-btn-primary-hover:    var(--kasipker-navy-600);   /* #1F3399 */
+  --color-btn-primary-text:     var(--kasipker-white);
+  --color-btn-accent-bg:        var(--kasipker-gold-400);   /* #D4A017 */
+  --color-btn-accent-hover:     var(--kasipker-gold-500);   /* #C99100 */
+  --color-btn-accent-text:      var(--kasipker-gold-900);   /* #3D2800 */
+
+
+  /* ──────────────────────────────────────────────────────────
+     3. ТИПОГРАФИЯ (Typography Tokens)
+     ────────────────────────────────────────────────────────── */
+
+  --font-display:   'Montserrat', 'Arial Black', sans-serif;  /* Логотип атауы */
+  --font-heading:   'Montserrat', 'Segoe UI', sans-serif;
+  --font-body:      'Inter', 'Segoe UI', Arial, sans-serif;
+
+
+  /* ──────────────────────────────────────────────────────────
+     4. ГРАДИЕНТТЕР (Gradients)
+     ────────────────────────────────────────────────────────── */
+
+  --gradient-brand:
+    linear-gradient(135deg, #0D1B4B 0%, #1C2E80 50%, #2540B8 100%);
+
+  --gradient-gold:
+    linear-gradient(135deg, #8F5C00 0%, #D4A017 50%, #E0B84D 100%);
+
+  --gradient-brand-to-gold:
+    linear-gradient(135deg, #0D1B4B 0%, #1C2E80 60%, #D4A017 100%);
+
+  --gradient-hero:
+    linear-gradient(160deg, #0D1B4B 0%, #1C2E80 70%, #1F3399 100%);
+
+
+  /* ──────────────────────────────────────────────────────────
+     5. КӨЛЕҢКЕЛЕР (Shadows)
+     ────────────────────────────────────────────────────────── */
+
+  --shadow-card:
+    0 2px 12px rgba(28, 46, 128, 0.10),
+    0 1px 4px  rgba(28, 46, 128, 0.08);
+
+  --shadow-btn:
+    0 4px 14px rgba(28, 46, 128, 0.25);
+
+  --shadow-gold:
+    0 4px 14px rgba(212, 160, 23, 0.30);
+
+  --shadow-elevated:
+    0 8px 32px rgba(13, 27, 75, 0.18),
+    0 2px 8px  rgba(13, 27, 75, 0.10);
+
+}
+
+
+/* ============================================================
+   ЖЫЛДАМ АНЫҚТАМА (Quick Reference)
+
+   НЕГІЗГІ NAVY ТҮСТЕРІ:
+   ─────────────────────────────────────────────────────────
+   Ресми логотип navy     →  #1C2E80  (--kasipker-navy-700)
+   Мәтін / атау           →  #0D1B4B  (--kasipker-navy-900)
+   Hover                  →  #1F3399  (--kasipker-navy-600)
+   Ашық акцент            →  #3D5ACF  (--kasipker-navy-400)
+   Фон реңгі              →  #EBF0FA  (--kasipker-navy-50)
+
+   НЕГІЗГІ GOLD ТҮСТЕРІ:
+   ─────────────────────────────────────────────────────────
+   Ресми логотип алтын    →  #D4A017  (--kasipker-gold-400)
+   Алтын акцент           →  #C99100  (--kasipker-gold-500)
+   Ою-өрнек алтын         →  #E0B84D  (--kasipker-gold-300)
+   Мәтін алтын фонда      →  #3D2800  (--kasipker-gold-900)
+   Ашық алтын фон         →  #FBF3DC  (--kasipker-gold-50)
+
+   ҚОЛДАНУ ЕРЕЖЕЛЕРІ:
+   ─────────────────────────────────────────────────────────
+   • Navy қою фонда → ақ мәтін (#FFFFFF)
+   • Gold фонда → #3D2800 мәтін (қою күрең)
+   • Navy + Gold бірге → ресми Kasipker стилі
+   • Акцент рет: navy 70% + gold 30%
+
+   HEX ТІЗБЕСІ (тез іздеу үшін):
+   Navy:  #EBF0FA · #C8D4F3 · #99ADE8 · #6A83DC
+          #3D5ACF · #2540B8 · #1F3399 · #1C2E80
+          #152466 · #0D1B4B
+   Gold:  #FBF3DC · #F5E4B3 · #EDD080 · #E0B84D
+          #D4A017 · #C99100 · #B47800 · #8F5C00
+          #6B4400 · #3D2800
+   ============================================================ */
