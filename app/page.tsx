@@ -364,7 +364,22 @@ export default function Home() {
                   </div>
                   <h3 className="font-extrabold text-kasipker-navy-900 text-lg mb-1">{info.name}</h3>
                   <p className="text-sm text-kasipker-gold-500 font-semibold mb-2">{info.position}</p>
-                  <p className="text-sm text-kasipker-navy-400">{info.company}</p>
+                  <p className="text-sm text-kasipker-navy-400 mb-3">{info.company}</p>
+                  {person.instagram && (
+                    <a
+                      href={person.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 px-3 py-1.5 text-xs font-bold text-purple-700 hover:from-purple-100 hover:to-pink-100 transition-colors cursor-pointer"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 flex-shrink-0">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                      </svg>
+                      {'@' + person.instagram.replace('https://www.instagram.com/', '').replace(/\/$/, '')}
+                    </a>
+                  )}
                 </motion.div>
               );
             })}

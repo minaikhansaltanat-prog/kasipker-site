@@ -123,10 +123,45 @@ export default function PersonalitiesPage() {
 
                 {/* Social */}
                 {(person.linkedin || person.instagram || person.telegram) && (
-                  <div className="mt-4 flex gap-2 border-t border-kasipker-navy-50 pt-3">
-                    {person.linkedin && <a href={person.linkedin} className="text-kasipker-navy-400 hover:text-kasipker-navy-700 text-sm font-bold cursor-pointer">in</a>}
-                    {person.instagram && <a href={person.instagram} className="text-kasipker-navy-400 hover:text-kasipker-navy-700 text-sm font-bold cursor-pointer">ig</a>}
-                    {person.telegram && <a href={person.telegram} className="text-kasipker-navy-400 hover:text-kasipker-navy-700 text-sm font-bold cursor-pointer">tg</a>}
+                  <div className="mt-4 flex flex-wrap gap-2 border-t border-kasipker-navy-50 pt-3">
+                    {person.instagram && (
+                      <a
+                        href={person.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 px-3 py-1.5 text-xs font-bold text-purple-700 hover:from-purple-100 hover:to-pink-100 transition-colors cursor-pointer"
+                      >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 flex-shrink-0">
+                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                        {'@' + person.instagram.replace('https://www.instagram.com/', '').replace(/\/$/, '')}
+                      </a>
+                    )}
+                    {person.telegram && (
+                      <a
+                        href={person.telegram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-blue-50 border border-blue-100 px-3 py-1.5 text-xs font-bold text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
+                      >
+                        <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5 flex-shrink-0">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.92.44l-2.56-1.88-1.24 1.2c-.14.14-.26.26-.52.26l.18-2.62 4.74-4.28c.2-.18-.04-.28-.32-.1L7.46 14.5l-2.5-.78c-.54-.17-.55-.54.12-.8l9.8-3.78c.44-.16.84.1.76.66z" />
+                        </svg>
+                        Telegram
+                      </a>
+                    )}
+                    {person.linkedin && (
+                      <a
+                        href={person.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-blue-50 border border-blue-100 px-3 py-1.5 text-xs font-bold text-blue-800 hover:bg-blue-100 transition-colors cursor-pointer"
+                      >
+                        LinkedIn
+                      </a>
+                    )}
                   </div>
                 )}
               </motion.div>

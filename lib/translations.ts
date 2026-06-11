@@ -492,6 +492,17 @@ export const personalities = [
     instagram: '',
     telegram: '',
   },
+  {
+    id: 2,
+    photo: '/images/saltanat-minaykhan.jpg',
+    kk: { name: 'Салтанат Минайхан', position: 'Кәсіпкер. Маркетинг және сату маманы. ИИ инженер', company: 'Kasipker Кәсіпкерлер Альянсы', bio: 'Кәсіпкер, маркетинг және сату саласының маманы, жасанды интеллект инженері.' },
+    ru: { name: 'Салтанат Минайхан', position: 'Предприниматель. Специалист по маркетингу и продажам. ИИ-инженер', company: 'Союз предпринимателей Kasipker', bio: 'Предприниматель, специалист по маркетингу и продажам, инженер искусственного интеллекта.' },
+    en: { name: 'Saltanat Minaykhan', position: 'Entrepreneur. Marketing & Sales Specialist. AI Engineer', company: 'Kasipker Entrepreneurs Alliance', bio: 'Entrepreneur, marketing and sales specialist, artificial intelligence engineer.' },
+    category: 'Мамандар',
+    linkedin: '',
+    instagram: 'https://www.instagram.com/subhankul_minayhan',
+    telegram: '',
+  },
 ];
 
 export const countries = [
