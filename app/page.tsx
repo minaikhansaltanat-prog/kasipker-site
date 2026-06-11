@@ -168,65 +168,125 @@ export default function Home() {
         }} />
 
         {/* Content — topmost layer */}
-        <div className="relative z-[10] mx-auto max-w-7xl px-4 md:px-8 text-center py-20">
+        <div className="relative z-[10] mx-auto max-w-7xl px-4 md:px-8 py-16 w-full">
 
-          {/* Glassmorphism text container */}
-          <motion.div
-            initial="hidden" animate="visible" custom={0} variants={fadeUp}
-            className="mx-auto max-w-3xl rounded-2xl px-8 py-10 md:px-14 md:py-14 mb-10"
-            style={{
-              background: 'rgba(255,255,255,0.08)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-            }}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full border border-kasipker-gold-400/40 bg-kasipker-gold-400/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-kasipker-gold-300 mb-8">
-              <Award className="h-3.5 w-3.5" />
-              {tr.hero_eyebrow} · 1999–2026
-            </span>
+          {/* Two-column: text LEFT, video RIGHT */}
+          <div className="grid lg:grid-cols-2 gap-8 xl:gap-12 items-center mb-10">
 
-            <motion.h1
-              initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
-              className="text-5xl font-black text-white leading-tight mb-4 md:text-7xl"
-              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.30)' }}
-            >
-              {tr.hero_h1}{' '}
-              <span
-                className="block bg-clip-text text-transparent"
-                style={{ backgroundImage: 'linear-gradient(135deg, #D4A017 0%, #F5C842 40%, #D4A017 100%)' }}
-              >
-                {tr.hero_h1_accent}
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial="hidden" animate="visible" custom={0.25} variants={fadeUp}
-              className="mx-auto max-w-xl text-lg leading-relaxed mb-10"
-              style={{ color: 'rgba(255,255,255,0.88)', textShadow: '0 1px 8px rgba(0,0,0,0.20)' }}
-            >
-              {tr.hero_sub}
-            </motion.p>
-
+            {/* ── LEFT: text ── */}
             <motion.div
-              initial="hidden" animate="visible" custom={0.4} variants={fadeUp}
-              className="flex flex-wrap justify-center gap-4"
+              initial="hidden" animate="visible" custom={0} variants={fadeUp}
+              className="rounded-2xl px-8 py-10 md:px-10 md:py-12 text-left"
+              style={{
+                background: 'rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+              }}
             >
-              <Link href="/contact" className="btn-gold px-8 py-4 text-base font-bold cursor-pointer inline-flex items-center gap-2 group">
-                {tr.hero_cta1}
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-              <Link href="/about" className="btn-outline border-white/40 text-white hover:bg-white/10 hover:text-white px-8 py-4 text-base cursor-pointer inline-flex items-center gap-2">
-                {tr.hero_cta2}
-              </Link>
-            </motion.div>
-          </motion.div>
+              <span className="inline-flex items-center gap-2 rounded-full border border-kasipker-gold-400/40 bg-kasipker-gold-400/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-kasipker-gold-300 mb-6">
+                <Award className="h-3.5 w-3.5" />
+                {tr.hero_eyebrow} · 1999–2026
+              </span>
 
-          {/* Stats bar */}
+              <motion.h1
+                initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
+                className="text-4xl font-black text-white leading-tight mb-4 md:text-6xl"
+                style={{ textShadow: '0 2px 20px rgba(0,0,0,0.30)' }}
+              >
+                {tr.hero_h1}{' '}
+                <span
+                  className="block bg-clip-text text-transparent"
+                  style={{ backgroundImage: 'linear-gradient(135deg, #D4A017 0%, #F5C842 40%, #D4A017 100%)' }}
+                >
+                  {tr.hero_h1_accent}
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial="hidden" animate="visible" custom={0.25} variants={fadeUp}
+                className="text-base leading-relaxed mb-8"
+                style={{ color: 'rgba(255,255,255,0.88)', textShadow: '0 1px 8px rgba(0,0,0,0.20)' }}
+              >
+                {tr.hero_sub}
+              </motion.p>
+
+              <motion.div
+                initial="hidden" animate="visible" custom={0.4} variants={fadeUp}
+                className="flex flex-wrap gap-4"
+              >
+                <Link href="/contact" className="btn-gold px-7 py-3.5 text-sm font-bold cursor-pointer inline-flex items-center gap-2 group">
+                  {tr.hero_cta1}
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
+                <Link href="/about" className="btn-outline border-white/40 text-white hover:bg-white/10 hover:text-white px-7 py-3.5 text-sm cursor-pointer inline-flex items-center gap-2">
+                  {tr.hero_cta2}
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* ── RIGHT: YouTube video ── */}
+            <motion.div
+              initial="hidden" animate="visible" custom={0.2} variants={fadeUp}
+              className="rounded-2xl overflow-hidden"
+              style={{
+                background: 'rgba(255,255,255,0.06)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                border: '1px solid rgba(255,255,255,0.18)',
+                boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
+              }}
+            >
+              {/* Gold top bar */}
+              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/10"
+                style={{ background: 'rgba(212,160,23,0.12)' }}>
+                <div className="flex gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-kasipker-gold-300 ml-2">
+                  {lang === 'kk' ? 'Kasipker Клубы туралы' : lang === 'ru' ? 'О клубе Kasipker' : 'About Kasipker Club'}
+                </span>
+              </div>
+
+              {/* Video area: replace HERO_VIDEO_ID with your YouTube video ID */}
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/?listType=user_uploads&list=kasipker&rel=0&modestbranding=1"
+                  title="Kasipker Club Presentation"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              </div>
+
+              {/* Caption */}
+              <div className="px-5 py-3 flex items-center justify-between">
+                <p className="text-xs font-semibold text-white/60">
+                  {lang === 'kk' ? 'Клубтың презентациялық видеосы' : lang === 'ru' ? 'Презентационное видео клуба' : 'Club presentation video'}
+                </p>
+                <a
+                  href="https://www.youtube.com/@kasipker"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-kasipker-gold-400 hover:text-kasipker-gold-300 transition-colors cursor-pointer"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                    <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/>
+                  </svg>
+                  YouTube
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats bar — full width */}
           <motion.div
             initial="hidden" animate="visible" custom={0.55} variants={fadeUp}
-            className="inline-flex flex-wrap justify-center gap-px rounded-2xl overflow-hidden border border-white/10"
+            className="flex flex-wrap justify-center gap-px rounded-2xl overflow-hidden border border-white/10"
             style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(12px)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
           >
             {[
@@ -235,7 +295,7 @@ export default function Home() {
               { Icon: Award, value: '12', label: tr.stats_clusters },
               { Icon: Calendar, value: '25+', label: tr.stats_years },
             ].map(({ Icon, value, label }, i) => (
-              <div key={i} className="flex items-center gap-2 px-6 py-3.5 border-r border-white/10 last:border-r-0">
+              <div key={i} className="flex flex-1 items-center justify-center gap-2 px-6 py-3.5 border-r border-white/10 last:border-r-0 min-w-[120px]">
                 <Icon className="h-4 w-4 text-kasipker-gold-400 flex-shrink-0" />
                 <div className="text-left">
                   <p className="text-base font-black text-kasipker-gold-400 leading-none">{value}</p>
@@ -245,10 +305,11 @@ export default function Home() {
             ))}
           </motion.div>
 
+          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
-            className="mt-16 flex justify-center"
+            className="mt-12 flex justify-center"
           >
             <motion.div
               animate={{ y: [0, 8, 0] }}
