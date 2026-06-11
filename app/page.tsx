@@ -7,6 +7,9 @@ import {
   Factory, Wheat, HardHat, Stethoscope, Cpu, ShoppingBag,
   Plane, GraduationCap, Banknote, Truck, Zap, Leaf,
   ArrowRight, Users, Globe, Award, Calendar,
+  Presentation, Coffee, UtensilsCrossed, Heart, Handshake,
+  Mic, FileText, BookOpen, Newspaper,
+  Camera, MapPin, Mail, Phone,
 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, clusters, personalities, countries, partners } from '@/lib/translations';
@@ -17,6 +20,98 @@ const fadeUp = {
 };
 
 const CLUSTER_ICONS = [Factory, Wheat, HardHat, Stethoscope, Cpu, ShoppingBag, Plane, GraduationCap, Banknote, Truck, Zap, Leaf];
+
+const EVENT_TYPES = [
+  {
+    Icon: Presentation,
+    color: 'bg-blue-50 text-blue-700',
+    freq_kk: 'Жылына 2–4 рет', freq_ru: '2–4 раза в год', freq_en: '2–4 times a year',
+    kk: 'Конференциялар', ru: 'Конференции', en: 'Conferences',
+    desc_kk: 'Бизнес, инвестиция, экспорт тақырыбындағы ірі форумдар. Спикерлер, панельді пікірсайыстар, нетворкинг.',
+    desc_ru: 'Крупные форумы по бизнесу, инвестициям, экспорту. Спикеры, панельные дискуссии, нетворкинг.',
+    desc_en: 'Major forums on business, investment and export. Speakers, panel discussions, networking.',
+  },
+  {
+    Icon: Coffee,
+    color: 'bg-kasipker-navy-50 text-kasipker-navy-700',
+    freq_kk: 'Аптасына бір рет', freq_ru: 'Еженедельно', freq_en: 'Weekly',
+    kk: 'Жұма кездесуі', ru: 'Пятничные встречи', en: 'Friday Meetups',
+    desc_kk: 'Жұма сайын өтетін бейресми кездесулер. Мүшелер тәжірибелерімен бөліседі, жаңа байланыстар орнатады.',
+    desc_ru: 'Неформальные встречи каждую пятницу. Члены делятся опытом, устанавливают новые связи.',
+    desc_en: 'Informal weekly meetings every Friday. Members share experience and build new connections.',
+  },
+  {
+    Icon: UtensilsCrossed,
+    color: 'bg-amber-50 text-amber-700',
+    freq_kk: 'Айына 2 рет', freq_ru: '2 раза в месяц', freq_en: 'Twice a month',
+    kk: 'Бизнес таңғы ас', ru: 'Бизнес-завтрак', en: 'Business Breakfast',
+    desc_kk: 'Таңертеңгілік бизнес кездесу. Таңғы ас үстінде маңызды байланыстар мен серіктестіктер орнату.',
+    desc_ru: 'Утренние деловые встречи. Установление важных контактов и партнёрств за завтраком.',
+    desc_en: 'Morning business meetings. Building important contacts and partnerships over breakfast.',
+  },
+  {
+    Icon: Heart,
+    color: 'bg-red-50 text-red-600',
+    freq_kk: 'Жылына 4 рет', freq_ru: '4 раза в год', freq_en: '4 times a year',
+    kk: 'Қайырымдылық', ru: 'Благотворительность', en: 'Charity',
+    desc_kk: 'Балалар үйлеріне, мүмкіндіктері шектеулі адамдарға және зілзала зардап шеккендерге көмек.',
+    desc_ru: 'Помощь детским домам, людям с ограниченными возможностями и пострадавшим от стихийных бедствий.',
+    desc_en: 'Support for orphanages, people with disabilities and disaster relief.',
+  },
+  {
+    Icon: Users,
+    color: 'bg-green-50 text-green-700',
+    freq_kk: 'Тоқсанына бір рет', freq_ru: 'Ежеквартально', freq_en: 'Quarterly',
+    kk: 'Қоғамдық жұмыстар', ru: 'Общественные работы', en: 'Community Work',
+    desc_kk: 'Қала тазалығы, парк жайластыру, мектептерге көмек — қоғам үшін бірлескен іс-шаралар.',
+    desc_ru: 'Уборка города, благоустройство парков, помощь школам — совместные мероприятия.',
+    desc_en: 'City cleanup, park renovation, school support — joint community activities.',
+  },
+  {
+    Icon: Handshake,
+    color: 'bg-purple-50 text-purple-700',
+    freq_kk: 'Жылына 2 рет', freq_ru: '2 раза в год', freq_en: 'Twice a year',
+    kk: 'Асар', ru: 'Асар', en: 'Asar',
+    desc_kk: 'Қазақтың дәстүрлі «асар» рухымен — бірге жасасақ болады. Мүшелердің бизнесіне бірлесіп шешім табу.',
+    desc_ru: 'В духе казахского «асар» — вместе всё возможно. Совместное решение проблем бизнеса членов.',
+    desc_en: 'In the spirit of the Kazakh tradition «Asar» — together we can. Collectively solving business challenges.',
+  },
+];
+
+const MEDIA_TYPES = [
+  {
+    key: 'podcasts', Icon: Mic,
+    color: 'bg-purple-50 text-purple-700',
+    kk: 'Подкастар', ru: 'Подкасты', en: 'Podcasts',
+    desc_kk: 'Kasipker кәсіпкерлерімен сұхбат, бизнес кеңестері және сараптамалар',
+    desc_ru: 'Интервью с предпринимателями Kasipker, бизнес-советы и аналитика',
+    desc_en: 'Interviews with Kasipker entrepreneurs, business tips and analytics',
+  },
+  {
+    key: 'articles', Icon: FileText,
+    color: 'bg-blue-50 text-blue-700',
+    kk: 'Мақалалар', ru: 'Статьи', en: 'Articles',
+    desc_kk: 'Бизнес, заң, экспорт, инвестиция тақырыбындағы терең мақалалар',
+    desc_ru: 'Глубокие статьи о бизнесе, праве, экспорте и инвестициях',
+    desc_en: 'In-depth articles on business, law, export and investment',
+  },
+  {
+    key: 'blog', Icon: BookOpen,
+    color: 'bg-green-50 text-green-700',
+    kk: 'Блог', ru: 'Блог', en: 'Blog',
+    desc_kk: 'Мүшелердің тәжірибесі, кейстер және бизнес жолы туралы жазбалар',
+    desc_ru: 'Опыт членов, кейсы и заметки о предпринимательском пути',
+    desc_en: 'Member experiences, case studies and entrepreneurship stories',
+  },
+  {
+    key: 'news', Icon: Newspaper,
+    color: 'bg-amber-50 text-amber-700',
+    kk: 'Жаңалықтар', ru: 'Новости', en: 'News',
+    desc_kk: 'Альянс жаңалықтары, мүшелік хабарландырулар, серіктестіктер',
+    desc_ru: 'Новости Альянса, членские объявления, партнёрства',
+    desc_en: 'Alliance news, membership announcements, partnerships',
+  },
+];
 
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -53,7 +148,6 @@ export default function Home() {
 
       {/* ══════ HERO ══════ */}
       <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Animated gradient orbs */}
         <motion.div
           animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.25, 0.15] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
@@ -66,15 +160,12 @@ export default function Home() {
           className="absolute -bottom-32 -left-32 w-[450px] h-[450px] rounded-full pointer-events-none"
           style={{ background: 'radial-gradient(circle, #6A83DC, transparent 70%)' }}
         />
-
-        {/* Hex grid pattern */}
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 17.32v17.36L30 52 0 34.68V17.32z' fill='none' stroke='%23D4A017' stroke-width='1'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 52px',
         }} />
 
         <div className="relative mx-auto max-w-7xl px-4 md:px-8 text-center py-20">
-          {/* Eyebrow — no emoji, use SVG star */}
           <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
             <span className="inline-flex items-center gap-2 rounded-full border border-kasipker-gold-400/40 bg-kasipker-gold-400/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-kasipker-gold-300 mb-8">
               <Award className="h-3.5 w-3.5" />
@@ -82,7 +173,6 @@ export default function Home() {
             </span>
           </motion.div>
 
-          {/* Headline with animated gradient on accent word */}
           <motion.h1
             initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
             className="text-5xl font-black text-white leading-tight mb-4 md:text-7xl"
@@ -103,27 +193,19 @@ export default function Home() {
             {tr.hero_sub}
           </motion.p>
 
-          {/* Glassmorphism CTA block */}
           <motion.div
             initial="hidden" animate="visible" custom={0.4} variants={fadeUp}
             className="flex flex-wrap justify-center gap-4 mb-16"
           >
-            <Link
-              href="/contact"
-              className="btn-gold px-8 py-4 text-base font-bold cursor-pointer inline-flex items-center gap-2 group"
-            >
+            <Link href="/contact" className="btn-gold px-8 py-4 text-base font-bold cursor-pointer inline-flex items-center gap-2 group">
               {tr.hero_cta1}
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
-            <Link
-              href="/about"
-              className="btn-outline border-white/40 text-white hover:bg-white/10 hover:text-white px-8 py-4 text-base cursor-pointer inline-flex items-center gap-2"
-            >
+            <Link href="/about" className="btn-outline border-white/40 text-white hover:bg-white/10 hover:text-white px-8 py-4 text-base cursor-pointer inline-flex items-center gap-2">
               {tr.hero_cta2}
             </Link>
           </motion.div>
 
-          {/* Mini stats bar — glassmorphism */}
           <motion.div
             initial="hidden" animate="visible" custom={0.55} variants={fadeUp}
             className="inline-flex flex-wrap justify-center gap-px rounded-2xl overflow-hidden border border-white/10 shadow-elevated"
@@ -145,7 +227,6 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
@@ -186,13 +267,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════ ABOUT PREVIEW ══════ */}
-      <section className="py-20" style={{ background: '#EBF0FA' }}>
+      {/* ══════ АЛЬЯНС ТУРАЛЫ ══════ */}
+      <section id="about" className="py-20" style={{ background: '#EBF0FA' }}>
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="grid items-center gap-16 lg:grid-cols-2">
-            <motion.div
-              initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
-            >
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}>
               <span className="section-eyebrow">{tr.about_eyebrow}</span>
               <h2 className="section-title mb-6">{tr.about_title}</h2>
               <p className="mb-4 leading-relaxed text-kasipker-navy-600">{tr.about_text1}</p>
@@ -216,7 +295,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Timeline mini */}
             <motion.div
               initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.15} variants={fadeUp}
               className="relative"
@@ -248,50 +326,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════ CLUSTERS ══════ */}
-      <section className="py-20 bg-white">
-        <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <motion.div
-            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
-            className="text-center mb-12"
-          >
-            <span className="section-eyebrow">{tr.clusters_eyebrow}</span>
-            <h2 className="section-title">{tr.clusters_title}</h2>
-            <div className="gold-bar" />
-            <p className="mt-4 text-kasipker-navy-400">{tr.clusters_sub}</p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            {clusters.map((cl, i) => {
-              const Icon = CLUSTER_ICONS[i] ?? Factory;
-              const name = lang === 'zh' || lang === 'tr' ? cl.en : lang === 'en' ? cl.en : lang === 'ru' ? cl.ru : cl.kk;
-              return (
-                <motion.div
-                  key={i}
-                  initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.06} variants={fadeUp}
-                  className="cluster-card group text-center"
-                >
-                  <div className="cluster-icon mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-kasipker-navy-50 group-hover:bg-kasipker-navy-700 transition-colors duration-200">
-                    <Icon className="h-6 w-6 text-kasipker-navy-700 group-hover:text-white transition-colors duration-200" />
-                  </div>
-                  <p className="cluster-title text-sm font-bold text-kasipker-navy-800 transition-colors">
-                    {name}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link href="/clusters" className="btn-primary inline-flex items-center gap-2 cursor-pointer">
-              {tr.join_cluster} <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════ PERSONALITIES PREVIEW ══════ */}
-      <section style={{ background: '#EBF0FA' }} className="py-20">
+      {/* ══════ ТҰЛҒАЛАР ══════ */}
+      <section id="personalities" className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
@@ -342,8 +378,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════ INTERNATIONAL ══════ */}
-      <section className="py-20 bg-kasipker-navy-900">
+      {/* ══════ КЛАСТЕРЛЕР ══════ */}
+      <section id="clusters" className="py-20" style={{ background: '#EBF0FA' }}>
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
+            className="text-center mb-12"
+          >
+            <span className="section-eyebrow">{tr.clusters_eyebrow}</span>
+            <h2 className="section-title">{tr.clusters_title}</h2>
+            <div className="gold-bar" />
+            <p className="mt-4 text-kasipker-navy-400">{tr.clusters_sub}</p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {clusters.map((cl, i) => {
+              const Icon = CLUSTER_ICONS[i] ?? Factory;
+              const name = lang === 'zh' || lang === 'tr' ? cl.en : lang === 'en' ? cl.en : lang === 'ru' ? cl.ru : cl.kk;
+              return (
+                <motion.div
+                  key={i}
+                  initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.06} variants={fadeUp}
+                  className="cluster-card group text-center"
+                >
+                  <div className="cluster-icon mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-kasipker-navy-50 group-hover:bg-kasipker-navy-700 transition-colors duration-200">
+                    <Icon className="h-6 w-6 text-kasipker-navy-700 group-hover:text-white transition-colors duration-200" />
+                  </div>
+                  <p className="cluster-title text-sm font-bold text-kasipker-navy-800 transition-colors">{name}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link href="/clusters" className="btn-primary inline-flex items-center gap-2 cursor-pointer">
+              {tr.join_cluster} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ ХАЛЫҚАРАЛЫҚ ══════ */}
+      <section id="international" className="py-20 bg-kasipker-navy-900">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
@@ -390,8 +466,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════ PARTNERS MARQUEE ══════ */}
-      <section className="py-16 bg-white overflow-hidden">
+      {/* ══════ ШАРАЛАР ══════ */}
+      <section id="events" className="py-20 bg-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
+            className="text-center mb-12"
+          >
+            <span className="section-eyebrow">{tr.events_eyebrow}</span>
+            <h2 className="section-title">
+              {lang === 'kk' ? 'Клуб Мүшелерінің Шаралары' :
+               lang === 'ru' ? 'Мероприятия для членов клуба' :
+               lang === 'en' ? 'Club Member Events' :
+               lang === 'zh' ? '俱乐部会员活动' :
+               'Kulüp Üyesi Etkinlikleri'}
+            </h2>
+            <div className="gold-bar" />
+            <p className="mt-4 text-kasipker-navy-400">{tr.events_sub}</p>
+          </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {EVENT_TYPES.map((ev, i) => {
+              const name = lang === 'ru' ? ev.ru : lang === 'en' ? ev.en : ev.kk;
+              const desc = lang === 'ru' ? ev.desc_ru : lang === 'en' ? ev.desc_en : ev.desc_kk;
+              const freq = lang === 'ru' ? ev.freq_ru : lang === 'en' ? ev.freq_en : ev.freq_kk;
+              return (
+                <motion.div
+                  key={i}
+                  initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.08} variants={fadeUp}
+                  className="card-kasipker group flex flex-col"
+                >
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl mb-4 ${ev.color} group-hover:bg-kasipker-navy-700 group-hover:text-white transition-colors duration-200`}>
+                    <ev.Icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="font-extrabold text-kasipker-navy-900 text-lg mb-2">{name}</h3>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Calendar className="h-3.5 w-3.5 text-kasipker-gold-400 flex-shrink-0" />
+                    <span className="text-xs font-semibold text-kasipker-gold-500">{freq}</span>
+                  </div>
+                  <p className="text-sm text-kasipker-navy-600 leading-relaxed flex-1">{desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link href="/events" className="btn-primary inline-flex items-center gap-2 cursor-pointer">
+              {tr.read_more} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ СЕРІКТЕСТЕР ══════ */}
+      <section id="partners" className="py-16 overflow-hidden" style={{ background: '#EBF0FA' }}>
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
@@ -407,7 +535,7 @@ export default function Home() {
               {[...partners, ...partners].map((p, i) => (
                 <div
                   key={i}
-                  className="mx-3 flex-shrink-0 flex items-center gap-3 rounded-2xl bg-kasipker-navy-50 border border-kasipker-navy-100 px-6 py-4 hover:border-kasipker-gold-400 transition-colors"
+                  className="mx-3 flex-shrink-0 flex items-center gap-3 rounded-2xl bg-white border border-kasipker-navy-100 px-6 py-4 hover:border-kasipker-gold-400 transition-colors"
                   style={{ minWidth: 220 }}
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-kasipker-navy-700 text-white font-black text-sm">
@@ -425,32 +553,185 @@ export default function Home() {
               ))}
             </div>
           </div>
+
+          <div className="mt-10 text-center">
+            <Link href="/partners" className="btn-primary inline-flex items-center gap-2 cursor-pointer">
+              {tr.read_more} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* ══════ FINAL CTA ══════ */}
-      <section className="py-20" style={{ background: 'var(--gradient-brand-to-gold)' }}>
-        <div className="mx-auto max-w-4xl px-4 md:px-8 text-center">
+      {/* ══════ МЕДИА ══════ */}
+      <section id="media" className="py-20 bg-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
+            className="text-center mb-12"
           >
-            <h2 className="text-3xl font-black text-white mb-4 md:text-5xl">
+            <span className="section-eyebrow">{tr.media_eyebrow}</span>
+            <h2 className="section-title">{tr.media_title}</h2>
+            <div className="gold-bar" />
+            <p className="mt-4 text-kasipker-navy-400">{tr.media_sub}</p>
+          </motion.div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {MEDIA_TYPES.map((type, i) => {
+              const name = lang === 'ru' ? type.ru : lang === 'en' ? type.en : type.kk;
+              const desc = lang === 'ru' ? type.desc_ru : lang === 'en' ? type.desc_en : type.desc_kk;
+              return (
+                <motion.div
+                  key={type.key}
+                  initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.1} variants={fadeUp}
+                  className="card-kasipker group flex flex-col items-center text-center"
+                >
+                  <div className={`flex h-16 w-16 items-center justify-center rounded-2xl mb-4 ${type.color} group-hover:bg-kasipker-navy-700 group-hover:text-white transition-colors duration-200`}>
+                    <type.Icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="font-extrabold text-kasipker-navy-900 text-lg mb-2">{name}</h3>
+                  <p className="text-sm text-kasipker-navy-600 leading-relaxed flex-1 mb-4">{desc}</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-kasipker-gold-500 bg-kasipker-gold-50 rounded-lg px-3 py-1.5">
+                    {tr.media_coming_soon}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link href="/media" className="btn-primary inline-flex items-center gap-2 cursor-pointer">
+              {tr.read_more} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ ГАЛЕРЕЯ ══════ */}
+      <section id="gallery" className="py-20" style={{ background: '#EBF0FA' }}>
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
+            className="text-center mb-12"
+          >
+            <span className="section-eyebrow">{tr.gallery_eyebrow}</span>
+            <h2 className="section-title">{tr.gallery_title}</h2>
+            <div className="gold-bar" />
+            <p className="mt-4 text-kasipker-navy-400">
+              {lang === 'kk' ? 'Конференциялар, кездесулер және шаралардан суреттер' :
+               lang === 'ru' ? 'Фотографии с конференций, встреч и мероприятий' :
+               'Photos from conferences, meetings and events'}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+            {[
+              { gradient: 'from-kasipker-navy-800 to-kasipker-navy-600', label: lang === 'kk' ? 'Конференция 2024' : lang === 'ru' ? 'Конференция 2024' : 'Conference 2024' },
+              { gradient: 'from-kasipker-gold-600 to-kasipker-gold-400', label: lang === 'kk' ? 'Бизнес таңғы ас' : lang === 'ru' ? 'Бизнес-завтрак' : 'Business Breakfast' },
+              { gradient: 'from-blue-800 to-blue-600', label: lang === 'kk' ? 'Жұма кездесуі' : lang === 'ru' ? 'Пятничная встреча' : 'Friday Meetup' },
+              { gradient: 'from-purple-800 to-purple-600', label: lang === 'kk' ? 'Асар 2025' : lang === 'ru' ? 'Асар 2025' : 'Asar 2025' },
+              { gradient: 'from-green-800 to-green-600', label: lang === 'kk' ? 'Қоғамдық жұмыс' : lang === 'ru' ? 'Общественная работа' : 'Community Work' },
+              { gradient: 'from-red-800 to-red-600', label: lang === 'kk' ? 'Қайырымдылық' : lang === 'ru' ? 'Благотворительность' : 'Charity' },
+              { gradient: 'from-kasipker-navy-900 to-kasipker-navy-700', label: lang === 'kk' ? 'Халықаралық форум' : lang === 'ru' ? 'Международный форум' : 'International Forum' },
+              { gradient: 'from-amber-700 to-amber-500', label: lang === 'kk' ? 'Кластер кездесуі' : lang === 'ru' ? 'Встреча кластера' : 'Cluster Meeting' },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.06} variants={fadeUp}
+                className={`group relative overflow-hidden rounded-2xl aspect-square bg-gradient-to-br ${item.gradient} cursor-pointer hover:-translate-y-1 transition-transform duration-300`}
+              >
+                <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
+                  <Camera className="h-8 w-8 text-white mb-2" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+                  <p className="text-xs font-semibold text-white">{item.label}</p>
+                </div>
+                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='35' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 17.32v17.36L30 52 0 34.68V17.32z' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E")`,
+                  backgroundSize: '40px 35px',
+                }} />
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link href="/gallery" className="btn-primary inline-flex items-center gap-2 cursor-pointer">
+              {lang === 'kk' ? 'Галереяны ашу' : lang === 'ru' ? 'Открыть галерею' : 'Open Gallery'} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════ БАЙЛАНЫС ══════ */}
+      <section id="contact" className="py-20 bg-kasipker-navy-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 17.32v17.36L30 52 0 34.68V17.32z' fill='none' stroke='%23D4A017' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundSize: '60px 52px',
+        }} />
+        <div className="relative mx-auto max-w-7xl px-4 md:px-8">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
+            className="text-center mb-12"
+          >
+            <span className="inline-flex items-center gap-2 rounded-full border border-kasipker-gold-400/30 bg-kasipker-gold-400/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-kasipker-gold-400 mb-4">
+              {tr.contact_eyebrow}
+            </span>
+            <h2 className="text-3xl font-extrabold text-white md:text-4xl mb-2">{tr.contact_title}</h2>
+            <div className="h-1 w-16 rounded-full bg-kasipker-gold-400 mx-auto mt-3" />
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-3 mb-12">
+            {[
+              {
+                Icon: MapPin,
+                title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address',
+                text: lang === 'kk' ? 'Алматы қаласы, Қазақстан' : lang === 'ru' ? 'г. Алматы, Казахстан' : 'Almaty, Kazakhstan',
+              },
+              {
+                Icon: Mail,
+                title: 'Email',
+                text: 'info@kasipker.kz',
+              },
+              {
+                Icon: Phone,
+                title: lang === 'kk' ? 'Телефон' : lang === 'ru' ? 'Телефон' : 'Phone',
+                text: '+7 (727) 000-00-00',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.1} variants={fadeUp}
+                className="flex flex-col items-center text-center rounded-2xl bg-white/5 border border-white/10 p-8 hover:border-kasipker-gold-400/40 transition-colors"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-kasipker-gold-400/10 border border-kasipker-gold-400/20 mb-4">
+                  <item.Icon className="h-6 w-6 text-kasipker-gold-400" />
+                </div>
+                <p className="text-xs font-bold uppercase tracking-widest text-kasipker-gold-400 mb-2">{item.title}</p>
+                <p className="text-white/80 font-semibold">{item.text}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.3} variants={fadeUp}
+            className="text-center"
+          >
+            <h3 className="text-2xl font-black text-white mb-3">
               {lang === 'kk' ? 'Kasipkerге қосылыңыз' :
                lang === 'ru' ? 'Присоединяйтесь к Kasipker' :
                lang === 'en' ? 'Join Kasipker Alliance' :
                lang === 'zh' ? '加入Kasipker联盟' :
                "Kasipker'e Katılın"}
-            </h2>
-            <p className="text-white/80 mb-8 text-lg">
+            </h3>
+            <p className="text-white/60 mb-8">
               {lang === 'kk' ? 'Қазақстанның 1500+ кәсіпкерімен бірлесіңіз' :
                lang === 'ru' ? 'Объединяйтесь с 1500+ предпринимателями Казахстана' :
                'Unite with 1500+ Kazakhstan entrepreneurs'}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="rounded-xl bg-white px-8 py-4 text-base font-bold text-kasipker-navy-700 shadow-elevated hover:shadow-gold transition-all hover:-translate-y-1 cursor-pointer inline-flex items-center gap-2">
+              <Link href="/contact" className="rounded-xl bg-kasipker-gold-400 px-8 py-4 text-base font-bold text-kasipker-gold-900 shadow-elevated hover:bg-kasipker-gold-300 transition-all hover:-translate-y-1 cursor-pointer inline-flex items-center gap-2">
                 {tr.hero_cta1} <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/about" className="rounded-xl border-2 border-white/40 px-8 py-4 text-base font-bold text-white hover:bg-white/10 transition-all cursor-pointer">
+              <Link href="/about" className="rounded-xl border-2 border-white/30 px-8 py-4 text-base font-bold text-white hover:bg-white/10 transition-all cursor-pointer">
                 {tr.hero_cta2}
               </Link>
             </div>
