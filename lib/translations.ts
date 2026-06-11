@@ -503,6 +503,32 @@ export const personalities = [
     instagram: 'https://www.instagram.com/subhankul_minayhan',
     telegram: '',
   },
+  {
+    id: 3,
+    photo: '/images/sagitov-abay.jpg',
+    kk: {
+      name: 'Абай Оразұлы Сағитов',
+      position: 'Биология ғылымдарының докторы, профессор, ҚР ҰҒА академигі',
+      company: 'Қазақстан Ұлттық Ғылым Академиясы',
+      bio: 'Абай Оразұлы Сағитов — Қазақстанның өсімдіктерді қорғау саласындағы ең беделді ғалымдарының бірі. 1945 жылы Семей облысында дүниеге келген. Қазақ ауылшаруашылық институтын бітіргеннен кейін ғылыми жолға түскен.\n\nБиология ғылымдарының докторы (1988), профессор (1990), Қазақстан Ұлттық ғылым академиясының академигі (2008). 550-ден астам ғылыми еңбектің, 18 монографияның, 4 оқулықтың авторы; 50 авторлық куәлік пен 85 инновациялық патент иесі.\n\nОксфорд университетінің профессор мантиясын иеленген, Европейская Ассамблеяның Сократ сыйлығының лауреаты, «Құрмет» (2012) және «Парасат» (2017) ордендерімен марапатталған.\n\nЕвропалық және Американдық өсімдіктерді қорғау қоғамдарының мүшесі. Kasipker альянсының «Ғалымдар» категориясы бойынша мүшесі — ғылым мен бизнестің тоғысу нүктесінде тұрған тұлға.',
+    },
+    ru: {
+      name: 'Абай Оразулы Сагитов',
+      position: 'Доктор биологических наук, профессор, академик НАН РК',
+      company: 'Национальная академия наук Казахстана',
+      bio: 'Абай Оразулы Сагитов — один из самых авторитетных учёных Казахстана в области защиты растений. Родился в 1945 году в Семипалатинской области. После окончания Казахского сельскохозяйственного института посвятил себя науке.\n\nДоктор биологических наук (1988), профессор (1990), академик Национальной академии наук Казахстана (2008). Автор более 550 научных трудов, 18 монографий, 4 учебников; обладатель 50 авторских свидетельств и 85 инновационных патентов.\n\nУдостоен мантии профессора Оксфордского университета, лауреат премии Сократа Европейской Ассамблеи, награждён орденами «Құрмет» (2012) и «Парасат» (2017).\n\nЧлен Европейского и Американского обществ защиты растений. Член альянса Kasipker по категории «Учёные» — личность, стоящая на стыке науки и бизнеса.',
+    },
+    en: {
+      name: 'Abai Orazuly Sagitov',
+      position: 'Doctor of Biological Sciences, Professor, Academician of NAS RK',
+      company: 'National Academy of Sciences of Kazakhstan',
+      bio: 'Abai Orazuly Sagitov is one of the most authoritative scientists in Kazakhstan in the field of plant protection. Born in 1945 in Semipalatinsk region. He pursued an academic career after graduating from the Kazakh Agricultural Institute.\n\nDoctor of Biological Sciences (1988), Professor (1990), Academician of the National Academy of Sciences of Kazakhstan (2008). Author of over 550 scientific works, 18 monographs, 4 textbooks; holder of 50 author\'s certificates and 85 innovation patents.\n\nRecipient of the Oxford University professorial mantle, laureate of the Socrates Prize of the European Assembly, awarded the orders of «Kurmet» (2012) and «Parasat» (2017).\n\nMember of the European and American Plant Protection Societies. Member of the Kasipker Alliance in the "Scientists" category — a figure at the intersection of science and business.',
+    },
+    category: 'Академиктер',
+    linkedin: '',
+    instagram: '',
+    telegram: '',
+  },
 ];
 
 export const countries = [

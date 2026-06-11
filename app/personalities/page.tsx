@@ -2,8 +2,34 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, personalities } from '@/lib/translations';
+
+const BIO_LIMIT = 120;
+
+function BioText({ text, lang }: { text: string; lang: string }) {
+  const [expanded, setExpanded] = useState(false);
+  if (text.length <= BIO_LIMIT) {
+    return <p className="text-xs text-kasipker-navy-600 leading-relaxed whitespace-pre-line">{text}</p>;
+  }
+  return (
+    <div>
+      <p className="text-xs text-kasipker-navy-600 leading-relaxed whitespace-pre-line">
+        {expanded ? text : text.slice(0, BIO_LIMIT) + '...'}
+      </p>
+      <button
+        onClick={() => setExpanded(v => !v)}
+        className="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-kasipker-navy-700 hover:text-kasipker-gold-500 transition-colors cursor-pointer"
+      >
+        {expanded
+          ? (lang === 'kk' ? 'Жасыру' : lang === 'ru' ? 'Свернуть' : 'Collapse')
+          : (lang === 'kk' ? 'Толығырақ...' : lang === 'ru' ? 'Подробнее...' : 'Read more...')}
+        {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+      </button>
+    </div>
+  );
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -119,7 +145,7 @@ export default function PersonalitiesPage() {
                 <h3 className="font-extrabold text-kasipker-navy-900 text-base leading-tight mb-1">{info.name}</h3>
                 <p className="text-xs text-kasipker-gold-500 font-semibold mb-1">{info.position}</p>
                 <p className="text-xs text-kasipker-navy-400 mb-3">{info.company}</p>
-                <p className="text-xs text-kasipker-navy-600 leading-relaxed line-clamp-3">{info.bio}</p>
+                <BioText text={info.bio} lang={lang} />
 
                 {/* Social */}
                 {(person.linkedin || person.instagram || person.telegram) && (
