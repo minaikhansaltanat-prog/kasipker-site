@@ -220,7 +220,19 @@ export default function Home() {
                   {tr.hero_cta1}
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
-                <Link href="/about" className="btn-outline border-white/40 text-white hover:bg-white/10 hover:text-white px-7 py-3.5 text-sm cursor-pointer inline-flex items-center gap-2">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2 rounded-xl px-7 py-3.5 text-sm font-bold cursor-pointer transition-all duration-200"
+                  style={{
+                    border: '2px solid rgba(255,255,255,0.80)',
+                    color: '#ffffff',
+                    background: 'rgba(255,255,255,0.12)',
+                    backdropFilter: 'blur(6px)',
+                    WebkitBackdropFilter: 'blur(6px)',
+                    boxShadow: '0 2px 12px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    textShadow: '0 1px 6px rgba(0,0,0,0.35)',
+                  }}
+                >
                   {tr.hero_cta2}
                 </Link>
               </motion.div>
