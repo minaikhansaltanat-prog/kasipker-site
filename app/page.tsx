@@ -6,7 +6,7 @@ import { useRef, useEffect, useState } from 'react';
 import {
   Factory, Wheat, HardHat, Stethoscope, Cpu, ShoppingBag,
   Plane, GraduationCap, Banknote, Truck, Zap, Leaf,
-  ArrowRight, Users, Globe, Award, Calendar,
+  ArrowRight, Users, Globe, Award, Calendar, Star,
   Presentation, Coffee, UtensilsCrossed, Heart, Handshake,
   Mic, FileText, BookOpen, Newspaper,
   Camera, MapPin, Mail, Phone,
@@ -356,15 +356,27 @@ export default function Home() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-kasipker-navy-900/60 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <span className="inline-block rounded-full bg-kasipker-gold-400 px-3 py-1 text-xs font-bold text-kasipker-gold-900">
-                        {person.category}
+                    <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1">
+                    {person.categories.map((cat: string) => (
+                      <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-3 py-1 text-xs font-bold text-kasipker-gold-900">
+                        {cat}
                       </span>
-                    </div>
+                    ))}
+                  </div>
                   </div>
                   <h3 className="font-extrabold text-kasipker-navy-900 text-lg mb-1">{info.name}</h3>
                   <p className="text-sm text-kasipker-gold-500 font-semibold mb-2">{info.position}</p>
-                  <p className="text-sm text-kasipker-navy-400 mb-3">{info.company}</p>
+                  <p className="text-sm text-kasipker-navy-400 mb-2">{info.company}</p>
+                  {info.highlights && info.highlights.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-3">
+                      {info.highlights.map((h: string, hi: number) => (
+                        <span key={hi} className="inline-flex items-center gap-1 rounded-lg bg-kasipker-navy-50 border border-kasipker-navy-100 px-2 py-0.5 text-[10px] font-bold text-kasipker-navy-700">
+                          <Star className="h-2.5 w-2.5 text-kasipker-gold-400 flex-shrink-0" />
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   {person.instagram && (
                     <a
                       href={person.instagram}

@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Star } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, personalities } from '@/lib/translations';
 
@@ -56,7 +56,7 @@ export default function PersonalitiesPage() {
 
   const filtered = personalities.filter(p => {
     const info = lang === 'ru' ? p.ru : lang === 'en' ? p.en : p.kk;
-    const matchCat = activeCatId === 'all' || p.category === activeCatId;
+    const matchCat = activeCatId === 'all' || p.categories.includes(activeCatId);
     const matchSearch = search === '' || info.name.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });
@@ -80,7 +80,6 @@ export default function PersonalitiesPage() {
         {/* Filters */}
         <motion.div initial="hidden" animate="visible" custom={0.1} variants={fadeUp} className="mb-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            {/* Category filter */}
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map(cat => {
                 const label = lang === 'ru' ? cat.ru : lang === 'en' ? cat.en : cat.kk;
@@ -99,7 +98,6 @@ export default function PersonalitiesPage() {
                 );
               })}
             </div>
-            {/* Search */}
             <input
               type="text"
               placeholder={lang === 'kk' ? 'Іздеу...' : lang === 'ru' ? 'Поиск...' : 'Search...'}
@@ -122,7 +120,7 @@ export default function PersonalitiesPage() {
                 viewport={{ once: true }}
                 custom={i * 0.05}
                 variants={fadeUp}
-                className="card-kasipker overflow-hidden group"
+                className="card-kasipker overflow-hidden group flex flex-col"
               >
                 {/* Photo */}
                 <div className="relative h-56 w-full overflow-hidden rounded-xl mb-4">
@@ -134,10 +132,13 @@ export default function PersonalitiesPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-kasipker-navy-900/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 flex gap-2">
-                    <span className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
-                      {person.category}
-                    </span>
+                  {/* Category badges — support multiple */}
+                  <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1">
+                    {person.categories.map(cat => (
+                      <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
+                        {cat}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
@@ -145,6 +146,22 @@ export default function PersonalitiesPage() {
                 <h3 className="font-extrabold text-kasipker-navy-900 text-base leading-tight mb-1">{info.name}</h3>
                 <p className="text-xs text-kasipker-gold-500 font-semibold mb-1">{info.position}</p>
                 <p className="text-xs text-kasipker-navy-400 mb-3">{info.company}</p>
+
+                {/* Highlights */}
+                {info.highlights && info.highlights.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {info.highlights.map((h, hi) => (
+                      <span
+                        key={hi}
+                        className="inline-flex items-center gap-1 rounded-lg bg-kasipker-navy-50 border border-kasipker-navy-100 px-2.5 py-1 text-[10px] font-bold text-kasipker-navy-700"
+                      >
+                        <Star className="h-2.5 w-2.5 text-kasipker-gold-400 flex-shrink-0" />
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
                 <BioText text={info.bio} lang={lang} />
 
                 {/* Social */}
