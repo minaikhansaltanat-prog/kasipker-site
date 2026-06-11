@@ -533,6 +533,35 @@ export const personalities = [
     telegram: '',
   },
   {
+    id: 6,
+    photo: '/images/eraly-arsen.jpg',
+    kk: {
+      name: 'Арсен Ералы',
+      position: 'Кәсіпкер. Заңгер. Автобизнес маманы.',
+      company: 'Kasipker Кәсіпкерлер Альянсы',
+      bio: 'Арсен Ералы — кәсіпкер, заңгер және автобизнес саласының маманы. Заңгерлік білімін бизнес дамытумен ұштастырып, автомобиль нарығында өз орнын тапқан тұлға. Kasipker альянсы арқылы кәсіпкерлердің заңдық мәселелерін шешуге және автобизнесті дамытуға өз үлесін қосады.',
+      highlights: ['Заңгер', 'Автобизнес маманы', 'Кәсіпкер'],
+    },
+    ru: {
+      name: 'Арсен Ералы',
+      position: 'Предприниматель. Юрист. Эксперт в автобизнесе.',
+      company: 'Союз предпринимателей Kasipker',
+      bio: 'Арсен Ералы — предприниматель, юрист и эксперт в сфере автобизнеса. Совмещает юридическое образование с развитием бизнеса, найдя своё место на автомобильном рынке. Через альянс Kasipker вносит вклад в решение правовых вопросов предпринимателей и развитие автобизнеса.',
+      highlights: ['Юрист', 'Эксперт в автобизнесе', 'Предприниматель'],
+    },
+    en: {
+      name: 'Arsen Eraly',
+      position: 'Entrepreneur. Lawyer. Auto Business Specialist.',
+      company: 'Kasipker Entrepreneurs Alliance',
+      bio: 'Arsen Eraly is an entrepreneur, lawyer and auto business specialist. He combines legal education with business development, having established himself in the automotive market. Through the Kasipker Alliance, he contributes to resolving legal issues for entrepreneurs and developing the auto business sector.',
+      highlights: ['Lawyer', 'Auto Business Expert', 'Entrepreneur'],
+    },
+    categories: ['Бизнесмендер', 'Мамандар'],
+    linkedin: '',
+    instagram: '',
+    telegram: '',
+  },
+  {
     id: 5,
     photo: '/images/saduly-rasul.jpg',
     kk: {
