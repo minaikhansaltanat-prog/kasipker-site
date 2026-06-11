@@ -533,6 +533,35 @@ export const personalities = [
     telegram: '',
   },
   {
+    id: 7,
+    photo: '/images/mukashev-aitughan.jpg',
+    kk: {
+      name: 'Мұқашев Айтуған Адамқұлұлы',
+      position: 'PhD доктор, өнертапқыш ғалым, экономист, ұстаз, агроөнеркәсіп сарапшысы',
+      company: '«Qazaq-қымыз зерттеу институты» | «Орта Азия кәсіпкерлер қауымдастығы» төрағасы',
+      bio: 'Кәсіпкер, PhD доктор, өнертапқыш ғалым, экономист және ұстаз. Агроөнеркәсіп саласының сарапшысы, жылқы шаруашылығы мен қымыз өндірісін дамыту бағытындағы зерттеуші.\n\n«Qazaq-қымыз зерттеу институтының» негізін қалаушы, «Орта Азия кәсіпкерлер қауымдастығының» төрағасы.\n\nҰзақ жылдар бойы қазақ жылқысының генетикасы, асыл тұқымды жылқы өсіру, қымыз өндірісі және ауыл шаруашылығының экономикалық тиімділігін арттыру мәселелерімен айналысып келеді. Германияда жылқы шаруашылығының экономикалық және экологиялық тиімділігі бойынша зерттеу жұмыстарын жүргізіп, қымыз бен бие сүтін терең өңдеу бағытында инновациялық жобалар ұсынған.\n\nСала маманы ретінде еліміздің әртүрлі өңірлеріндегі жылқы өсірушілермен, шаруа қожалықтарымен және кәсіпкерлермен жұмыс жүргізіп, асыл тұқымды мал шаруашылығын дамыту, селекциялық жұмыстарды жетілдіру және нарықтық мүмкіндіктерді кеңейту бойынша кеңестер беріп келеді.\n\nНегізгі бағыттары: жылқы шаруашылығы, қымыз өндірісі, ауыл шаруашылығы экономикасы, асыл тұқымды мал селекциясы, агробизнес стратегиясы, өнімді қайта өңдеу технологиялары.',
+      highlights: ['PhD доктор', 'Qazaq-қымыз институты негізін қалаушы', 'Орта Азия қауымдастығы төрағасы', 'Германияда зерттеу жүргізген', 'Өнертапқыш ғалым'],
+    },
+    ru: {
+      name: 'Мукашев Айтуган Адамкулович',
+      position: 'Доктор PhD, учёный-изобретатель, экономист, преподаватель, эксперт в агропромышленной сфере',
+      company: '«Qazaq-қымыз зерттеу институты» | Председатель «Ассоциации предпринимателей Центральной Азии»',
+      bio: 'Предприниматель, доктор PhD, учёный-изобретатель, экономист и преподаватель. Эксперт агропромышленной отрасли, исследователь в области коневодства и производства кумыса.\n\nОснователь «Qazaq-кумыс исследовательского института», председатель «Ассоциации предпринимателей Центральной Азии».\n\nНа протяжении многих лет занимается вопросами генетики казахской лошади, разведения чистокровных пород, производства кумыса и повышения экономической эффективности сельского хозяйства. Проводил исследования в Германии по экономической и экологической эффективности коневодства, предложил ряд инновационных проектов по глубокой переработке кумыса и кобыльего молока.\n\nКак отраслевой специалист, работает с коневодами, фермерскими хозяйствами и предпринимателями из разных регионов страны, консультируя по вопросам развития племенного животноводства, совершенствования селекционной работы и расширения рыночных возможностей.\n\nОсновные направления: коневодство, производство кумыса, экономика сельского хозяйства, селекция племенных животных, стратегия агробизнеса, технологии переработки продукции.',
+      highlights: ['Доктор PhD', 'Основатель Qazaq-кумыс института', 'Председатель ассоциации ЦА', 'Исследования в Германии', 'Учёный-изобретатель'],
+    },
+    en: {
+      name: 'Aitughan Mukashev Adamkululy',
+      position: 'PhD Doctor, Inventor-Scientist, Economist, Educator, Agro-Industrial Expert',
+      company: '«Qazaq-Kymyz Research Institute» | Chairman of «Central Asia Entrepreneurs Association»',
+      bio: 'Entrepreneur, PhD Doctor, inventor-scientist, economist and educator. Expert in the agro-industrial sector, researcher in horse breeding and kumiss production.\n\nFounder of the "Qazaq-Kymyz Research Institute", Chairman of the "Central Asia Entrepreneurs Association".\n\nFor many years has been working on issues of Kazakh horse genetics, purebred horse breeding, kumiss production and improving the economic efficiency of agriculture. Conducted research in Germany on the economic and environmental efficiency of horse breeding, proposing innovative projects for deep processing of kumiss and mare\'s milk.\n\nAs an industry specialist, works with horse breeders, farms and entrepreneurs across the country, providing consultations on the development of thoroughbred livestock farming, improvement of breeding work and expansion of market opportunities.\n\nKey areas: horse breeding, kumiss production, agricultural economics, thoroughbred livestock selection, agribusiness strategy, product processing technologies.',
+      highlights: ['PhD Doctor', 'Founder of Qazaq-Kymyz Institute', 'Chairman of CA Association', 'Research in Germany', 'Inventor-Scientist'],
+    },
+    categories: ['Бизнесмендер', 'Ғалымдар', 'Саясаткерлер', 'Мамандар'],
+    linkedin: '',
+    instagram: 'https://www.instagram.com/aitu_men',
+    telegram: '',
+  },
+  {
     id: 6,
     photo: '/images/eraly-arsen.jpg',
     kk: {
