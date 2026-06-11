@@ -48,13 +48,15 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo + about */}
           <div className="lg:col-span-2">
-            <Image
-              src="/logos/logo-main.png"
-              alt="Kasipker"
-              width={160}
-              height={48}
-              className="h-12 w-auto object-contain mb-4 brightness-0 invert"
-            />
+            <div className="inline-flex bg-white rounded-2xl px-3 py-2 mb-4">
+              <Image
+                src="/logos/logo-main.png"
+                alt="Kasipker"
+                width={200}
+                height={60}
+                className="h-14 w-auto object-contain [mix-blend-mode:multiply]"
+              />
+            </div>
             <p className="text-sm leading-relaxed text-white/70 max-w-sm">
               {lang === 'kk' ? 'Қазақстан кәсіпкерлерінің бірлескен платформасы. 1999 жылдан бері мүдделерді қорғап, бизнесті дамытып келеді.' :
                lang === 'ru' ? 'Объединённая платформа предпринимателей Казахстана. С 1999 года защищает интересы и развивает бизнес.' :
@@ -97,9 +99,10 @@ export default function Footer() {
               {[
                 { href: '/', label: tr.nav_home },
                 { href: '/about', label: tr.nav_about },
-                { href: '/personalities', label: tr.nav_personalities },
                 { href: '/clusters', label: tr.nav_clusters },
+                { href: '/events', label: tr.nav_events },
                 { href: '/international', label: tr.nav_international },
+                { href: '/media', label: tr.nav_media },
                 { href: '/partners', label: tr.nav_partners },
               ].map(l => (
                 <li key={l.href}>

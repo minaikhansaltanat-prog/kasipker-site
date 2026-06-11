@@ -34,8 +34,10 @@ export default function NavBar() {
     { href: '/personalities', label: tr.nav_personalities },
     { href: '/clusters', label: tr.nav_clusters },
     { href: '/international', label: tr.nav_international },
+    { href: '/events', label: tr.nav_events },
     { href: '/gallery', label: tr.nav_gallery },
     { href: '/partners', label: tr.nav_partners },
+    { href: '/media', label: tr.nav_media },
     { href: '/contact', label: tr.nav_contact },
   ];
 
@@ -59,9 +61,9 @@ export default function NavBar() {
             <Image
               src="/logos/logo-main.png"
               alt="Kasipker"
-              width={160}
-              height={48}
-              className="h-12 w-auto object-contain"
+              width={200}
+              height={64}
+              className="h-16 w-auto object-contain [mix-blend-mode:multiply]"
               priority
             />
           </Link>
