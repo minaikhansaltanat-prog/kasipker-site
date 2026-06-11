@@ -123,7 +123,7 @@ export default function PersonalitiesPage() {
                 className="card-kasipker overflow-hidden group flex flex-col"
               >
                 {/* Photo */}
-                <div className="relative h-56 w-full overflow-hidden rounded-xl mb-4">
+                <div className="relative h-56 w-full overflow-hidden rounded-xl mb-3">
                   <Image
                     src={person.photo}
                     alt={info.name}
@@ -131,15 +131,16 @@ export default function PersonalitiesPage() {
                     className="personality-photo group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-kasipker-navy-900/70 via-transparent to-transparent" />
-                  {/* Category badges — support multiple */}
-                  <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1">
-                    {person.categories.map(cat => (
-                      <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
-                        {cat}
-                      </span>
-                    ))}
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-kasipker-navy-900/30 via-transparent to-transparent" />
+                </div>
+
+                {/* Category badges — outside photo so face is never covered */}
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {person.categories.map(cat => (
+                    <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
+                      {cat}
+                    </span>
+                  ))}
                 </div>
 
                 {/* Info */}

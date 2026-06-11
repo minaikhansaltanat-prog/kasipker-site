@@ -355,14 +355,14 @@ export default function Home() {
                       className="personality-photo"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-kasipker-navy-900/60 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-kasipker-navy-900/30 via-transparent to-transparent" />
+                  </div>
+                  <div className="flex flex-wrap gap-1 mb-2">
                     {person.categories.map((cat: string) => (
                       <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-3 py-1 text-xs font-bold text-kasipker-gold-900">
                         {cat}
                       </span>
                     ))}
-                  </div>
                   </div>
                   <h3 className="font-extrabold text-kasipker-navy-900 text-lg mb-1">{info.name}</h3>
                   <p className="text-sm text-kasipker-gold-500 font-semibold mb-2">{info.position}</p>
