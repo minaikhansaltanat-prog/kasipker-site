@@ -58,14 +58,16 @@ export default function NavBar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            <Image
-              src="/logos/logo-main.png"
-              alt="Kasipker"
-              width={200}
-              height={64}
-              className="h-16 w-auto object-contain [mix-blend-mode:multiply]"
-              priority
-            />
+            <div className="inline-flex bg-white rounded-full px-4 py-1.5 shadow-sm">
+              <Image
+                src="/logos/logo-main.png"
+                alt="Kasipker"
+                width={180}
+                height={56}
+                className="h-14 w-auto object-contain [mix-blend-mode:multiply]"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Nav */}
