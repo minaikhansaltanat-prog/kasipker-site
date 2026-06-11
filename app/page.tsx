@@ -729,7 +729,7 @@ export default function Home() {
               {
                 Icon: MapPin,
                 title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address',
-                text: lang === 'kk' ? 'Алматы қаласы, Қазақстан' : lang === 'ru' ? 'г. Алматы, Казахстан' : 'Almaty, Kazakhstan',
+                text: lang === 'kk' ? 'Алматы қ., Тұрғыт Озал к-сі 178, 3 қабат' : lang === 'ru' ? 'г. Алматы, ул. Тургут Озал 178, 3 этаж' : 'Almaty, Turgut Ozal str. 178, 3rd floor',
               },
               {
                 Icon: Mail,

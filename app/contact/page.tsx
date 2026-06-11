@@ -151,7 +151,7 @@ export default function ContactPage() {
           <motion.div initial="hidden" animate="visible" custom={0.2} variants={fadeUp} className="flex flex-col gap-6">
             {/* Contact cards */}
             {[
-              { icon: '📍', title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address', text: lang === 'kk' ? 'Алматы қаласы, Қазақстан' : lang === 'ru' ? 'г. Алматы, Казахстан' : 'Almaty, Kazakhstan' },
+              { icon: '📍', title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address', text: lang === 'kk' ? 'Алматы қ., Тұрғыт Озал к-сі 178, 3 қабат' : lang === 'ru' ? 'г. Алматы, ул. Тургут Озал 178, 3 этаж' : 'Almaty, Turgut Ozal str. 178, 3rd floor' },
               { icon: '📧', title: 'Email', text: 'info@kasipker.kz' },
               { icon: '🌐', title: lang === 'kk' ? 'Сайт' : lang === 'ru' ? 'Сайт' : 'Website', text: 'kasipker.kz' },
               { icon: '✈️', title: 'Telegram', text: '@kasipker' },

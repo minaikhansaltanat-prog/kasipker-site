@@ -122,7 +122,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-3 text-sm text-white/70">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-kasipker-gold-400 mt-0.5 flex-shrink-0" />
-                <span>Алматы, Қазақстан</span>
+                <span>Алматы қ., Тұрғыт Озал к-сі 178, 3 қабат</span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 text-kasipker-gold-400 mt-0.5 flex-shrink-0" />
