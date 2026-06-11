@@ -533,6 +533,35 @@ export const personalities = [
     telegram: '',
   },
   {
+    id: 5,
+    photo: '/images/saduly-rasul.jpg',
+    kk: {
+      name: 'Расул Сәдуұлы',
+      position: 'Кәсіпкер, «Орта Азия кәсіпкерлер қауымдастығы» басшысы',
+      company: 'Қазақ Билер қауымдастығының төралқасы',
+      bio: 'Расул Сәдуұлы — кәсіпкер және қоғамдық қайраткер. «Орта Азия кәсіпкерлер қауымдастығы» ұйымының басшысы, Қазақ Билер қауымдастығының төралқасы мүшесі. Орта Азия аймағындағы бизнес байланыстарын нығайтуға белсенді үлес қосып келеді.',
+      highlights: ['Орта Азия қауымдастығы басшысы', 'Қазақ Билер төралқасы'],
+    },
+    ru: {
+      name: 'Расул Садулы',
+      position: 'Предприниматель, руководитель «Ассоциации предпринимателей Центральной Азии»',
+      company: 'Президиум Ассоциации казахских биев',
+      bio: 'Расул Садулы — предприниматель и общественный деятель. Руководитель организации «Ассоциация предпринимателей Центральной Азии», член Президиума Ассоциации казахских биев. Активно способствует укреплению деловых связей в Центральноазиатском регионе.',
+      highlights: ['Руководитель ассоциации ЦА', 'Президиум Ассоц. казахских биев'],
+    },
+    en: {
+      name: 'Rasul Saduly',
+      position: 'Entrepreneur, Head of "Central Asia Entrepreneurs Association"',
+      company: 'Presidium of the Kazakh Biys Association',
+      bio: 'Rasul Saduly is an entrepreneur and public figure. Head of the "Central Asia Entrepreneurs Association", member of the Presidium of the Kazakh Biys Association. Actively contributes to strengthening business ties in the Central Asian region.',
+      highlights: ['Head of CA Association', 'Presidium of Kazakh Biys'],
+    },
+    categories: ['Бизнесмендер'],
+    linkedin: '',
+    instagram: '',
+    telegram: '',
+  },
+  {
     id: 4,
     photo: '/images/aibekov-eldos.jpg',
     kk: {
