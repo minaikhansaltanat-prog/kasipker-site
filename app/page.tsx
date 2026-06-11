@@ -147,69 +147,87 @@ export default function Home() {
     <div className="overflow-x-hidden">
 
       {/* ══════ HERO ══════ */}
-      <section className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="hero-photo-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+
+        {/* Gold orb — above overlay z-index */}
         <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.25, 0.15] }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.18, 0.28, 0.18] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"
+          className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none z-[2]"
           style={{ background: 'radial-gradient(circle, #D4A017, transparent 70%)' }}
         />
         <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.15, 0.08] }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.10, 0.18, 0.10] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="absolute -bottom-32 -left-32 w-[450px] h-[450px] rounded-full pointer-events-none"
+          className="absolute -bottom-32 -left-32 w-[450px] h-[450px] rounded-full pointer-events-none z-[2]"
           style={{ background: 'radial-gradient(circle, #6A83DC, transparent 70%)' }}
         />
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
+        <div className="absolute inset-0 opacity-[0.06] pointer-events-none z-[2]" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 17.32v17.36L30 52 0 34.68V17.32z' fill='none' stroke='%23D4A017' stroke-width='1'/%3E%3C/svg%3E")`,
           backgroundSize: '60px 52px',
         }} />
 
-        <div className="relative mx-auto max-w-7xl px-4 md:px-8 text-center py-20">
-          <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
+        {/* Content — topmost layer */}
+        <div className="relative z-[10] mx-auto max-w-7xl px-4 md:px-8 text-center py-20">
+
+          {/* Glassmorphism text container */}
+          <motion.div
+            initial="hidden" animate="visible" custom={0} variants={fadeUp}
+            className="mx-auto max-w-3xl rounded-2xl px-8 py-10 md:px-14 md:py-14 mb-10"
+            style={{
+              background: 'rgba(255,255,255,0.08)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+            }}
+          >
             <span className="inline-flex items-center gap-2 rounded-full border border-kasipker-gold-400/40 bg-kasipker-gold-400/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-kasipker-gold-300 mb-8">
               <Award className="h-3.5 w-3.5" />
               {tr.hero_eyebrow} · 1999–2026
             </span>
-          </motion.div>
 
-          <motion.h1
-            initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
-            className="text-5xl font-black text-white leading-tight mb-4 md:text-7xl"
-          >
-            {tr.hero_h1}{' '}
-            <span
-              className="block bg-clip-text text-transparent"
-              style={{ backgroundImage: 'linear-gradient(135deg, #D4A017 0%, #F5C842 40%, #D4A017 100%)', backgroundSize: '200% 100%' }}
+            <motion.h1
+              initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
+              className="text-5xl font-black text-white leading-tight mb-4 md:text-7xl"
+              style={{ textShadow: '0 2px 20px rgba(0,0,0,0.30)' }}
             >
-              {tr.hero_h1_accent}
-            </span>
-          </motion.h1>
+              {tr.hero_h1}{' '}
+              <span
+                className="block bg-clip-text text-transparent"
+                style={{ backgroundImage: 'linear-gradient(135deg, #D4A017 0%, #F5C842 40%, #D4A017 100%)' }}
+              >
+                {tr.hero_h1_accent}
+              </span>
+            </motion.h1>
 
-          <motion.p
-            initial="hidden" animate="visible" custom={0.25} variants={fadeUp}
-            className="mx-auto max-w-2xl text-lg text-white/75 leading-relaxed mb-10"
-          >
-            {tr.hero_sub}
-          </motion.p>
+            <motion.p
+              initial="hidden" animate="visible" custom={0.25} variants={fadeUp}
+              className="mx-auto max-w-xl text-lg leading-relaxed mb-10"
+              style={{ color: 'rgba(255,255,255,0.88)', textShadow: '0 1px 8px rgba(0,0,0,0.20)' }}
+            >
+              {tr.hero_sub}
+            </motion.p>
 
-          <motion.div
-            initial="hidden" animate="visible" custom={0.4} variants={fadeUp}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            <Link href="/contact" className="btn-gold px-8 py-4 text-base font-bold cursor-pointer inline-flex items-center gap-2 group">
-              {tr.hero_cta1}
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
-            <Link href="/about" className="btn-outline border-white/40 text-white hover:bg-white/10 hover:text-white px-8 py-4 text-base cursor-pointer inline-flex items-center gap-2">
-              {tr.hero_cta2}
-            </Link>
+            <motion.div
+              initial="hidden" animate="visible" custom={0.4} variants={fadeUp}
+              className="flex flex-wrap justify-center gap-4"
+            >
+              <Link href="/contact" className="btn-gold px-8 py-4 text-base font-bold cursor-pointer inline-flex items-center gap-2 group">
+                {tr.hero_cta1}
+                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+              <Link href="/about" className="btn-outline border-white/40 text-white hover:bg-white/10 hover:text-white px-8 py-4 text-base cursor-pointer inline-flex items-center gap-2">
+                {tr.hero_cta2}
+              </Link>
+            </motion.div>
           </motion.div>
 
+          {/* Stats bar */}
           <motion.div
             initial="hidden" animate="visible" custom={0.55} variants={fadeUp}
-            className="inline-flex flex-wrap justify-center gap-px rounded-2xl overflow-hidden border border-white/10 shadow-elevated"
-            style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(12px)' }}
+            className="inline-flex flex-wrap justify-center gap-px rounded-2xl overflow-hidden border border-white/10"
+            style={{ background: 'rgba(255,255,255,0.06)', backdropFilter: 'blur(12px)', boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
           >
             {[
               { Icon: Users, value: '1500+', label: tr.stats_members },

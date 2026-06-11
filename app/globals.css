@@ -120,9 +120,47 @@ h1, h2, h3, h4 {
   background: var(--kasipker-gold-400);
 }
 
-/* ── Hero gradient overlay ── */
+/* ── Hero gradient overlay (other pages) ── */
 .hero-bg {
   background: var(--gradient-hero);
+}
+
+/* ── Hero photo background (homepage) ── */
+:root {
+  --color-primary: #1C2E80;
+  --overlay-opacity: 0.50;
+}
+
+.hero-photo-bg {
+  position: relative;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+.hero-photo-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-primary);
+  opacity: var(--overlay-opacity);
+  mix-blend-mode: multiply;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Mobile: fixed attachment causes issues */
+@media (max-width: 768px) {
+  .hero-photo-bg {
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo-bg {
+    background-attachment: scroll;
+  }
 }
 
 /* ── Personality card photo ── */
