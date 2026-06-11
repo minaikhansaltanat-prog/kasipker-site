@@ -147,7 +147,7 @@ export default function Home() {
     <div className="overflow-x-hidden">
 
       {/* ══════ HERO ══════ */}
-      <section className="hero-photo-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="hero-photo-bg relative min-h-screen flex items-center justify-center pt-20">
 
         {/* Gold orb — above overlay z-index */}
         <motion.div

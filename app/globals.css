@@ -137,6 +137,7 @@ h1, h2, h3, h4 {
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
+  clip-path: inset(0);          /* isolates fixed bg without overflow:hidden */
 }
 
 .hero-photo-bg::before {
