@@ -1,10 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Mic, FileText, BookOpen, Newspaper, Bell, ArrowRight } from 'lucide-react';
+import { Mic, FileText, BookOpen, Newspaper, Bell, ArrowRight, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { useLang } from '@/lib/LangContext';
 import { t } from '@/lib/translations';
+import { NEWS, formatNewsDate } from '@/lib/news';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -60,7 +61,7 @@ const MEDIA_TYPES = [
     key: 'news',
     Icon: Newspaper,
     color: 'bg-kasipker-gold-50 text-kasipker-gold-700',
-    count: 0,
+    count: NEWS.length,
     kk: 'Жаңалықтар',
     ru: 'Новости',
     en: 'News',
@@ -126,6 +127,8 @@ export default function MediaPage() {
           {visibleTypes.map((type, i) => {
             const name = lang === 'ru' ? type.ru : lang === 'en' ? type.en : type.kk;
             const desc = lang === 'ru' ? type.desc_ru : lang === 'en' ? type.desc_en : type.desc_kk;
+            const isNews = type.key === 'news';
+            const hasContent = type.count > 0;
             return (
               <motion.div
                 key={type.key}
@@ -134,7 +137,7 @@ export default function MediaPage() {
                 viewport={{ once: true }}
                 custom={i * 0.08}
                 variants={fadeUp}
-                className="card-kasipker group"
+                className={`card-kasipker group ${isNews ? 'md:col-span-2' : ''}`}
               >
                 <div className="flex items-start gap-5">
                   <div className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl ${type.color} group-hover:bg-kasipker-navy-700 group-hover:text-white transition-colors duration-200`}>
@@ -147,12 +150,36 @@ export default function MediaPage() {
                       <span className="text-xs font-semibold text-kasipker-navy-400 bg-kasipker-navy-50 rounded-lg px-3 py-1.5">
                         {lang === 'kk' ? `${type.count} материал` : lang === 'ru' ? `${type.count} материалов` : `${type.count} materials`}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-xs font-bold text-kasipker-gold-500 bg-kasipker-gold-50 rounded-lg px-3 py-1.5">
-                        {tr.media_coming_soon}
-                      </span>
+                      {!hasContent && (
+                        <span className="inline-flex items-center gap-1 text-xs font-bold text-kasipker-gold-500 bg-kasipker-gold-50 rounded-lg px-3 py-1.5">
+                          {tr.media_coming_soon}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
+
+                {isNews && NEWS.length > 0 && (
+                  <div className="mt-6 space-y-3 border-t border-kasipker-navy-50 pt-6">
+                    {NEWS.map(article => (
+                      <Link
+                        key={article.slug}
+                        href={`/media/news/${article.slug}`}
+                        className="block rounded-xl p-4 transition-colors cursor-pointer hover:bg-kasipker-navy-50"
+                      >
+                        <p className="mb-1.5 flex items-center gap-1.5 text-xs text-kasipker-navy-400">
+                          <Calendar className="h-3.5 w-3.5" />
+                          {formatNewsDate(article.date, lang)}
+                        </p>
+                        <h4 className="mb-1 font-bold text-kasipker-navy-900">{article.title}</h4>
+                        <p className="mb-2 line-clamp-2 text-sm text-kasipker-navy-600">{article.excerpt}</p>
+                        <span className="inline-flex items-center gap-1 text-xs font-bold text-kasipker-gold-600">
+                          {tr.news_read_more} <ArrowRight className="h-3 w-3" />
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </motion.div>
             );
           })}

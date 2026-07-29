@@ -91,6 +91,9 @@ export const t: Record<Lang, Record<string, string>> = {
     media_coming_soon: 'Жуық арада шығады',
     media_coming_soon_sub: 'Kasipker медиа мазмұны дайындалуда. Хабардар болу үшін жазылыңыз.',
     media_subscribe: 'Жаңалықтарға жазылу',
+    news_back: 'Жаңалықтарға оралу',
+    news_read_more: 'Толығырақ оқу',
+    news_videos: 'Видео материалдар',
 
     events_eyebrow: 'Клуб Шаралары',
     events_title: 'Клуб Мүшелерінің Шаралары',
@@ -191,6 +194,9 @@ export const t: Record<Lang, Record<string, string>> = {
     media_coming_soon: 'Скоро появится',
     media_coming_soon_sub: 'Медиаконтент Kasipker находится в разработке. Подпишитесь, чтобы быть в курсе.',
     media_subscribe: 'Подписаться на новости',
+    news_back: 'Вернуться к новостям',
+    news_read_more: 'Читать полностью',
+    news_videos: 'Видеоматериалы',
 
     events_eyebrow: 'Клубные мероприятия',
     events_title: 'Мероприятия членов клуба',
@@ -291,6 +297,9 @@ export const t: Record<Lang, Record<string, string>> = {
     media_coming_soon: 'Coming Soon',
     media_coming_soon_sub: 'Kasipker media content is being prepared. Subscribe to stay informed.',
     media_subscribe: 'Subscribe to Newsletter',
+    news_back: 'Back to News',
+    news_read_more: 'Read more',
+    news_videos: 'Video materials',
 
     events_eyebrow: 'Club Events',
     events_title: 'Club Members Events',
@@ -391,6 +400,9 @@ export const t: Record<Lang, Record<string, string>> = {
     media_coming_soon: '即将推出',
     media_coming_soon_sub: 'Kasipker媒体内容正在准备中。订阅以获取最新信息。',
     media_subscribe: '订阅新闻',
+    news_back: '返回新闻',
+    news_read_more: '阅读全文',
+    news_videos: '视频资料',
 
     events_eyebrow: '俱乐部活动',
     events_title: '会员活动',
@@ -491,6 +503,9 @@ export const t: Record<Lang, Record<string, string>> = {
     media_coming_soon: 'Çok Yakında',
     media_coming_soon_sub: 'Kasipker medya içeriği hazırlanıyor. Haberdar olmak için abone olun.',
     media_subscribe: 'Bültene Abone Ol',
+    news_back: 'Haberlere Dön',
+    news_read_more: 'Devamını Oku',
+    news_videos: 'Video Materyalleri',
 
     events_eyebrow: 'Kulüp Etkinlikleri',
     events_title: 'Kulüp Üyelerinin Etkinlikleri',
