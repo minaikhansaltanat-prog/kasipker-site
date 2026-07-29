@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useLang } from '@/lib/LangContext';
-import { t, partners } from '@/lib/translations';
+import { t, partners, pickByLang } from '@/lib/translations';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -14,24 +14,32 @@ const partnerCategories = [
     title_kk: 'Мемлекеттік органдар',
     title_ru: 'Государственные органы',
     title_en: 'Government Bodies',
+    title_zh: '政府机构',
+    title_tr: 'Devlet Kurumları',
     items: ['НПП «Атамекен»', 'Алматы Акиматы', 'Кәсіпкерлік Министрлігі'],
   },
   {
     title_kk: 'Қаржы институттары',
     title_ru: 'Финансовые институты',
     title_en: 'Financial Institutions',
+    title_zh: '金融机构',
+    title_tr: 'Finansal Kuruluşlar',
     items: ['Даму Банкі', 'QazFinance', 'KMF'],
   },
   {
     title_kk: 'Халықаралық ұйымдар',
     title_ru: 'Международные организации',
     title_en: 'International Organizations',
+    title_zh: '国际组织',
+    title_tr: 'Uluslararası Kuruluşlar',
     items: ['CCPIT (Қытай)', 'Jimon Group', 'Дубай Expo'],
   },
   {
     title_kk: 'Бизнес ассоциациялар',
     title_ru: 'Бизнес-ассоциации',
     title_en: 'Business Associations',
+    title_zh: '商业协会',
+    title_tr: 'İş Dernekleri',
     items: ['Amanat партиясы', '«Ел ағалары»', 'Алматы БАҚ'],
   },
 ];
@@ -67,13 +75,15 @@ export default function PartnersPage() {
               </div>
               <div>
                 <p className="font-bold text-kasipker-navy-800 text-sm whitespace-nowrap">{p.name}</p>
-                <p className="text-xs text-kasipker-navy-400">{p.type_kk}</p>
+                <p className="text-xs text-kasipker-navy-400">{pickByLang(lang, p.type_kk, p.type_ru, p.type_en, p.type_zh, p.type_tr)}</p>
               </div>
               {p.badge && (
                 <span className={`ml-auto text-xs font-bold rounded-full px-2 py-0.5 ${
                   p.badge === 'International' ? 'bg-kasipker-gold-50 text-kasipker-gold-500' : 'bg-kasipker-navy-50 text-kasipker-navy-600'
                 }`}>
-                  {p.badge}
+                  {p.badge === 'International'
+                    ? pickByLang(lang, 'Халықаралық', 'Международный', 'International', '国际', 'Uluslararası')
+                    : pickByLang(lang, 'Ресми', 'Официальный', 'Official', '官方', 'Resmi')}
                 </span>
               )}
             </div>
@@ -97,7 +107,7 @@ export default function PartnersPage() {
               >
                 <h3 className="font-extrabold text-kasipker-navy-900 text-lg mb-5 flex items-center gap-2">
                   <span className="h-1 w-8 rounded-full bg-kasipker-gold-400 inline-block" />
-                  {lang === 'en' ? cat.title_en : lang === 'ru' ? cat.title_ru : cat.title_kk}
+                  {pickByLang(lang, cat.title_kk, cat.title_ru, cat.title_en, cat.title_zh, cat.title_tr)}
                 </h3>
                 <div className="flex flex-col gap-3">
                   {cat.items.map((item, j) => (
@@ -120,12 +130,24 @@ export default function PartnersPage() {
         <div className="mx-auto max-w-2xl px-4">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}>
             <h2 className="text-3xl font-extrabold text-white mb-4">
-              {lang === 'kk' ? 'Ресми серіктес болыңыз' : lang === 'ru' ? 'Станьте официальным партнёром' : 'Become an Official Partner'}
+              {pickByLang(
+                lang,
+                'Ресми серіктес болыңыз',
+                'Станьте официальным партнёром',
+                'Become an Official Partner',
+                '成为官方合作伙伴',
+                'Resmi Ortak Olun'
+              )}
             </h2>
             <p className="text-white/60 mb-8">
-              {lang === 'kk' ? 'Меморандум жасасып, Kasipker желісінің бөлігіне айналыңыз' :
-               lang === 'ru' ? 'Подпишите меморандум и станьте частью сети Kasipker' :
-               'Sign a memorandum and become part of the Kasipker network'}
+              {pickByLang(
+                lang,
+                'Меморандум жасасып, Kasipker желісінің бөлігіне айналыңыз',
+                'Подпишите меморандум и станьте частью сети Kasipker',
+                'Sign a memorandum and become part of the Kasipker network',
+                '签署合作备忘录，成为Kasipker网络的一员',
+                'Bir mutabakat muhtırası imzalayın ve Kasipker ağının bir parçası olun'
+              )}
             </p>
             <Link href="/contact" className="btn-gold inline-flex px-8 py-4 text-base">
               {tr.partner_cta}

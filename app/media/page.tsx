@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Mic, FileText, BookOpen, Newspaper, Bell, ArrowRight, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import { useLang } from '@/lib/LangContext';
-import { t } from '@/lib/translations';
+import { t, pickByLang } from '@/lib/translations';
 import { NEWS, formatNewsDate } from '@/lib/news';
 
 const fadeUp = {
@@ -29,9 +29,13 @@ const MEDIA_TYPES = [
     kk: 'Подкастар',
     ru: 'Подкасты',
     en: 'Podcasts',
+    zh: '播客',
+    tr: 'Podcastlar',
     desc_kk: 'Kasipker кәсіпкерлерімен сұхбат, бизнес кеңестері және сараптамалар',
     desc_ru: 'Интервью с предпринимателями Kasipker, бизнес-советы и аналитика',
     desc_en: 'Interviews with Kasipker entrepreneurs, business tips and analytics',
+    desc_zh: '与Kasipker企业家的访谈、商业建议与分析',
+    desc_tr: 'Kasipker girişimcileriyle röportajlar, iş tavsiyeleri ve analizler',
   },
   {
     key: 'articles',
@@ -41,9 +45,13 @@ const MEDIA_TYPES = [
     kk: 'Мақалалар',
     ru: 'Статьи',
     en: 'Articles',
+    zh: '文章',
+    tr: 'Makaleler',
     desc_kk: 'Бизнес, заң, экспорт, инвестиция тақырыбындағы терең мақалалар',
     desc_ru: 'Глубокие статьи о бизнесе, праве, экспорте и инвестициях',
     desc_en: 'In-depth articles on business, law, export and investment',
+    desc_zh: '关于商业、法律、出口与投资的深度文章',
+    desc_tr: 'İş, hukuk, ihracat ve yatırım konularında derinlemesine makaleler',
   },
   {
     key: 'blog',
@@ -53,9 +61,13 @@ const MEDIA_TYPES = [
     kk: 'Блог',
     ru: 'Блог',
     en: 'Blog',
+    zh: '博客',
+    tr: 'Blog',
     desc_kk: 'Мүшелердің тәжірибесі, кейстер және бизнес жолы туралы жазбалар',
     desc_ru: 'Опыт членов, кейсы и заметки о предпринимательском пути',
     desc_en: 'Member experiences, case studies and entrepreneurship stories',
+    desc_zh: '会员的经验、案例分享与创业故事',
+    desc_tr: 'Üye deneyimleri, vaka çalışmaları ve girişimcilik hikayeleri',
   },
   {
     key: 'news',
@@ -65,9 +77,13 @@ const MEDIA_TYPES = [
     kk: 'Жаңалықтар',
     ru: 'Новости',
     en: 'News',
+    zh: '新闻',
+    tr: 'Haberler',
     desc_kk: 'Альянс жаңалықтары, мүшелік хабарландырулар, серіктестіктер',
     desc_ru: 'Новости Альянса, членские объявления, партнёрства',
     desc_en: 'Alliance news, membership announcements, partnerships',
+    desc_zh: '联盟新闻、会员公告与合作伙伴关系',
+    desc_tr: 'Birlik haberleri, üyelik duyuruları ve ortaklıklar',
   },
 ];
 
@@ -125,8 +141,8 @@ export default function MediaPage() {
         {/* Cards */}
         <div className="grid gap-8 md:grid-cols-2">
           {visibleTypes.map((type, i) => {
-            const name = lang === 'ru' ? type.ru : lang === 'en' ? type.en : type.kk;
-            const desc = lang === 'ru' ? type.desc_ru : lang === 'en' ? type.desc_en : type.desc_kk;
+            const name = pickByLang(lang, type.kk, type.ru, type.en, type.zh, type.tr);
+            const desc = pickByLang(lang, type.desc_kk, type.desc_ru, type.desc_en, type.desc_zh, type.desc_tr);
             const isNews = type.key === 'news';
             const hasContent = type.count > 0;
             return (
@@ -148,7 +164,7 @@ export default function MediaPage() {
                     <p className="text-sm text-kasipker-navy-600 leading-relaxed mb-4">{desc}</p>
                     <div className="flex items-center gap-3">
                       <span className="text-xs font-semibold text-kasipker-navy-400 bg-kasipker-navy-50 rounded-lg px-3 py-1.5">
-                        {lang === 'kk' ? `${type.count} материал` : lang === 'ru' ? `${type.count} материалов` : `${type.count} materials`}
+                        {pickByLang(lang, `${type.count} материал`, `${type.count} материалов`, `${type.count} materials`, `${type.count} 份材料`, `${type.count} materyal`)}
                       </span>
                       {!hasContent && (
                         <span className="inline-flex items-center gap-1 text-xs font-bold text-kasipker-gold-500 bg-kasipker-gold-50 rounded-lg px-3 py-1.5">

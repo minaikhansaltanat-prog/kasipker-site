@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Mail, Globe } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
-import { t } from '@/lib/translations';
+import { t, pickByLang } from '@/lib/translations';
 import LangSwitcher from './LangSwitcher';
 import { InstagramIcon, YoutubeIcon, WhatsappIcon, TelegramIcon } from './icons/BrandIcons';
 import Maps2GisButton from './Maps2GisButton';
@@ -68,9 +68,14 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm leading-relaxed text-white/70 max-w-sm">
-              {lang === 'kk' ? 'Қазақстан кәсіпкерлерінің бірлескен платформасы. 1999 жылдан бері мүдделерді қорғап, бизнесті дамытып келеді.' :
-               lang === 'ru' ? 'Объединённая платформа предпринимателей Казахстана. С 1999 года защищает интересы и развивает бизнес.' :
-               'The united platform for Kazakhstan\'s entrepreneurs. Protecting interests and developing business since 1999.'}
+              {pickByLang(
+                lang,
+                'Қазақстан кәсіпкерлерінің бірлескен платформасы. 1999 жылдан бері мүдделерді қорғап, бизнесті дамытып келеді.',
+                'Объединённая платформа предпринимателей Казахстана. С 1999 года защищает интересы и развивает бизнес.',
+                'The united platform for Kazakhstan\'s entrepreneurs. Protecting interests and developing business since 1999.',
+                '哈萨克斯坦企业家的联合平台。自1999年以来一直致力于维护权益、发展商业。',
+                "Kazakistan girişimcilerinin birleşik platformu. 1999'dan beri çıkarları koruyor ve işi geliştiriyor."
+              )}
             </p>
 
             <div className="mt-6 flex gap-3">
@@ -85,7 +90,7 @@ export default function Footer() {
           {/* Nav links */}
           <div>
             <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-kasipker-gold-400">
-              {lang === 'kk' ? 'Навигация' : lang === 'ru' ? 'Навигация' : 'Navigation'}
+              {pickByLang(lang, 'Навигация', 'Навигация', 'Navigation', '导航', 'Navigasyon')}
             </h3>
             <ul className="flex flex-col gap-2">
               {[
@@ -136,7 +141,7 @@ export default function Footer() {
             {/* Lang switcher */}
             <div className="mt-6">
               <p className="mb-2 text-xs text-white/50 uppercase tracking-widest">
-                {lang === 'kk' ? 'Тіл' : lang === 'ru' ? 'Язык' : 'Language'}
+                {pickByLang(lang, 'Тіл', 'Язык', 'Language', '语言', 'Dil')}
               </p>
               <LangSwitcher variant="footer" />
             </div>

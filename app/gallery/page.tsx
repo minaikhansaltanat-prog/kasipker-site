@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLang } from '@/lib/LangContext';
-import { t } from '@/lib/translations';
+import { t, pickByLang } from '@/lib/translations';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -10,23 +10,23 @@ const fadeUp = {
 };
 
 const FILTERS = [
-  { id: 'all', kk: 'Барлығы', ru: 'Все', en: 'All' },
-  { id: 'forum', kk: 'Форумдар', ru: 'Форумы', en: 'Forums' },
-  { id: 'meetings', kk: 'Кездесулер', ru: 'Встречи', en: 'Meetings' },
-  { id: 'awards', kk: 'Марапаттар', ru: 'Награды', en: 'Awards' },
-  { id: 'international', kk: 'Халықаралық', ru: 'Международные', en: 'International' },
-  { id: 'clusters', kk: 'Кластерлер', ru: 'Кластеры', en: 'Clusters' },
+  { id: 'all', kk: 'Барлығы', ru: 'Все', en: 'All', zh: '全部', tr: 'Tümü' },
+  { id: 'forum', kk: 'Форумдар', ru: 'Форумы', en: 'Forums', zh: '论坛', tr: 'Forumlar' },
+  { id: 'meetings', kk: 'Кездесулер', ru: 'Встречи', en: 'Meetings', zh: '会面', tr: 'Toplantılar' },
+  { id: 'awards', kk: 'Марапаттар', ru: 'Награды', en: 'Awards', zh: '颁奖', tr: 'Ödüller' },
+  { id: 'international', kk: 'Халықаралық', ru: 'Международные', en: 'International', zh: '国际交流', tr: 'Uluslararası' },
+  { id: 'clusters', kk: 'Кластерлер', ru: 'Кластеры', en: 'Clusters', zh: '产业集群', tr: 'Kümeler' },
 ];
 
 const placeholderItems = [
-  { id: 1, category: 'forum', emoji: '🏛️', title_kk: 'Kasipker Жылдық Форум 2026', title_ru: 'Годовой форум Kasipker 2026' },
-  { id: 2, category: 'international', emoji: '🇨🇳', title_kk: 'Қытай бизнес делегациясы', title_ru: 'Китайская бизнес-делегация' },
-  { id: 3, category: 'awards', emoji: '🏆', title_kk: 'Марапаттау рәсімі', title_ru: 'Церемония награждения' },
-  { id: 4, category: 'meetings', emoji: '🤝', title_kk: 'Мүшелермен кездесу', title_ru: 'Встреча с членами' },
-  { id: 5, category: 'clusters', emoji: '💻', title_kk: 'IT Кластер митингі', title_ru: 'Митинг IT кластера' },
-  { id: 6, category: 'international', emoji: '🇦🇪', title_kk: 'Дубай Expo сапары', title_ru: 'Визит Dubai Expo' },
-  { id: 7, category: 'forum', emoji: '🎤', title_kk: 'Кәсіпкерлер конференциясы', title_ru: 'Конференция предпринимателей' },
-  { id: 8, category: 'meetings', emoji: '📋', title_kk: 'Серіктестік меморандум', title_ru: 'Меморандум о партнёрстве' },
+  { id: 1, category: 'forum', emoji: '🏛️', title_kk: 'Kasipker Жылдық Форум 2026', title_ru: 'Годовой форум Kasipker 2026', title_en: 'Kasipker Annual Forum 2026', title_zh: 'Kasipker 2026年年度论坛', title_tr: 'Kasipker 2026 Yıllık Forumu' },
+  { id: 2, category: 'international', emoji: '🇨🇳', title_kk: 'Қытай бизнес делегациясы', title_ru: 'Китайская бизнес-делегация', title_en: 'Chinese Business Delegation', title_zh: '中国商业代表团', title_tr: 'Çin İş Heyeti' },
+  { id: 3, category: 'awards', emoji: '🏆', title_kk: 'Марапаттау рәсімі', title_ru: 'Церемония награждения', title_en: 'Awards Ceremony', title_zh: '颁奖典礼', title_tr: 'Ödül Töreni' },
+  { id: 4, category: 'meetings', emoji: '🤝', title_kk: 'Мүшелермен кездесу', title_ru: 'Встреча с членами', title_en: 'Meeting with Members', title_zh: '与会员会面', title_tr: 'Üyelerle Toplantı' },
+  { id: 5, category: 'clusters', emoji: '💻', title_kk: 'IT Кластер митингі', title_ru: 'Митинг IT кластера', title_en: 'IT Cluster Meetup', title_zh: 'IT产业集群会议', title_tr: 'BT Kümesi Toplantısı' },
+  { id: 6, category: 'international', emoji: '🇦🇪', title_kk: 'Дубай Expo сапары', title_ru: 'Визит Dubai Expo', title_en: 'Dubai Expo Visit', title_zh: '迪拜世博会访问', title_tr: 'Dubai Expo Ziyareti' },
+  { id: 7, category: 'forum', emoji: '🎤', title_kk: 'Кәсіпкерлер конференциясы', title_ru: 'Конференция предпринимателей', title_en: 'Entrepreneurs Conference', title_zh: '企业家大会', title_tr: 'Girişimciler Konferansı' },
+  { id: 8, category: 'meetings', emoji: '📋', title_kk: 'Серіктестік меморандум', title_ru: 'Меморандум о партнёрстве', title_en: 'Partnership Memorandum', title_zh: '合作备忘录', title_tr: 'Ortaklık Mutabakat Zaptı' },
 ];
 
 export default function GalleryPage() {
@@ -62,7 +62,7 @@ export default function GalleryPage() {
                   : 'bg-kasipker-navy-50 text-kasipker-navy-600 hover:bg-kasipker-navy-100'
               }`}
             >
-              {lang === 'en' ? f.en : lang === 'ru' ? f.ru : f.kk}
+              {pickByLang(lang, f.kk, f.ru, f.en, f.zh, f.tr)}
             </button>
           ))}
         </motion.div>
@@ -83,7 +83,7 @@ export default function GalleryPage() {
               <div className="relative h-full flex flex-col items-center justify-center p-6 bg-gradient-to-br from-kasipker-navy-700 to-kasipker-navy-900 group-hover:from-kasipker-navy-600">
                 <span className="text-5xl mb-3">{item.emoji}</span>
                 <p className="text-center text-sm font-semibold text-white/90">
-                  {lang === 'ru' ? item.title_ru : item.title_kk}
+                  {pickByLang(lang, item.title_kk, item.title_ru, item.title_en, item.title_zh, item.title_tr)}
                 </p>
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-kasipker-gold-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </div>
@@ -102,9 +102,14 @@ export default function GalleryPage() {
         >
           <p className="text-4xl mb-3">📸</p>
           <p className="text-kasipker-navy-400 font-medium">
-            {lang === 'kk' ? 'Нақты суреттер мен видеолар жуық арада жүктеледі' :
-             lang === 'ru' ? 'Реальные фото и видео будут загружены в ближайшее время' :
-             'Real photos and videos will be uploaded soon'}
+            {pickByLang(
+              lang,
+              'Нақты суреттер мен видеолар жуық арада жүктеледі',
+              'Реальные фото и видео будут загружены в ближайшее время',
+              'Real photos and videos will be uploaded soon',
+              '真实照片和视频即将上传',
+              'Gerçek fotoğraflar ve videolar yakında yüklenecek'
+            )}
           </p>
         </motion.div>
       </div>

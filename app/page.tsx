@@ -12,7 +12,7 @@ import {
   Camera, MapPin, Mail, Phone,
 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
-import { t, clusters, personalities, countries, partners } from '@/lib/translations';
+import { t, clusters, personalities, countries, partners, pickByLang } from '@/lib/translations';
 import Maps2GisButton from '@/components/Maps2GisButton';
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, officeAddress } from '@/lib/contactInfo';
 
@@ -27,56 +27,68 @@ const EVENT_TYPES = [
   {
     Icon: Presentation,
     color: 'bg-blue-50 text-blue-700',
-    freq_kk: 'Жылына 2–4 рет', freq_ru: '2–4 раза в год', freq_en: '2–4 times a year',
-    kk: 'Конференциялар', ru: 'Конференции', en: 'Conferences',
+    freq_kk: 'Жылына 2–4 рет', freq_ru: '2–4 раза в год', freq_en: '2–4 times a year', freq_zh: '每年2-4次', freq_tr: 'Yılda 2-4 kez',
+    kk: 'Конференциялар', ru: 'Конференции', en: 'Conferences', zh: '会议', tr: 'Konferanslar',
     desc_kk: 'Бизнес, инвестиция, экспорт тақырыбындағы ірі форумдар. Спикерлер, панельді пікірсайыстар, нетворкинг.',
     desc_ru: 'Крупные форумы по бизнесу, инвестициям, экспорту. Спикеры, панельные дискуссии, нетворкинг.',
     desc_en: 'Major forums on business, investment and export. Speakers, panel discussions, networking.',
+    desc_zh: '关于商业、投资、出口的大型论坛。演讲嘉宾、小组讨论、人脉社交。',
+    desc_tr: 'İş, yatırım ve ihracat konularında büyük forumlar. Konuşmacılar, panel tartışmaları, networking.',
   },
   {
     Icon: Coffee,
     color: 'bg-kasipker-navy-50 text-kasipker-navy-700',
-    freq_kk: 'Аптасына бір рет', freq_ru: 'Еженедельно', freq_en: 'Weekly',
-    kk: 'Жұма кездесуі', ru: 'Пятничные встречи', en: 'Friday Meetups',
+    freq_kk: 'Аптасына бір рет', freq_ru: 'Еженедельно', freq_en: 'Weekly', freq_zh: '每周一次', freq_tr: 'Haftada bir',
+    kk: 'Жұма кездесуі', ru: 'Пятничные встречи', en: 'Friday Meetups', zh: '周五聚会', tr: 'Cuma Buluşmaları',
     desc_kk: 'Жұма сайын өтетін бейресми кездесулер. Мүшелер тәжірибелерімен бөліседі, жаңа байланыстар орнатады.',
     desc_ru: 'Неформальные встречи каждую пятницу. Члены делятся опытом, устанавливают новые связи.',
     desc_en: 'Informal weekly meetings every Friday. Members share experience and build new connections.',
+    desc_zh: '每周五举行的非正式聚会。会员分享经验，建立新的人脉联系。',
+    desc_tr: 'Her Cuma düzenlenen gayriresmi buluşmalar. Üyeler deneyim paylaşır, yeni bağlantılar kurar.',
   },
   {
     Icon: UtensilsCrossed,
     color: 'bg-amber-50 text-amber-700',
-    freq_kk: 'Айына 2 рет', freq_ru: '2 раза в месяц', freq_en: 'Twice a month',
-    kk: 'Бизнес таңғы ас', ru: 'Бизнес-завтрак', en: 'Business Breakfast',
+    freq_kk: 'Айына 2 рет', freq_ru: '2 раза в месяц', freq_en: 'Twice a month', freq_zh: '每月2次', freq_tr: 'Ayda 2 kez',
+    kk: 'Бизнес таңғы ас', ru: 'Бизнес-завтрак', en: 'Business Breakfast', zh: '商务早餐', tr: 'İş Kahvaltısı',
     desc_kk: 'Таңертеңгілік бизнес кездесу. Таңғы ас үстінде маңызды байланыстар мен серіктестіктер орнату.',
     desc_ru: 'Утренние деловые встречи. Установление важных контактов и партнёрств за завтраком.',
     desc_en: 'Morning business meetings. Building important contacts and partnerships over breakfast.',
+    desc_zh: '早晨的商务聚会。在早餐时建立重要的人脉与合作关系。',
+    desc_tr: 'Sabah iş toplantıları. Kahvaltıda önemli bağlantılar ve ortaklıklar kurma.',
   },
   {
     Icon: Heart,
     color: 'bg-red-50 text-red-600',
-    freq_kk: 'Жылына 4 рет', freq_ru: '4 раза в год', freq_en: '4 times a year',
-    kk: 'Қайырымдылық', ru: 'Благотворительность', en: 'Charity',
+    freq_kk: 'Жылына 4 рет', freq_ru: '4 раза в год', freq_en: '4 times a year', freq_zh: '每年4次', freq_tr: 'Yılda 4 kez',
+    kk: 'Қайырымдылық', ru: 'Благотворительность', en: 'Charity', zh: '慈善活动', tr: 'Hayır İşleri',
     desc_kk: 'Балалар үйлеріне, мүмкіндіктері шектеулі адамдарға және зілзала зардап шеккендерге көмек.',
     desc_ru: 'Помощь детским домам, людям с ограниченными возможностями и пострадавшим от стихийных бедствий.',
     desc_en: 'Support for orphanages, people with disabilities and disaster relief.',
+    desc_zh: '帮助孤儿院、残障人士以及自然灾害受灾群众。',
+    desc_tr: 'Yetimhanelere, engelli bireylere ve doğal afet mağdurlarına destek.',
   },
   {
     Icon: Users,
     color: 'bg-green-50 text-green-700',
-    freq_kk: 'Тоқсанына бір рет', freq_ru: 'Ежеквартально', freq_en: 'Quarterly',
-    kk: 'Қоғамдық жұмыстар', ru: 'Общественные работы', en: 'Community Work',
+    freq_kk: 'Тоқсанына бір рет', freq_ru: 'Ежеквартально', freq_en: 'Quarterly', freq_zh: '每季度一次', freq_tr: 'Üç ayda bir',
+    kk: 'Қоғамдық жұмыстар', ru: 'Общественные работы', en: 'Community Work', zh: '社会公益活动', tr: 'Toplum Çalışmaları',
     desc_kk: 'Қала тазалығы, парк жайластыру, мектептерге көмек — қоғам үшін бірлескен іс-шаралар.',
     desc_ru: 'Уборка города, благоустройство парков, помощь школам — совместные мероприятия.',
     desc_en: 'City cleanup, park renovation, school support — joint community activities.',
+    desc_zh: '城市清洁、公园改造、学校援助——共同的社区活动。',
+    desc_tr: 'Şehir temizliği, park düzenlemesi, okullara destek — ortak toplum etkinlikleri.',
   },
   {
     Icon: Handshake,
     color: 'bg-purple-50 text-purple-700',
-    freq_kk: 'Жылына 2 рет', freq_ru: '2 раза в год', freq_en: 'Twice a year',
-    kk: 'Асар', ru: 'Асар', en: 'Asar',
+    freq_kk: 'Жылына 2 рет', freq_ru: '2 раза в год', freq_en: 'Twice a year', freq_zh: '每年2次', freq_tr: 'Yılda 2 kez',
+    kk: 'Асар', ru: 'Асар', en: 'Asar', zh: '"阿萨尔"互助', tr: 'Asar',
     desc_kk: 'Қазақтың дәстүрлі «асар» рухымен — бірге жасасақ болады. Мүшелердің бизнесіне бірлесіп шешім табу.',
     desc_ru: 'В духе казахского «асар» — вместе всё возможно. Совместное решение проблем бизнеса членов.',
     desc_en: 'In the spirit of the Kazakh tradition «Asar» — together we can. Collectively solving business challenges.',
+    desc_zh: '秉承哈萨克传统"阿萨尔"互助精神——同心协力，无所不能。共同解决会员的经营难题。',
+    desc_tr: 'Kazak geleneği «Asar» ruhuyla — birlikte her şey mümkün. Üyelerin iş sorunlarını birlikte çözme.',
   },
 ];
 
@@ -84,34 +96,42 @@ const MEDIA_TYPES = [
   {
     key: 'podcasts', Icon: Mic,
     color: 'bg-purple-50 text-purple-700',
-    kk: 'Подкастар', ru: 'Подкасты', en: 'Podcasts',
+    kk: 'Подкастар', ru: 'Подкасты', en: 'Podcasts', zh: '播客', tr: 'Podcastler',
     desc_kk: 'Kasipker кәсіпкерлерімен сұхбат, бизнес кеңестері және сараптамалар',
     desc_ru: 'Интервью с предпринимателями Kasipker, бизнес-советы и аналитика',
     desc_en: 'Interviews with Kasipker entrepreneurs, business tips and analytics',
+    desc_zh: '与Kasipker企业家的访谈、商业建议与分析',
+    desc_tr: 'Kasipker girişimcileriyle röportajlar, iş tavsiyeleri ve analizler',
   },
   {
     key: 'articles', Icon: FileText,
     color: 'bg-blue-50 text-blue-700',
-    kk: 'Мақалалар', ru: 'Статьи', en: 'Articles',
+    kk: 'Мақалалар', ru: 'Статьи', en: 'Articles', zh: '文章', tr: 'Makaleler',
     desc_kk: 'Бизнес, заң, экспорт, инвестиция тақырыбындағы терең мақалалар',
     desc_ru: 'Глубокие статьи о бизнесе, праве, экспорте и инвестициях',
     desc_en: 'In-depth articles on business, law, export and investment',
+    desc_zh: '关于商业、法律、出口和投资的深度文章',
+    desc_tr: 'İş, hukuk, ihracat ve yatırım hakkında derinlemesine makaleler',
   },
   {
     key: 'blog', Icon: BookOpen,
     color: 'bg-green-50 text-green-700',
-    kk: 'Блог', ru: 'Блог', en: 'Blog',
+    kk: 'Блог', ru: 'Блог', en: 'Blog', zh: '博客', tr: 'Blog',
     desc_kk: 'Мүшелердің тәжірибесі, кейстер және бизнес жолы туралы жазбалар',
     desc_ru: 'Опыт членов, кейсы и заметки о предпринимательском пути',
     desc_en: 'Member experiences, case studies and entrepreneurship stories',
+    desc_zh: '会员经验、案例研究与创业故事',
+    desc_tr: 'Üye deneyimleri, vaka çalışmaları ve girişimcilik hikayeleri',
   },
   {
     key: 'news', Icon: Newspaper,
     color: 'bg-amber-50 text-amber-700',
-    kk: 'Жаңалықтар', ru: 'Новости', en: 'News',
+    kk: 'Жаңалықтар', ru: 'Новости', en: 'News', zh: '新闻', tr: 'Haberler',
     desc_kk: 'Альянс жаңалықтары, мүшелік хабарландырулар, серіктестіктер',
     desc_ru: 'Новости Альянса, членские объявления, партнёрства',
     desc_en: 'Alliance news, membership announcements, partnerships',
+    desc_zh: '联盟新闻、会员公告、合作伙伴关系',
+    desc_tr: 'İttifak haberleri, üyelik duyuruları, ortaklıklar',
   },
 ];
 
@@ -261,7 +281,7 @@ export default function Home() {
                   <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
                 </div>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-kasipker-gold-300 ml-2">
-                  {lang === 'kk' ? 'Kasipker Клубы туралы' : lang === 'ru' ? 'О клубе Kasipker' : 'About Kasipker Club'}
+                  {pickByLang(lang, 'Kasipker Клубы туралы', 'О клубе Kasipker', 'About Kasipker Club', '关于Kasipker俱乐部', 'Kasipker Kulübü Hakkında')}
                 </span>
               </div>
 
@@ -279,7 +299,7 @@ export default function Home() {
               {/* Caption */}
               <div className="px-5 py-3 flex items-center justify-between">
                 <p className="text-xs font-semibold text-white/60">
-                  {lang === 'kk' ? 'Клубтың презентациялық видеосы' : lang === 'ru' ? 'Презентационное видео клуба' : 'Club presentation video'}
+                  {pickByLang(lang, 'Клубтың презентациялық видеосы', 'Презентационное видео клуба', 'Club presentation video', '俱乐部宣传视频', 'Kulüp Tanıtım Videosu')}
                 </p>
                 <a
                   href="https://www.youtube.com/@kasipker.kazakhstan"
@@ -394,11 +414,11 @@ export default function Home() {
             >
               <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-kasipker-navy-200 to-kasipker-gold-400" />
               {[
-                { year: '1999', text: lang === 'kk' ? 'НАП РК негізі қаланды — 30 кәсіпорын' : lang === 'ru' ? 'Основан НАП РК — 30 предприятий' : 'NAP RK founded — 30 enterprises' },
-                { year: '2003–10', text: lang === 'kk' ? 'Мүшелер саны 1500+ кәсіпорынға жетті' : lang === 'ru' ? 'Членов стало 1500+ предприятий' : 'Members grew to 1500+ enterprises' },
-                { year: '2014', text: lang === 'kk' ? 'Бизнес-омбудсмен институтын құру бастамасы' : lang === 'ru' ? 'Инициатива создания бизнес-омбудсмена' : 'Initiative to establish business ombudsman' },
-                { year: '2015', text: lang === 'kk' ? 'Қаржы полициясы жойылды — НАП реформасы' : lang === 'ru' ? 'Упразднена финансовая полиция' : 'Financial police abolished — NAP reform' },
-                { year: '2026', text: lang === 'kk' ? 'Kasipker — жаңа деңгейдегі платформа' : lang === 'ru' ? 'Kasipker — платформа нового уровня' : 'Kasipker — next-level platform' },
+                { year: '1999', text: pickByLang(lang, 'НАП РК негізі қаланды — 30 кәсіпорын', 'Основан НАП РК — 30 предприятий', 'NAP RK founded — 30 enterprises', 'NAP RK成立——30家企业', 'NAP RK kuruldu — 30 işletme') },
+                { year: '2003–10', text: pickByLang(lang, 'Мүшелер саны 1500+ кәсіпорынға жетті', 'Членов стало 1500+ предприятий', 'Members grew to 1500+ enterprises', '会员企业增至1500多家', 'Üye sayısı 1500+ işletmeye ulaştı') },
+                { year: '2014', text: pickByLang(lang, 'Бизнес-омбудсмен институтын құру бастамасы', 'Инициатива создания бизнес-омбудсмена', 'Initiative to establish business ombudsman', '发起设立商业监察专员机构', 'İş ombudsmanlığı kurma girişimi') },
+                { year: '2015', text: pickByLang(lang, 'Қаржы полициясы жойылды — НАП реформасы', 'Упразднена финансовая полиция', 'Financial police abolished — NAP reform', '取消金融警察——NAP改革', 'Mali polis kaldırıldı — NAP reformu') },
+                { year: '2026', text: pickByLang(lang, 'Kasipker — жаңа деңгейдегі платформа', 'Kasipker — платформа нового уровня', 'Kasipker — next-level platform', 'Kasipker——新一代平台', 'Kasipker — yeni seviye platform') },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -433,7 +453,7 @@ export default function Home() {
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {personalities.map((person, i) => {
-              const info = lang === 'ru' ? person.ru : lang === 'en' ? person.en : person.kk;
+              const info = pickByLang(lang, person.kk, person.ru, person.en, person.zh, person.tr);
               return (
                 <motion.div
                   key={person.id}
@@ -514,7 +534,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {clusters.map((cl, i) => {
               const Icon = CLUSTER_ICONS[i] ?? Factory;
-              const name = lang === 'zh' || lang === 'tr' ? cl.en : lang === 'en' ? cl.en : lang === 'ru' ? cl.ru : cl.kk;
+              const name = pickByLang(lang, cl.kk, cl.ru, cl.en, cl.zh, cl.tr);
               return (
                 <motion.div
                   key={i}
@@ -555,8 +575,9 @@ export default function Home() {
 
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {countries.slice(0, 4).map((country, i) => {
-              const name = lang === 'ru' ? country.ru : lang === 'en' ? country.en : country.kk;
-              const direction = lang === 'ru' ? country.direction_ru : lang === 'en' ? country.direction_en : country.direction_kk;
+              const name = pickByLang(lang, country.kk, country.ru, country.en, country.zh, country.tr);
+              const direction = pickByLang(lang, country.direction_kk, country.direction_ru, country.direction_en, country.direction_zh, country.direction_tr);
+              const tag = pickByLang(lang, country.tag_kk, country.tag_ru, country.tag_en, country.tag_zh, country.tag_tr);
               return (
                 <motion.div
                   key={i}
@@ -568,7 +589,7 @@ export default function Home() {
                     <div>
                       <p className="font-bold text-white">{name}</p>
                       <span className="text-xs rounded-full px-2 py-0.5 font-semibold" style={{ background: country.color + '33', color: country.color }}>
-                        {country.tag}
+                        {tag}
                       </span>
                     </div>
                   </div>
@@ -607,9 +628,9 @@ export default function Home() {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {EVENT_TYPES.map((ev, i) => {
-              const name = lang === 'ru' ? ev.ru : lang === 'en' ? ev.en : ev.kk;
-              const desc = lang === 'ru' ? ev.desc_ru : lang === 'en' ? ev.desc_en : ev.desc_kk;
-              const freq = lang === 'ru' ? ev.freq_ru : lang === 'en' ? ev.freq_en : ev.freq_kk;
+              const name = pickByLang(lang, ev.kk, ev.ru, ev.en, ev.zh, ev.tr);
+              const desc = pickByLang(lang, ev.desc_kk, ev.desc_ru, ev.desc_en, ev.desc_zh, ev.desc_tr);
+              const freq = pickByLang(lang, ev.freq_kk, ev.freq_ru, ev.freq_en, ev.freq_zh, ev.freq_tr);
               return (
                 <motion.div
                   key={i}
@@ -665,7 +686,9 @@ export default function Home() {
                     <p className="font-bold text-kasipker-navy-800 text-sm">{p.name}</p>
                     {p.badge && (
                       <span className={`text-xs font-semibold ${p.badge === 'International' ? 'text-kasipker-gold-500' : 'text-kasipker-navy-400'}`}>
-                        {p.badge}
+                        {p.badge === 'International'
+                          ? pickByLang(lang, 'Халықаралық', 'Международный', 'International', '国际', 'Uluslararası')
+                          : pickByLang(lang, 'Ресми', 'Официальный', 'Official', '官方', 'Resmi')}
                       </span>
                     )}
                   </div>
@@ -697,8 +720,8 @@ export default function Home() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {MEDIA_TYPES.map((type, i) => {
-              const name = lang === 'ru' ? type.ru : lang === 'en' ? type.en : type.kk;
-              const desc = lang === 'ru' ? type.desc_ru : lang === 'en' ? type.desc_en : type.desc_kk;
+              const name = pickByLang(lang, type.kk, type.ru, type.en, type.zh, type.tr);
+              const desc = pickByLang(lang, type.desc_kk, type.desc_ru, type.desc_en, type.desc_zh, type.desc_tr);
               return (
                 <motion.div
                   key={type.key}
@@ -737,22 +760,27 @@ export default function Home() {
             <h2 className="section-title">{tr.gallery_title}</h2>
             <div className="gold-bar" />
             <p className="mt-4 text-kasipker-navy-400">
-              {lang === 'kk' ? 'Конференциялар, кездесулер және шаралардан суреттер' :
-               lang === 'ru' ? 'Фотографии с конференций, встреч и мероприятий' :
-               'Photos from conferences, meetings and events'}
+              {pickByLang(
+                lang,
+                'Конференциялар, кездесулер және шаралардан суреттер',
+                'Фотографии с конференций, встреч и мероприятий',
+                'Photos from conferences, meetings and events',
+                '会议、聚会和活动的照片',
+                'Konferans, buluşma ve etkinliklerden fotoğraflar'
+              )}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
             {[
-              { gradient: 'from-kasipker-navy-800 to-kasipker-navy-600', label: lang === 'kk' ? 'Конференция 2024' : lang === 'ru' ? 'Конференция 2024' : 'Conference 2024' },
-              { gradient: 'from-kasipker-gold-600 to-kasipker-gold-400', label: lang === 'kk' ? 'Бизнес таңғы ас' : lang === 'ru' ? 'Бизнес-завтрак' : 'Business Breakfast' },
-              { gradient: 'from-blue-800 to-blue-600', label: lang === 'kk' ? 'Жұма кездесуі' : lang === 'ru' ? 'Пятничная встреча' : 'Friday Meetup' },
-              { gradient: 'from-purple-800 to-purple-600', label: lang === 'kk' ? 'Асар 2025' : lang === 'ru' ? 'Асар 2025' : 'Asar 2025' },
-              { gradient: 'from-green-800 to-green-600', label: lang === 'kk' ? 'Қоғамдық жұмыс' : lang === 'ru' ? 'Общественная работа' : 'Community Work' },
-              { gradient: 'from-red-800 to-red-600', label: lang === 'kk' ? 'Қайырымдылық' : lang === 'ru' ? 'Благотворительность' : 'Charity' },
-              { gradient: 'from-kasipker-navy-900 to-kasipker-navy-700', label: lang === 'kk' ? 'Халықаралық форум' : lang === 'ru' ? 'Международный форум' : 'International Forum' },
-              { gradient: 'from-amber-700 to-amber-500', label: lang === 'kk' ? 'Кластер кездесуі' : lang === 'ru' ? 'Встреча кластера' : 'Cluster Meeting' },
+              { gradient: 'from-kasipker-navy-800 to-kasipker-navy-600', label: pickByLang(lang, 'Конференция 2024', 'Конференция 2024', 'Conference 2024', '2024年会议', 'Konferans 2024') },
+              { gradient: 'from-kasipker-gold-600 to-kasipker-gold-400', label: pickByLang(lang, 'Бизнес таңғы ас', 'Бизнес-завтрак', 'Business Breakfast', '商务早餐', 'İş Kahvaltısı') },
+              { gradient: 'from-blue-800 to-blue-600', label: pickByLang(lang, 'Жұма кездесуі', 'Пятничная встреча', 'Friday Meetup', '周五聚会', 'Cuma Buluşması') },
+              { gradient: 'from-purple-800 to-purple-600', label: pickByLang(lang, 'Асар 2025', 'Асар 2025', 'Asar 2025', '"阿萨尔" 2025', 'Asar 2025') },
+              { gradient: 'from-green-800 to-green-600', label: pickByLang(lang, 'Қоғамдық жұмыс', 'Общественная работа', 'Community Work', '社会公益活动', 'Toplum Çalışması') },
+              { gradient: 'from-red-800 to-red-600', label: pickByLang(lang, 'Қайырымдылық', 'Благотворительность', 'Charity', '慈善活动', 'Hayır İşi') },
+              { gradient: 'from-kasipker-navy-900 to-kasipker-navy-700', label: pickByLang(lang, 'Халықаралық форум', 'Международный форум', 'International Forum', '国际论坛', 'Uluslararası Forum') },
+              { gradient: 'from-amber-700 to-amber-500', label: pickByLang(lang, 'Кластер кездесуі', 'Встреча кластера', 'Cluster Meeting', '产业集群会议', 'Küme Toplantısı') },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -775,7 +803,7 @@ export default function Home() {
 
           <div className="mt-10 text-center">
             <Link href="/gallery" className="btn-primary inline-flex items-center gap-2 cursor-pointer">
-              {lang === 'kk' ? 'Галереяны ашу' : lang === 'ru' ? 'Открыть галерею' : 'Open Gallery'} <ArrowRight className="h-4 w-4" />
+              {pickByLang(lang, 'Галереяны ашу', 'Открыть галерею', 'Open Gallery', '打开图库', 'Galeriyi Aç')} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -803,7 +831,7 @@ export default function Home() {
             {[
               {
                 Icon: MapPin,
-                title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address',
+                title: pickByLang(lang, 'Мекенжай', 'Адрес', 'Address', '地址', 'Adres'),
                 text: officeAddress(lang),
                 isAddress: true,
               },
@@ -814,7 +842,7 @@ export default function Home() {
               },
               {
                 Icon: Phone,
-                title: lang === 'kk' ? 'Телефон' : lang === 'ru' ? 'Телефон' : 'Phone',
+                title: pickByLang(lang, 'Телефон', 'Телефон', 'Phone', '电话', 'Telefon'),
                 text: CONTACT_PHONE_DISPLAY,
               },
             ].map((item, i) => (
@@ -849,9 +877,14 @@ export default function Home() {
                "Kasipker'e Katılın"}
             </h3>
             <p className="text-white/60 mb-8">
-              {lang === 'kk' ? 'Қазақстанның 1500+ кәсіпкерімен бірлесіңіз' :
-               lang === 'ru' ? 'Объединяйтесь с 1500+ предпринимателями Казахстана' :
-               'Unite with 1500+ Kazakhstan entrepreneurs'}
+              {pickByLang(
+                lang,
+                'Қазақстанның 1500+ кәсіпкерімен бірлесіңіз',
+                'Объединяйтесь с 1500+ предпринимателями Казахстана',
+                'Unite with 1500+ Kazakhstan entrepreneurs',
+                '与1500多位哈萨克斯坦企业家携手合作',
+                "Kazakistan'ın 1500+ girişimcisiyle birleşin"
+              )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="rounded-xl bg-kasipker-gold-400 px-8 py-4 text-base font-bold text-kasipker-gold-900 shadow-elevated hover:bg-kasipker-gold-300 transition-all hover:-translate-y-1 cursor-pointer inline-flex items-center gap-2">

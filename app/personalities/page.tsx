@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Star } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
-import { t, personalities } from '@/lib/translations';
+import { t, personalities, pickByLang } from '@/lib/translations';
 
 const BIO_LIMIT = 120;
 
@@ -23,8 +23,8 @@ function BioText({ text, lang }: { text: string; lang: string }) {
         className="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-kasipker-navy-700 hover:text-kasipker-gold-500 transition-colors cursor-pointer"
       >
         {expanded
-          ? (lang === 'kk' ? 'Жасыру' : lang === 'ru' ? 'Свернуть' : 'Collapse')
-          : (lang === 'kk' ? 'Толығырақ...' : lang === 'ru' ? 'Подробнее...' : 'Read more...')}
+          ? pickByLang(lang, 'Жасыру', 'Свернуть', 'Collapse', '收起', 'Daralt')
+          : pickByLang(lang, 'Толығырақ...', 'Подробнее...', 'Read more...', '阅读更多...', 'Devamını oku...')}
         {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
       </button>
     </div>
@@ -36,16 +36,16 @@ const fadeUp = {
   visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut', delay: d } }),
 };
 
-const CATEGORIES: { id: string; kk: string; ru: string; en: string }[] = [
-  { id: 'all', kk: 'Барлығы', ru: 'Все', en: 'All' },
-  { id: 'Бизнесмендер', kk: 'Бизнесмендер', ru: 'Бизнесмены', en: 'Businessmen' },
-  { id: 'Инвесторлар', kk: 'Инвесторлар', ru: 'Инвесторы', en: 'Investors' },
-  { id: 'Саясаткерлер', kk: 'Саясаткерлер', ru: 'Политики', en: 'Politicians' },
-  { id: 'Академиктер', kk: 'Академиктер', ru: 'Академики', en: 'Academics' },
-  { id: 'Ғалымдар', kk: 'Ғалымдар', ru: 'Учёные', en: 'Scientists' },
-  { id: 'Агенттер', kk: 'Агенттер', ru: 'Агенты', en: 'Agents' },
-  { id: 'Мамандар', kk: 'Мамандар', ru: 'Специалисты', en: 'Specialists' },
-  { id: 'Топ-Менеджерлер', kk: 'Топ-Менеджерлер', ru: 'Топ-менеджеры', en: 'Top Managers' },
+const CATEGORIES: { id: string; kk: string; ru: string; en: string; zh: string; tr: string }[] = [
+  { id: 'all', kk: 'Барлығы', ru: 'Все', en: 'All', zh: '全部', tr: 'Tümü' },
+  { id: 'Бизнесмендер', kk: 'Бизнесмендер', ru: 'Бизнесмены', en: 'Businessmen', zh: '商界人士', tr: 'İş İnsanları' },
+  { id: 'Инвесторлар', kk: 'Инвесторлар', ru: 'Инвесторы', en: 'Investors', zh: '投资者', tr: 'Yatırımcılar' },
+  { id: 'Саясаткерлер', kk: 'Саясаткерлер', ru: 'Политики', en: 'Politicians', zh: '政界人士', tr: 'Siyasetçiler' },
+  { id: 'Академиктер', kk: 'Академиктер', ru: 'Академики', en: 'Academics', zh: '学者', tr: 'Akademisyenler' },
+  { id: 'Ғалымдар', kk: 'Ғалымдар', ru: 'Учёные', en: 'Scientists', zh: '科学家', tr: 'Bilim İnsanları' },
+  { id: 'Агенттер', kk: 'Агенттер', ru: 'Агенты', en: 'Agents', zh: '代理人', tr: 'Temsilciler' },
+  { id: 'Мамандар', kk: 'Мамандар', ru: 'Специалисты', en: 'Specialists', zh: '专业人士', tr: 'Uzmanlar' },
+  { id: 'Топ-Менеджерлер', kk: 'Топ-Менеджерлер', ru: 'Топ-менеджеры', en: 'Top Managers', zh: '高级管理人员', tr: 'Üst Düzey Yöneticiler' },
 ];
 
 export default function PersonalitiesPage() {
@@ -55,7 +55,7 @@ export default function PersonalitiesPage() {
   const [search, setSearch] = useState('');
 
   const filtered = personalities.filter(p => {
-    const info = lang === 'ru' ? p.ru : lang === 'en' ? p.en : p.kk;
+    const info = pickByLang(lang, p.kk, p.ru, p.en, p.zh, p.tr);
     const matchCat = activeCatId === 'all' || p.categories.includes(activeCatId);
     const matchSearch = search === '' || info.name.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
@@ -82,7 +82,7 @@ export default function PersonalitiesPage() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map(cat => {
-                const label = lang === 'ru' ? cat.ru : lang === 'en' ? cat.en : cat.kk;
+                const label = pickByLang(lang, cat.kk, cat.ru, cat.en, cat.zh, cat.tr);
                 return (
                   <button
                     key={cat.id}
@@ -100,7 +100,7 @@ export default function PersonalitiesPage() {
             </div>
             <input
               type="text"
-              placeholder={lang === 'kk' ? 'Іздеу...' : lang === 'ru' ? 'Поиск...' : 'Search...'}
+              placeholder={pickByLang(lang, 'Іздеу...', 'Поиск...', 'Search...', '搜索...', 'Ara...')}
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="rounded-xl border border-kasipker-navy-100 px-4 py-2.5 text-sm outline-none focus:border-kasipker-navy-700 transition-colors w-full md:w-64"
@@ -111,7 +111,7 @@ export default function PersonalitiesPage() {
         {/* Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((person, i) => {
-            const info = lang === 'ru' ? person.ru : lang === 'en' ? person.en : person.kk;
+            const info = pickByLang(lang, person.kk, person.ru, person.en, person.zh, person.tr);
             return (
               <motion.div
                 key={person.id}
@@ -136,11 +136,15 @@ export default function PersonalitiesPage() {
 
                 {/* Category badges — outside photo so face is never covered */}
                 <div className="flex flex-wrap gap-1 mb-3">
-                  {person.categories.map(cat => (
-                    <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
-                      {cat}
-                    </span>
-                  ))}
+                  {person.categories.map(cat => {
+                    const catDef = CATEGORIES.find(c => c.id === cat);
+                    const catLabel = catDef ? pickByLang(lang, catDef.kk, catDef.ru, catDef.en, catDef.zh, catDef.tr) : cat;
+                    return (
+                      <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
+                        {catLabel}
+                      </span>
+                    );
+                  })}
                 </div>
 
                 {/* Info */}
@@ -215,7 +219,7 @@ export default function PersonalitiesPage() {
 
         {filtered.length === 0 && (
           <div className="py-20 text-center text-kasipker-navy-400">
-            {lang === 'kk' ? 'Тұлға табылмады' : lang === 'ru' ? 'Персона не найдена' : 'No personalities found'}
+            {pickByLang(lang, 'Тұлға табылмады', 'Персона не найдена', 'No personalities found', '未找到人物', 'Kişi bulunamadı')}
           </div>
         )}
       </div>

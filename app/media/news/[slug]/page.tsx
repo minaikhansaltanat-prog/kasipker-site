@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ArrowLeft, Calendar, Newspaper } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
-import { t } from '@/lib/translations';
+import { t, pickByLang } from '@/lib/translations';
 import { NEWS, formatNewsDate } from '@/lib/news';
 
 const fadeUp = {
@@ -23,7 +23,7 @@ export default function NewsArticlePage() {
     return (
       <div className="min-h-screen bg-white pt-32 pb-24 text-center">
         <p className="text-kasipker-navy-600 mb-6">
-          {lang === 'kk' ? 'Жаңалық табылмады' : lang === 'ru' ? 'Новость не найдена' : 'News article not found'}
+          {pickByLang(lang, 'Жаңалық табылмады', 'Новость не найдена', 'News article not found', '未找到该新闻', 'Haber bulunamadı')}
         </p>
         <Link href="/media" className="btn-gold inline-flex items-center gap-2 cursor-pointer">
           <ArrowLeft className="h-4 w-4" /> {tr.news_back}

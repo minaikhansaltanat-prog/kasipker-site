@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { MapPin, Mail, Globe, Phone } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
-import { t, clusters } from '@/lib/translations';
+import { t, clusters, pickByLang } from '@/lib/translations';
 import { InstagramIcon, YoutubeIcon } from '@/components/icons/BrandIcons';
 import Maps2GisButton from '@/components/Maps2GisButton';
 import { CONTACT_EMAIL, CONTACT_PHONE_DIGITS, CONTACT_PHONE_DISPLAY, officeAddress } from '@/lib/contactInfo';
@@ -38,9 +38,13 @@ export default function ContactPage() {
             </span>
             <h1 className="text-4xl font-black text-white md:text-5xl mb-4">{tr.contact_title}</h1>
             <p className="text-white/70">
-              {lang === 'kk' ? 'Мүше болу, серіктестік, сұрақтар — бізбен байланысыңыз' :
-               lang === 'ru' ? 'Членство, партнёрство, вопросы — свяжитесь с нами' :
-               'Membership, partnership, questions — get in touch'}
+              {pickByLang(lang,
+                'Мүше болу, серіктестік, сұрақтар — бізбен байланысыңыз',
+                'Членство, партнёрство, вопросы — свяжитесь с нами',
+                'Membership, partnership, questions — get in touch',
+                '会员申请、合作事宜、任何问题 — 欢迎与我们联系',
+                'Üyelik, ortaklık, sorularınız — bizimle iletişime geçin'
+              )}
             </p>
           </motion.div>
         </div>
@@ -59,9 +63,13 @@ export default function ContactPage() {
               <>
                 <h2 className="text-2xl font-extrabold text-kasipker-navy-900 mb-2">{tr.nav_cta}</h2>
                 <p className="text-sm text-kasipker-navy-400 mb-6">
-                  {lang === 'kk' ? 'Менеджер 24 сағат ішінде байланысады' :
-                   lang === 'ru' ? 'Менеджер свяжется с вами в течение 24 часов' :
-                   'Manager will contact you within 24 hours'}
+                  {pickByLang(lang,
+                    'Менеджер 24 сағат ішінде байланысады',
+                    'Менеджер свяжется с вами в течение 24 часов',
+                    'Manager will contact you within 24 hours',
+                    '经理将在24小时内与您联系',
+                    'Yöneticimiz sizinle 24 saat içinde iletişime geçecektir'
+                  )}
                 </p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   {/* Honeypot: hidden from users, catches bots that fill every field */}
@@ -113,7 +121,7 @@ export default function ContactPage() {
                       <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_city} *</label>
                       <input
                         required type="text"
-                        placeholder={lang === 'kk' ? 'Алматы' : lang === 'ru' ? 'Алматы' : 'Almaty'}
+                        placeholder={pickByLang(lang, 'Алматы', 'Алматы', 'Almaty', '阿拉木图', 'Almatı')}
                         value={formData.city}
                         onChange={e => setFormData({ ...formData, city: e.target.value })}
                         className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors"
@@ -128,7 +136,7 @@ export default function ContactPage() {
                       >
                         <option value="">—</option>
                         {clusters.map(cl => (
-                          <option key={cl.kk} value={cl.kk}>{lang === 'en' ? cl.en : lang === 'ru' ? cl.ru : cl.kk}</option>
+                          <option key={cl.kk} value={cl.kk}>{pickByLang(lang, cl.kk, cl.ru, cl.en, cl.zh, cl.tr)}</option>
                         ))}
                       </select>
                     </div>
@@ -137,7 +145,7 @@ export default function ContactPage() {
                     <label className="block text-xs font-semibold text-kasipker-navy-600 mb-1.5">{tr.contact_form_message}</label>
                     <textarea
                       rows={4}
-                      placeholder={lang === 'kk' ? 'Хабарламаңыз...' : lang === 'ru' ? 'Ваше сообщение...' : 'Your message...'}
+                      placeholder={pickByLang(lang, 'Хабарламаңыз...', 'Ваше сообщение...', 'Your message...', '您的留言...', 'Mesajınız...')}
                       value={formData.message}
                       onChange={e => setFormData({ ...formData, message: e.target.value })}
                       className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors resize-none"
@@ -156,10 +164,10 @@ export default function ContactPage() {
             {/* Contact cards */}
             <div className="grid gap-4 sm:grid-cols-2">
               {[
-                { Icon: MapPin, title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address', text: officeAddress(lang), isAddress: true },
+                { Icon: MapPin, title: pickByLang(lang, 'Мекенжай', 'Адрес', 'Address', '地址', 'Adres'), text: officeAddress(lang), isAddress: true },
                 { Icon: Mail, title: 'Email', text: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
-                { Icon: Phone, title: lang === 'kk' ? 'Телефон / WhatsApp' : lang === 'ru' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp', text: CONTACT_PHONE_DISPLAY, href: `tel:+${CONTACT_PHONE_DIGITS}` },
-                { Icon: Globe, title: lang === 'kk' ? 'Сайт' : lang === 'ru' ? 'Сайт' : 'Website', text: 'kasipker.kz' },
+                { Icon: Phone, title: pickByLang(lang, 'Телефон / WhatsApp', 'Телефон / WhatsApp', 'Phone / WhatsApp', '电话 / WhatsApp', 'Telefon / WhatsApp'), text: CONTACT_PHONE_DISPLAY, href: `tel:+${CONTACT_PHONE_DIGITS}` },
+                { Icon: Globe, title: pickByLang(lang, 'Сайт', 'Сайт', 'Website', '网站', 'Web Sitesi'), text: 'kasipker.kz' },
                 { Icon: InstagramIcon, title: 'Instagram', text: '@kasipker_kazakhstan', href: 'https://www.instagram.com/kasipker_kazakhstan', external: true },
                 { Icon: YoutubeIcon, title: 'YouTube', text: '@kasipker.kazakhstan', href: 'https://www.youtube.com/@kasipker.kazakhstan', external: true },
               ].map((c, i) => {
@@ -200,9 +208,13 @@ export default function ContactPage() {
             <blockquote className="rounded-2xl bg-kasipker-navy-900 p-6">
               <p className="text-kasipker-gold-400 text-xl font-black mb-3">"</p>
               <p className="text-white/85 italic text-sm leading-relaxed">
-                {lang === 'kk' ? '«Бірге — күштіміз. Бірге — өрлейміз.»' :
-                 lang === 'ru' ? '«Вместе — мы сила. Вместе — мы развиваемся.»' :
-                 '"Together we are stronger. Together we grow."'}
+                {pickByLang(lang,
+                  '«Бірге — күштіміз. Бірге — өрлейміз.»',
+                  '«Вместе — мы сила. Вместе — мы развиваемся.»',
+                  '"Together we are stronger. Together we grow."',
+                  '"团结就是力量。团结才能共同发展。"',
+                  '"Birlikte güçlüyüz. Birlikte gelişiyoruz."'
+                )}
               </p>
               <p className="mt-3 text-xs text-white/50">— Kasipker Кәсіпкерлер Альянсы</p>
             </blockquote>

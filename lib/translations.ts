@@ -8,6 +8,17 @@ export const LANGS: { code: Lang; label: string; flag: string }[] = [
   { code: 'tr', label: 'TÜR', flag: '🇹🇷' },
 ];
 
+// Picks the value for the current site language out of 5 explicit variants —
+// used for inline content that isn't in the main `t[lang]` dictionary
+// (data arrays like clusters/countries/partners, or page-local constants).
+export function pickByLang<T>(lang: string, kk: T, ru: T, en: T, zh: T, tr: T): T {
+  if (lang === 'ru') return ru;
+  if (lang === 'en') return en;
+  if (lang === 'zh') return zh;
+  if (lang === 'tr') return tr;
+  return kk;
+}
+
 export const t: Record<Lang, Record<string, string>> = {
   kk: {
     nav_home: 'Басты бет',
@@ -110,6 +121,13 @@ export const t: Record<Lang, Record<string, string>> = {
     ai_beta_badge: 'Жақында іске қосылады',
     ai_demo_reply: 'Рахмет! Бұл — көмекшінің демо нұсқасы, жедел жауап беру мүмкіндігі жақында қосылады. Шұғыл сұрақ болса, «Байланыс» бетінен хабарласыңыз.',
     messenger_button_label: 'Мессенджер арқылы хабарласу',
+    search_open: 'Іздеу',
+    search_placeholder: 'Тұлғалар, кластерлер, жаңалықтар...',
+    search_hint: 'Іздеу үшін теріңіз — тұлғалар, кластерлер, елдер, серіктестер, жаңалықтар',
+    search_no_results: 'Ештеңе табылмады',
+    search_no_results_hint: 'Басқа сөзбен іздеп көріңіз немесе мәзірден бөлімді таңдаңыз',
+    search_close: 'Жабу',
+    search_type_page: 'Бет',
   },
 
   ru: {
@@ -213,6 +231,13 @@ export const t: Record<Lang, Record<string, string>> = {
     ai_beta_badge: 'Скоро будет активен',
     ai_demo_reply: 'Спасибо! Это демо-версия ассистента, живые ответы через API появятся скоро. По срочным вопросам — раздел «Контакты».',
     messenger_button_label: 'Написать в мессенджер',
+    search_open: 'Поиск',
+    search_placeholder: 'Персоналии, кластеры, новости...',
+    search_hint: 'Начните вводить — персоналии, кластеры, страны, партнёры, новости',
+    search_no_results: 'Ничего не найдено',
+    search_no_results_hint: 'Попробуйте другой запрос или выберите раздел в меню',
+    search_close: 'Закрыть',
+    search_type_page: 'Раздел',
   },
 
   en: {
@@ -316,6 +341,13 @@ export const t: Record<Lang, Record<string, string>> = {
     ai_beta_badge: 'Launching soon',
     ai_demo_reply: 'Thanks! This is a demo of the assistant — live API answers are coming soon. For urgent questions, please use the Contact page.',
     messenger_button_label: 'Message us',
+    search_open: 'Search',
+    search_placeholder: 'Personalities, clusters, news...',
+    search_hint: 'Start typing — personalities, clusters, countries, partners, news',
+    search_no_results: 'Nothing found',
+    search_no_results_hint: 'Try a different search term or pick a section from the menu',
+    search_close: 'Close',
+    search_type_page: 'Page',
   },
 
   zh: {
@@ -419,6 +451,13 @@ export const t: Record<Lang, Record<string, string>> = {
     ai_beta_badge: '即将上线',
     ai_demo_reply: '谢谢！这是助手的演示版本，实时API回复功能即将上线。如有紧急问题，请前往"联系我们"页面。',
     messenger_button_label: '通过即时通讯联系我们',
+    search_open: '搜索',
+    search_placeholder: '人物、产业集群、新闻...',
+    search_hint: '开始输入——人物、产业集群、国家、合作伙伴、新闻',
+    search_no_results: '未找到结果',
+    search_no_results_hint: '请尝试其他关键词，或从菜单中选择相应板块',
+    search_close: '关闭',
+    search_type_page: '页面',
   },
 
   tr: {
@@ -522,22 +561,29 @@ export const t: Record<Lang, Record<string, string>> = {
     ai_beta_badge: 'Yakında aktif olacak',
     ai_demo_reply: 'Teşekkürler! Bu asistanın demo sürümüdür, API üzerinden canlı yanıtlar yakında aktif olacak. Acil sorularınız için İletişim sayfasını kullanın.',
     messenger_button_label: 'Mesajlaşma uygulamasından yazın',
+    search_open: 'Ara',
+    search_placeholder: 'Kişiler, kümeler, haberler...',
+    search_hint: 'Yazmaya başlayın — kişiler, kümeler, ülkeler, ortaklar, haberler',
+    search_no_results: 'Sonuç bulunamadı',
+    search_no_results_hint: 'Farklı bir arama deneyin veya menüden bir bölüm seçin',
+    search_close: 'Kapat',
+    search_type_page: 'Sayfa',
   },
 };
 
 export const clusters = [
-  { icon: '🏭', kk: 'Өндіріс', ru: 'Производство', en: 'Manufacturing' },
-  { icon: '🌾', kk: 'Агробизнес', ru: 'Агробизнес', en: 'Agribusiness' },
-  { icon: '🏗️', kk: 'Құрылыс', ru: 'Строительство', en: 'Construction' },
-  { icon: '💊', kk: 'Медицина', ru: 'Медицина', en: 'Healthcare' },
-  { icon: '💻', kk: 'IT & Технология', ru: 'IT и Технологии', en: 'IT & Technology' },
-  { icon: '🛍️', kk: 'Сауда', ru: 'Торговля', en: 'Trade & Retail' },
-  { icon: '✈️', kk: 'Туризм', ru: 'Туризм', en: 'Tourism' },
-  { icon: '🎓', kk: 'Білім', ru: 'Образование', en: 'Education' },
-  { icon: '🏦', kk: 'Қаржы', ru: 'Финансы', en: 'Finance' },
-  { icon: '🚚', kk: 'Логистика', ru: 'Логистика', en: 'Logistics' },
-  { icon: '⚡', kk: 'Энергетика', ru: 'Энергетика', en: 'Energy' },
-  { icon: '🌿', kk: 'Экология', ru: 'Экология', en: 'Ecology' },
+  { icon: '🏭', kk: 'Өндіріс', ru: 'Производство', en: 'Manufacturing', zh: '制造业', tr: 'Üretim' },
+  { icon: '🌾', kk: 'Агробизнес', ru: 'Агробизнес', en: 'Agribusiness', zh: '农业综合企业', tr: 'Tarım İşletmeciliği' },
+  { icon: '🏗️', kk: 'Құрылыс', ru: 'Строительство', en: 'Construction', zh: '建筑业', tr: 'İnşaat' },
+  { icon: '💊', kk: 'Медицина', ru: 'Медицина', en: 'Healthcare', zh: '医疗保健', tr: 'Sağlık' },
+  { icon: '💻', kk: 'IT & Технология', ru: 'IT и Технологии', en: 'IT & Technology', zh: '信息技术', tr: 'BT ve Teknoloji' },
+  { icon: '🛍️', kk: 'Сауда', ru: 'Торговля', en: 'Trade & Retail', zh: '贸易与零售', tr: 'Ticaret ve Perakende' },
+  { icon: '✈️', kk: 'Туризм', ru: 'Туризм', en: 'Tourism', zh: '旅游业', tr: 'Turizm' },
+  { icon: '🎓', kk: 'Білім', ru: 'Образование', en: 'Education', zh: '教育', tr: 'Eğitim' },
+  { icon: '🏦', kk: 'Қаржы', ru: 'Финансы', en: 'Finance', zh: '金融', tr: 'Finans' },
+  { icon: '🚚', kk: 'Логистика', ru: 'Логистика', en: 'Logistics', zh: '物流', tr: 'Lojistik' },
+  { icon: '⚡', kk: 'Энергетика', ru: 'Энергетика', en: 'Energy', zh: '能源', tr: 'Enerji' },
+  { icon: '🌿', kk: 'Экология', ru: 'Экология', en: 'Ecology', zh: '生态', tr: 'Ekoloji' },
 ];
 
 export const personalities = [
@@ -547,6 +593,8 @@ export const personalities = [
     kk: { name: 'Бастаубаев Жұмабек Әндешұлы', position: 'Kasipker Альянсының негізін қалаушы', company: 'Kasipker Кәсіпкерлер Альянсы', bio: 'Кәсіпкер, инвестор, меценат. «Байтақ жасылдар» партиясының орынбасары. Kasipker Кәсіпкерлер Альянсының негізін қалаушы.', highlights: [] },
     ru: { name: 'Бастаубаев Жумабек Андешович', position: 'Основатель Альянса Kasipker', company: 'Союз предпринимателей Kasipker', bio: 'Предприниматель, инвестор, меценат. Заместитель партии «Байтак жасылдар». Основатель Союза предпринимателей Kasipker.', highlights: [] },
     en: { name: 'Zhumbek Bastaubayev', position: 'Founder of Kasipker Alliance', company: 'Kasipker Entrepreneurs Alliance', bio: 'Entrepreneur, investor, philanthropist. Deputy of the Baytak Zhasylar party. Founder of the Kasipker Entrepreneurs Alliance.', highlights: [] },
+    zh: { name: '朱马别克·巴斯陶巴耶夫', position: 'Kasipker联盟创始人', company: 'Kasipker企业家联盟', bio: '企业家、投资人、慈善家。«拜塔克绿色党»副主席。Kasipker企业家联盟创始人。', highlights: [] },
+    tr: { name: 'Jumabek Bastaubayev', position: 'Kasipker İttifakı Kurucusu', company: 'Kasipker Girişimciler İttifakı', bio: 'Girişimci, yatırımcı, hayırsever. «Baytak Jasyldar» partisi başkan yardımcısı. Kasipker Girişimciler İttifakı\'nın kurucusu.', highlights: [] },
     categories: ['Бизнесмендер'],
     linkedin: '',
     instagram: '',
@@ -558,6 +606,8 @@ export const personalities = [
     kk: { name: 'Салтанат Минайхан', position: 'Кәсіпкер. Маркетинг және сату маманы. ИИ инженер', company: 'Kasipker Кәсіпкерлер Альянсы', bio: 'Кәсіпкер, маркетинг және сату саласының маманы, жасанды интеллект инженері.', highlights: [] },
     ru: { name: 'Салтанат Минайхан', position: 'Предприниматель. Специалист по маркетингу и продажам. ИИ-инженер', company: 'Союз предпринимателей Kasipker', bio: 'Предприниматель, специалист по маркетингу и продажам, инженер искусственного интеллекта.', highlights: [] },
     en: { name: 'Saltanat Minaykhan', position: 'Entrepreneur. Marketing & Sales Specialist. AI Engineer', company: 'Kasipker Entrepreneurs Alliance', bio: 'Entrepreneur, marketing and sales specialist, artificial intelligence engineer.', highlights: [] },
+    zh: { name: '萨尔塔纳特·米娜依汗', position: '企业家。市场营销与销售专家。人工智能工程师', company: 'Kasipker企业家联盟', bio: '企业家，市场营销与销售专家，人工智能工程师。', highlights: [] },
+    tr: { name: 'Saltanat Minaykhan', position: 'Girişimci. Pazarlama ve Satış Uzmanı. Yapay Zeka Mühendisi', company: 'Kasipker Girişimciler İttifakı', bio: 'Girişimci, pazarlama ve satış uzmanı, yapay zeka mühendisi.', highlights: [] },
     categories: ['Мамандар'],
     linkedin: '',
     instagram: 'https://www.instagram.com/subhankul_minayhan',
@@ -586,6 +636,20 @@ export const personalities = [
       company: 'National Academy of Sciences of Kazakhstan',
       bio: 'Abai Orazuly Sagitov is one of the most authoritative scientists in Kazakhstan in the field of plant protection. Born in 1945 in Semipalatinsk region. He pursued an academic career after graduating from the Kazakh Agricultural Institute.\n\nDoctor of Biological Sciences (1988), Professor (1990), Academician of the National Academy of Sciences of Kazakhstan (2008). Author of over 550 scientific works, 18 monographs, 4 textbooks; holder of 50 author\'s certificates and 85 innovation patents.\n\nRecipient of the Oxford University professorial mantle, laureate of the Socrates Prize of the European Assembly, awarded the orders of «Kurmet» (2012) and «Parasat» (2017).\n\nMember of the European and American Plant Protection Societies. Member of the Kasipker Alliance in the "Scientists" category — a figure at the intersection of science and business.',
       highlights: ['550+ scientific works', '18 monographs', 'Oxford Professor', 'Socrates Prize'],
+    },
+    zh: {
+      name: '阿拜·奥拉祖利·萨吉托夫',
+      position: '生物学博士，教授，哈萨克斯坦国家科学院院士',
+      company: '哈萨克斯坦国家科学院',
+      bio: '阿拜·奥拉祖利·萨吉托夫是哈萨克斯坦植物保护领域最具权威的科学家之一。1945年出生于塞米巴拉金斯克州。毕业于哈萨克农业学院后投身科学事业。\n\n生物学博士（1988年），教授（1990年），哈萨克斯坦国家科学院院士（2008年）。发表科学论文550余篇，专著18部，教材4部；拥有50项发明证书和85项创新专利。\n\n荣获牛津大学教授袍授予，欧洲议会苏格拉底奖得主，荣获«库尔梅特»勋章（2012年）和«帕拉萨特»勋章（2017年）。\n\n欧洲和美国植物保护学会会员。Kasipker联盟"科学家"类别成员——一位站在科学与商业交汇点上的人物。',
+      highlights: ['550余篇科学论文', '18部专著', '牛津大学教授', '苏格拉底奖'],
+    },
+    tr: {
+      name: 'Abai Orazuly Sagitov',
+      position: 'Biyoloji Bilimleri Doktoru, Profesör, Kazakistan Ulusal Bilimler Akademisi Akademisyeni',
+      company: 'Kazakistan Ulusal Bilimler Akademisi',
+      bio: 'Abai Orazuly Sagitov, Kazakistan\'ın bitki koruma alanındaki en saygın bilim insanlarından biridir. 1945 yılında Semipalatinsk bölgesinde doğdu. Kazak Tarım Enstitüsü\'nden mezun olduktan sonra akademik kariyerine devam etti.\n\nBiyoloji Bilimleri Doktoru (1988), Profesör (1990), Kazakistan Ulusal Bilimler Akademisi Akademisyeni (2008). 550\'den fazla bilimsel çalışmanın, 18 monografinin, 4 ders kitabının yazarı; 50 yazarlık belgesi ve 85 inovasyon patentinin sahibi.\n\nOxford Üniversitesi profesörlük cübbesi sahibi, Avrupa Meclisi Sokrates Ödülü laureate\'i, «Kurmet» (2012) ve «Parasat» (2017) nişanlarıyla ödüllendirildi.\n\nAvrupa ve Amerika Bitki Koruma Derneklerinin üyesi. Kasipker İttifakı\'nın "Bilim İnsanları" kategorisinde üye — bilim ve iş dünyasının kesişim noktasında duran bir isim.',
+      highlights: ['550+ bilimsel çalışma', '18 monografi', 'Oxford Profesörü', 'Sokrates Ödülü'],
     },
     categories: ['Академиктер'],
     linkedin: '',
@@ -616,6 +680,20 @@ export const personalities = [
       bio: 'Entrepreneur, PhD Doctor, inventor-scientist, economist and educator. Expert in the agro-industrial sector, researcher in horse breeding and kumiss production.\n\nFounder of the "Qazaq-Kymyz Research Institute", Chairman of the "Central Asia Entrepreneurs Association".\n\nFor many years has been working on issues of Kazakh horse genetics, purebred horse breeding, kumiss production and improving the economic efficiency of agriculture. Conducted research in Germany on the economic and environmental efficiency of horse breeding, proposing innovative projects for deep processing of kumiss and mare\'s milk.\n\nAs an industry specialist, works with horse breeders, farms and entrepreneurs across the country, providing consultations on the development of thoroughbred livestock farming, improvement of breeding work and expansion of market opportunities.\n\nKey areas: horse breeding, kumiss production, agricultural economics, thoroughbred livestock selection, agribusiness strategy, product processing technologies.',
       highlights: ['PhD Doctor', 'Founder of Qazaq-Kymyz Institute', 'Chairman of CA Association', 'Research in Germany', 'Inventor-Scientist'],
     },
+    zh: {
+      name: '艾图干·穆卡舍夫',
+      position: '博士（PhD），发明家型科学家，经济学家，教育工作者，农工综合体专家',
+      company: '«哈萨克库米斯研究院» | «中亚企业家协会»主席',
+      bio: '企业家，博士（PhD），发明家型科学家，经济学家兼教育工作者。农工综合体领域专家，马匹养殖与马奶酒（库米斯）生产研究者。\n\n"哈萨克库米斯研究院"创始人，"中亚企业家协会"主席。\n\n多年来致力于哈萨克马匹遗传学、纯种马繁育、库米斯生产以及提高农业经济效益等问题的研究。曾在德国就马匹养殖的经济与生态效益进行研究，并提出了库米斯及马奶深加工的创新项目。\n\n作为行业专家，与全国各地的养马人、农场主和企业家合作，就纯种畜牧业发展、育种工作改进和市场机会拓展提供咨询。\n\n主要方向：马匹养殖、库米斯生产、农业经济学、纯种畜牧育种、农业综合企业战略、产品加工技术。',
+      highlights: ['博士（PhD）', 'Qazaq-库米斯研究院创始人', '中亚协会主席', '德国研究经历', '发明家型科学家'],
+    },
+    tr: {
+      name: 'Aitughan Mukashev Adamkululy',
+      position: 'Doktora (PhD), Mucit-Bilim İnsanı, Ekonomist, Eğitimci, Tarım-Sanayi Uzmanı',
+      company: '«Qazaq-Kımız Araştırma Enstitüsü» | «Orta Asya Girişimciler Derneği» Başkanı',
+      bio: 'Girişimci, Doktora (PhD), mucit-bilim insanı, ekonomist ve eğitimci. Tarım-sanayi sektöründe uzman, at yetiştiriciliği ve kımız üretimi araştırmacısı.\n\n"Qazaq-Kımız Araştırma Enstitüsü" kurucusu, "Orta Asya Girişimciler Derneği" başkanı.\n\nUzun yıllardır Kazak atı genetiği, safkan at yetiştiriciliği, kımız üretimi ve tarımın ekonomik verimliliğinin artırılması konularında çalışmaktadır. Almanya\'da at yetiştiriciliğinin ekonomik ve çevresel verimliliği üzerine araştırmalar yürütmüş, kımız ve kısrak sütünün derin işlenmesine yönelik yenilikçi projeler önermiştir.\n\nBir sektör uzmanı olarak, ülkenin farklı bölgelerindeki at yetiştiricileri, çiftlikler ve girişimcilerle çalışarak safkan hayvancılığın geliştirilmesi, ıslah çalışmalarının iyileştirilmesi ve pazar fırsatlarının genişletilmesi konularında danışmanlık yapmaktadır.\n\nAna alanlar: at yetiştiriciliği, kımız üretimi, tarım ekonomisi, safkan hayvan ıslahı, tarım işletmeciliği stratejisi, ürün işleme teknolojileri.',
+      highlights: ['Doktora (PhD)', 'Qazaq-Kımız Enstitüsü Kurucusu', 'Orta Asya Derneği Başkanı', 'Almanya\'da Araştırma', 'Mucit-Bilim İnsanı'],
+    },
     categories: ['Бизнесмендер', 'Ғалымдар', 'Саясаткерлер', 'Мамандар'],
     linkedin: '',
     instagram: 'https://www.instagram.com/aitu_men',
@@ -644,6 +722,20 @@ export const personalities = [
       company: 'Kasipker Entrepreneurs Alliance',
       bio: 'Arsen Eraly is an entrepreneur, lawyer and auto business specialist. He combines legal education with business development, having established himself in the automotive market. Through the Kasipker Alliance, he contributes to resolving legal issues for entrepreneurs and developing the auto business sector.',
       highlights: ['Lawyer', 'Auto Business Expert', 'Entrepreneur'],
+    },
+    zh: {
+      name: '阿尔森·叶拉雷',
+      position: '企业家。律师。汽车行业专家。',
+      company: 'Kasipker企业家联盟',
+      bio: '阿尔森·叶拉雷是一位企业家、律师兼汽车行业专家。他将法律教育与业务发展相结合，在汽车市场中确立了自己的地位。通过Kasipker联盟，他为解决企业家的法律问题和发展汽车行业做出了贡献。',
+      highlights: ['律师', '汽车行业专家', '企业家'],
+    },
+    tr: {
+      name: 'Arsen Eraly',
+      position: 'Girişimci. Avukat. Otomotiv Sektörü Uzmanı.',
+      company: 'Kasipker Girişimciler İttifakı',
+      bio: 'Arsen Eraly bir girişimci, avukat ve otomotiv sektörü uzmanıdır. Hukuk eğitimini iş geliştirmeyle birleştirerek otomotiv pazarında kendine bir yer edinmiştir. Kasipker İttifakı aracılığıyla, girişimcilerin hukuki sorunlarının çözümüne ve otomotiv sektörünün gelişimine katkıda bulunmaktadır.',
+      highlights: ['Avukat', 'Otomotiv Sektörü Uzmanı', 'Girişimci'],
     },
     categories: ['Бизнесмендер', 'Мамандар'],
     linkedin: '',
@@ -674,6 +766,20 @@ export const personalities = [
       bio: 'Rasul Saduly is an entrepreneur and public figure. Head of the "Central Asia Entrepreneurs Association", member of the Presidium of the Kazakh Biys Association. Actively contributes to strengthening business ties in the Central Asian region.\n\nRecognized expert in doing business with China. Specializes in attracting Chinese investors and scaling Kazakhstani businesses into the Chinese market.',
       highlights: ['Head of CA Association', 'Presidium of Kazakh Biys', 'China Business Expert', 'Scaling to China'],
     },
+    zh: {
+      name: '拉苏尔·萨杜利',
+      position: '企业家，"中亚企业家协会"负责人',
+      company: '哈萨克比伊协会主席团',
+      bio: '拉苏尔·萨杜利是一位企业家和社会活动家。«中亚企业家协会»负责人，哈萨克比伊协会主席团成员。积极致力于加强中亚地区的商业联系。\n\n公认的对华业务专家。专注于吸引中国投资者，并帮助哈萨克斯坦企业拓展中国市场。',
+      highlights: ['中亚协会负责人', '哈萨克比伊协会主席团', '对华业务专家', '拓展中国市场'],
+    },
+    tr: {
+      name: 'Rasul Saduly',
+      position: 'Girişimci, "Orta Asya Girişimciler Derneği" Başkanı',
+      company: 'Kazak Biyler Derneği Başkanlık Divanı',
+      bio: 'Rasul Saduly bir girişimci ve kamu figürüdür. «Orta Asya Girişimciler Derneği» başkanı, Kazak Biyler Derneği Başkanlık Divanı üyesi. Orta Asya bölgesindeki iş bağlarının güçlendirilmesine aktif olarak katkıda bulunmaktadır.\n\nÇin ile iş yapma konusunda tanınmış bir uzmandır. Çinli yatırımcıları çekmek ve Kazakistan işletmelerini Çin pazarına ölçeklendirmek konusunda uzmanlaşmıştır.',
+      highlights: ['Orta Asya Derneği Başkanı', 'Kazak Biyler Başkanlık Divanı', 'Çin İş Uzmanı', "Çin'e Ölçeklendirme"],
+    },
     categories: ['Бизнесмендер'],
     linkedin: '',
     instagram: '',
@@ -703,6 +809,20 @@ export const personalities = [
       bio: 'Entrepreneur, politician and public figure. Deputy Chairman of the Almaty Regional branch of the "Baytak" party (@baytaq_almaty_obl). Author of 2 books. Recipient of the presidential award "Shapagat". Humanitarian who drilled 5 drinking water wells in African countries.',
       highlights: ['Author of 2 books', '"Shapagat" award', '5 wells in Africa'],
     },
+    zh: {
+      name: '叶尔多斯·艾别科夫',
+      position: '"拜塔克"党副主席',
+      company: '"拜塔克"党，阿拉木图州',
+      bio: '企业家、政治家和社会活动家。«拜塔克»党阿拉木图州分部副主席（@baytaq_almaty_obl）。两部著作的作者。总统奖«沙帕加特»获得者。在非洲国家打了5口饮用水井的人道主义者。',
+      highlights: ['两部著作作者', '«沙帕加特»奖', '非洲5口水井'],
+    },
+    tr: {
+      name: 'Eldos Aibekov',
+      position: '"Baytak" Partisi Başkan Yardımcısı',
+      company: '"Baytak" Partisi, Almatı Bölgesi',
+      bio: 'Girişimci, politikacı ve kamu figürü. «Baytak» partisi Almatı Bölgesi şubesi başkan yardımcısı (@baytaq_almaty_obl). 2 kitabın yazarı. Cumhurbaşkanlığı «Shapagat» ödülü sahibi. Afrika ülkelerinde 5 içme suyu kuyusu açtıran insancıl kişi.',
+      highlights: ['2 Kitap Yazarı', '"Shapagat" Ödülü', "Afrika'da 5 Kuyu"],
+    },
     categories: ['Бизнесмендер', 'Саясаткерлер'],
     linkedin: '',
     instagram: 'https://www.instagram.com/eldos_aibekov',
@@ -712,56 +832,84 @@ export const personalities = [
 
 export const countries = [
   {
-    flag: '🇨🇳', kk: 'Қытай', ru: 'Китай', en: 'China', tag: 'Негізгі', color: '#D4A017',
+    flag: '🇨🇳', kk: 'Қытай', ru: 'Китай', en: 'China', zh: '中国', tr: 'Çin', color: '#D4A017',
+    tag_kk: 'Негізгі', tag_ru: 'Основной', tag_en: 'Primary', tag_zh: '主要', tag_tr: 'Ana',
     direction_kk: 'Экспорт, инвестиция, сауда, Alibaba/CCPIT',
     direction_ru: 'Экспорт, инвестиции, торговля, Alibaba/CCPIT',
     direction_en: 'Export, investment, trade, Alibaba/CCPIT',
+    direction_zh: '出口、投资、贸易、阿里巴巴/CCPIT',
+    direction_tr: 'İhracat, yatırım, ticaret, Alibaba/CCPIT',
   },
   {
-    flag: '🇺🇿', kk: 'Өзбекстан', ru: 'Узбекистан', en: 'Uzbekistan', tag: 'Орта Азия', color: '#1C2E80',
+    flag: '🇺🇿', kk: 'Өзбекстан', ru: 'Узбекистан', en: 'Uzbekistan', zh: '乌兹别克斯坦', tr: 'Özbekistan', color: '#1C2E80',
+    tag_kk: 'Орта Азия', tag_ru: 'Средняя Азия', tag_en: 'Central Asia', tag_zh: '中亚', tag_tr: 'Orta Asya',
     direction_kk: 'Текстиль, тамақ, туризм',
     direction_ru: 'Текстиль, продукты питания, туризм',
     direction_en: 'Textile, food, tourism',
+    direction_zh: '纺织、食品、旅游',
+    direction_tr: 'Tekstil, gıda, turizm',
   },
   {
-    flag: '🇰🇬', kk: 'Қырғызстан', ru: 'Кыргызстан', en: 'Kyrgyzstan', tag: 'Орта Азия', color: '#1C2E80',
+    flag: '🇰🇬', kk: 'Қырғызстан', ru: 'Кыргызстан', en: 'Kyrgyzstan', zh: '吉尔吉斯斯坦', tr: 'Kırgızistan', color: '#1C2E80',
+    tag_kk: 'Орта Азия', tag_ru: 'Средняя Азия', tag_en: 'Central Asia', tag_zh: '中亚', tag_tr: 'Orta Asya',
     direction_kk: 'Экспорт, логистика',
     direction_ru: 'Экспорт, логистика',
     direction_en: 'Export, logistics',
+    direction_zh: '出口、物流',
+    direction_tr: 'İhracat, lojistik',
   },
   {
-    flag: '🇹🇯', kk: 'Тәжікстан', ru: 'Таджикистан', en: 'Tajikistan', tag: 'Орта Азия', color: '#1C2E80',
+    flag: '🇹🇯', kk: 'Тәжікстан', ru: 'Таджикистан', en: 'Tajikistan', zh: '塔吉克斯坦', tr: 'Tacikistan', color: '#1C2E80',
+    tag_kk: 'Орта Азия', tag_ru: 'Средняя Азия', tag_en: 'Central Asia', tag_zh: '中亚', tag_tr: 'Orta Asya',
     direction_kk: 'Жеңіл өнеркәсіп, тігін',
     direction_ru: 'Лёгкая промышленность, швейное производство',
     direction_en: 'Light industry, garment production',
+    direction_zh: '轻工业、缝纫',
+    direction_tr: 'Hafif sanayi, konfeksiyon',
   },
   {
-    flag: '🇷🇺', kk: 'Ресей', ru: 'Россия', en: 'Russia', tag: 'Серіктес', color: '#6A83DC',
+    flag: '🇷🇺', kk: 'Ресей', ru: 'Россия', en: 'Russia', zh: '俄罗斯', tr: 'Rusya', color: '#6A83DC',
+    tag_kk: 'Серіктес', tag_ru: 'Партнёр', tag_en: 'Partner', tag_zh: '合作伙伴', tag_tr: 'Ortak',
     direction_kk: 'Диаспора, B2B форумдар',
     direction_ru: 'Диаспора, B2B форумы',
     direction_en: 'Diaspora, B2B forums',
+    direction_zh: '侨民、B2B论坛',
+    direction_tr: 'Diaspora, B2B forumları',
   },
   {
-    flag: '🇦🇪', kk: 'ОАЭ / Дубай', ru: 'ОАЭ / Дубай', en: 'UAE / Dubai', tag: 'Инвестиция', color: '#D4A017',
+    flag: '🇦🇪', kk: 'ОАЭ / Дубай', ru: 'ОАЭ / Дубай', en: 'UAE / Dubai', zh: '阿联酋 / 迪拜', tr: 'BAE / Dubai', color: '#D4A017',
+    tag_kk: 'Инвестиция', tag_ru: 'Инвестиции', tag_en: 'Investment', tag_zh: '投资', tag_tr: 'Yatırım',
     direction_kk: 'Инвестиция хабы, қаржы',
     direction_ru: 'Инвестиционный хаб, финансы',
     direction_en: 'Investment hub, finance',
+    direction_zh: '投资中心、金融',
+    direction_tr: 'Yatırım merkezi, finans',
   },
   {
-    flag: '🇺🇸', kk: 'АҚШ', ru: 'США', en: 'USA', tag: 'Жаңа бағыт', color: '#2540B8',
+    flag: '🇺🇸', kk: 'АҚШ', ru: 'США', en: 'USA', zh: '美国', tr: 'ABD', color: '#2540B8',
+    tag_kk: 'Жаңа бағыт', tag_ru: 'Новое направление', tag_en: 'New Direction', tag_zh: '新方向', tag_tr: 'Yeni Yön',
     direction_kk: 'Технология, венчур, диаспора',
     direction_ru: 'Технологии, венчур, диаспора',
     direction_en: 'Technology, venture, diaspora',
+    direction_zh: '技术、风险投资、侨民',
+    direction_tr: 'Teknoloji, girişim sermayesi, diaspora',
   },
 ];
 
+const PARTNER_TYPES = {
+  strategic: { type_kk: 'Стратегиялық альянс', type_ru: 'Стратегический альянс', type_en: 'Strategic Alliance', type_zh: '战略联盟', type_tr: 'Stratejik İttifak' },
+  financial: { type_kk: 'Қаржы серіктес', type_ru: 'Финансовый партнёр', type_en: 'Financial Partner', type_zh: '金融合作伙伴', type_tr: 'Finansal Ortak' },
+  international: { type_kk: 'Халықаралық', type_ru: 'Международный', type_en: 'International', type_zh: '国际', type_tr: 'Uluslararası' },
+  partnership: { type_kk: 'Серіктестік', type_ru: 'Партнёрство', type_en: 'Partnership', type_zh: '合作伙伴关系', type_tr: 'Ortaklık' },
+};
+
 export const partners = [
-  { name: 'НПП «Атамекен»', type_kk: 'Стратегиялық альянс', logo: null, badge: 'Official' },
-  { name: 'Даму Банкі', type_kk: 'Қаржы серіктес', logo: null, badge: 'Official' },
-  { name: 'CCPIT Қытай', type_kk: 'Халықаралық', logo: null, badge: 'International' },
-  { name: 'Jimon Group', type_kk: 'Стратегиялық альянс', logo: null, badge: 'International' },
-  { name: 'Amanat партиясы', type_kk: 'Серіктестік', logo: null, badge: null },
-  { name: 'QazFinance', type_kk: 'Қаржы серіктес', logo: null, badge: 'Official' },
-  { name: 'KMF', type_kk: 'Қаржы серіктес', logo: null, badge: null },
-  { name: 'Дубай Expo', type_kk: 'Халықаралық', logo: null, badge: 'International' },
+  { name: 'НПП «Атамекен»', ...PARTNER_TYPES.strategic, logo: null, badge: 'Official' },
+  { name: 'Даму Банкі', ...PARTNER_TYPES.financial, logo: null, badge: 'Official' },
+  { name: 'CCPIT Қытай', ...PARTNER_TYPES.international, logo: null, badge: 'International' },
+  { name: 'Jimon Group', ...PARTNER_TYPES.strategic, logo: null, badge: 'International' },
+  { name: 'Amanat партиясы', ...PARTNER_TYPES.partnership, logo: null, badge: null },
+  { name: 'QazFinance', ...PARTNER_TYPES.financial, logo: null, badge: 'Official' },
+  { name: 'KMF', ...PARTNER_TYPES.financial, logo: null, badge: null },
+  { name: 'Дубай Expo', ...PARTNER_TYPES.international, logo: null, badge: 'International' },
 ];

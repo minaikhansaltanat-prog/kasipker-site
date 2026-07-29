@@ -8,8 +8,11 @@ export const OFFICE_ADDRESS = {
   kk: 'Алматы қ., Мамыр-1 ықшамауданы, 26, Quorum БО, 6-қабат, 609-кеңсе',
   ru: 'г. Алматы, мкр. Мамыр-1, 26, БЦ Quorum, 6 этаж, офис 609',
   en: 'Almaty, Mamyr-1 microdistrict, 26, Quorum BC, 6th floor, office 609',
+  zh: '阿拉木图市，马梅尔一区（Мамыр-1）26号，Quorum商务中心，6层609室',
+  tr: 'Almatı, Mamır-1 mikrorayonu, 26, Quorum İş Merkezi, 6. kat, ofis 609',
 } as const;
 
 export function officeAddress(lang: string): string {
-  return OFFICE_ADDRESS[lang === 'kk' ? 'kk' : lang === 'ru' ? 'ru' : 'en'];
+  const key = (lang === 'kk' || lang === 'ru' || lang === 'en' || lang === 'zh' || lang === 'tr') ? lang : 'kk';
+  return OFFICE_ADDRESS[key];
 }
