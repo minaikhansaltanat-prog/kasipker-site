@@ -173,12 +173,12 @@ export default function Home() {
         <div className="relative z-[10] mx-auto max-w-7xl px-4 md:px-8 py-16 w-full">
 
           {/* Two-column: text LEFT, video RIGHT */}
-          <div className="grid lg:grid-cols-2 gap-8 xl:gap-12 items-center mb-10">
+          <div className="grid min-w-0 lg:grid-cols-2 gap-8 xl:gap-12 items-center mb-10">
 
             {/* ── LEFT: text ── */}
             <motion.div
               initial="hidden" animate="visible" custom={0} variants={fadeUp}
-              className="rounded-2xl px-8 py-10 md:px-10 md:py-12 text-left"
+              className="min-w-0 rounded-2xl px-8 py-10 md:px-10 md:py-12 text-left"
               style={{
                 background: 'rgba(255,255,255,0.08)',
                 backdropFilter: 'blur(12px)',
@@ -187,19 +187,19 @@ export default function Home() {
                 boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
               }}
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-kasipker-gold-400/40 bg-kasipker-gold-400/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-kasipker-gold-300 mb-6">
-                <Award className="h-3.5 w-3.5" />
-                {tr.hero_eyebrow} · 1999–2026
+              <span className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-full border border-kasipker-gold-400/40 bg-kasipker-gold-400/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-kasipker-gold-300 mb-6">
+                <Award className="h-3.5 w-3.5 flex-shrink-0" />
+                <span>{tr.hero_eyebrow} · 1999–2026</span>
               </span>
 
               <motion.h1
                 initial="hidden" animate="visible" custom={0.1} variants={fadeUp}
-                className="text-4xl font-black text-white leading-tight mb-4 md:text-6xl"
+                className="text-3xl font-black text-white leading-tight mb-4 break-words sm:text-4xl md:text-6xl"
                 style={{ textShadow: '0 2px 20px rgba(0,0,0,0.30)' }}
               >
                 {tr.hero_h1}{' '}
                 <span
-                  className="block bg-clip-text text-transparent"
+                  className="block break-words bg-clip-text text-transparent"
                   style={{ backgroundImage: 'linear-gradient(135deg, #D4A017 0%, #F5C842 40%, #D4A017 100%)' }}
                 >
                   {tr.hero_h1_accent}
@@ -243,7 +243,7 @@ export default function Home() {
             {/* ── RIGHT: YouTube video ── */}
             <motion.div
               initial="hidden" animate="visible" custom={0.2} variants={fadeUp}
-              className="rounded-2xl overflow-hidden"
+              className="min-w-0 rounded-2xl overflow-hidden"
               style={{
                 background: 'rgba(255,255,255,0.06)',
                 backdropFilter: 'blur(8px)',
