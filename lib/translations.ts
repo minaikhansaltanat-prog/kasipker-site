@@ -98,6 +98,15 @@ export const t: Record<Lang, Record<string, string>> = {
     events_join: 'Қатысу',
     events_learn_more: 'Толығырақ',
     events_register: 'Тіркелу',
+
+    ai_button_label: 'AI-көмекші',
+    ai_title: 'Kasipker AI-көмекші',
+    ai_status: 'Демо режимі',
+    ai_greeting: 'Сәлеметсіз бе! Мен Kasipker AI-көмекшісімін. Мүшелік, кластерлер немесе серіктестік туралы сұрағыңызды жазыңыз.',
+    ai_placeholder: 'Сұрағыңызды жазыңыз...',
+    ai_beta_badge: 'Жақында іске қосылады',
+    ai_demo_reply: 'Рахмет! Бұл — көмекшінің демо нұсқасы, жедел жауап беру мүмкіндігі жақында қосылады. Шұғыл сұрақ болса, «Байланыс» бетінен хабарласыңыз.',
+    messenger_button_label: 'Мессенджер арқылы хабарласу',
   },
 
   ru: {
@@ -189,6 +198,15 @@ export const t: Record<Lang, Record<string, string>> = {
     events_join: 'Участвовать',
     events_learn_more: 'Подробнее',
     events_register: 'Зарегистрироваться',
+
+    ai_button_label: 'AI-ассистент',
+    ai_title: 'AI-ассистент Kasipker',
+    ai_status: 'Демо-режим',
+    ai_greeting: 'Здравствуйте! Я AI-ассистент Kasipker. Напишите вопрос о членстве, кластерах или партнёрстве.',
+    ai_placeholder: 'Напишите вопрос...',
+    ai_beta_badge: 'Скоро будет активен',
+    ai_demo_reply: 'Спасибо! Это демо-версия ассистента, живые ответы через API появятся скоро. По срочным вопросам — раздел «Контакты».',
+    messenger_button_label: 'Написать в мессенджер',
   },
 
   en: {
@@ -280,6 +298,15 @@ export const t: Record<Lang, Record<string, string>> = {
     events_join: 'Participate',
     events_learn_more: 'Learn More',
     events_register: 'Register',
+
+    ai_button_label: 'AI Assistant',
+    ai_title: 'Kasipker AI Assistant',
+    ai_status: 'Demo mode',
+    ai_greeting: 'Hello! I’m the Kasipker AI assistant. Ask about membership, clusters, or partnerships.',
+    ai_placeholder: 'Type your question...',
+    ai_beta_badge: 'Launching soon',
+    ai_demo_reply: 'Thanks! This is a demo of the assistant — live API answers are coming soon. For urgent questions, please use the Contact page.',
+    messenger_button_label: 'Message us',
   },
 
   zh: {
@@ -371,6 +398,15 @@ export const t: Record<Lang, Record<string, string>> = {
     events_join: '参与',
     events_learn_more: '了解更多',
     events_register: '注册',
+
+    ai_button_label: 'AI助手',
+    ai_title: 'Kasipker AI助手',
+    ai_status: '演示模式',
+    ai_greeting: '您好！我是Kasipker的AI助手。请输入您关于会员、产业集群或合作伙伴关系的问题。',
+    ai_placeholder: '请输入您的问题...',
+    ai_beta_badge: '即将上线',
+    ai_demo_reply: '谢谢！这是助手的演示版本，实时API回复功能即将上线。如有紧急问题，请前往"联系我们"页面。',
+    messenger_button_label: '通过即时通讯联系我们',
   },
 
   tr: {
@@ -462,6 +498,15 @@ export const t: Record<Lang, Record<string, string>> = {
     events_join: 'Katıl',
     events_learn_more: 'Daha Fazla',
     events_register: 'Kayıt Ol',
+
+    ai_button_label: 'AI Asistan',
+    ai_title: 'Kasipker AI Asistan',
+    ai_status: 'Demo modu',
+    ai_greeting: 'Merhaba! Ben Kasipker AI asistanıyım. Üyelik, kümeler veya ortaklık hakkında sorunuzu yazın.',
+    ai_placeholder: 'Sorunuzu yazın...',
+    ai_beta_badge: 'Yakında aktif olacak',
+    ai_demo_reply: 'Teşekkürler! Bu asistanın demo sürümüdür, API üzerinden canlı yanıtlar yakında aktif olacak. Acil sorularınız için İletişim sayfasını kullanın.',
+    messenger_button_label: 'Mesajlaşma uygulamasından yazın',
   },
 };
 

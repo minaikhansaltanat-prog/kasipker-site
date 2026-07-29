@@ -4,6 +4,8 @@ import { LangProvider } from '@/lib/LangContext';
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import AIAssistant from '@/components/AIAssistant';
+import MessengerWidget from '@/components/MessengerWidget';
 
 export const metadata: Metadata = {
   title: {
@@ -44,6 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <Footer />
           <ScrollToTop />
+          <AIAssistant />
+          <MessengerWidget />
         </LangProvider>
       </body>
     </html>

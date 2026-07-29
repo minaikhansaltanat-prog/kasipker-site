@@ -1,8 +1,12 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { MapPin, Mail, Globe, Phone } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, clusters } from '@/lib/translations';
+import { InstagramIcon, YoutubeIcon } from '@/components/icons/BrandIcons';
+import Maps2GisButton from '@/components/Maps2GisButton';
+import { CONTACT_EMAIL, CONTACT_PHONE_DIGITS, CONTACT_PHONE_DISPLAY, officeAddress } from '@/lib/contactInfo';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -150,22 +154,47 @@ export default function ContactPage() {
           {/* Info */}
           <motion.div initial="hidden" animate="visible" custom={0.2} variants={fadeUp} className="flex flex-col gap-6">
             {/* Contact cards */}
-            {[
-              { icon: '📍', title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address', text: lang === 'kk' ? 'Алматы қ., Тұрғыт Озал к-сі 178, 3 қабат' : lang === 'ru' ? 'г. Алматы, ул. Тургут Озал 178, 3 этаж' : 'Almaty, Turgut Ozal str. 178, 3rd floor' },
-              { icon: '📧', title: 'Email', text: 'info@kasipker.kz' },
-              { icon: '🌐', title: lang === 'kk' ? 'Сайт' : lang === 'ru' ? 'Сайт' : 'Website', text: 'kasipker.kz' },
-              { icon: '✈️', title: 'Telegram', text: '@kasipker' },
-            ].map((c, i) => (
-              <div key={i} className="card-kasipker flex items-center gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-kasipker-navy-50 text-2xl">
-                  {c.icon}
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-kasipker-navy-400 uppercase tracking-wider">{c.title}</p>
-                  <p className="font-semibold text-kasipker-navy-800">{c.text}</p>
-                </div>
-              </div>
-            ))}
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                { Icon: MapPin, title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address', text: officeAddress(lang), isAddress: true },
+                { Icon: Mail, title: 'Email', text: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+                { Icon: Phone, title: lang === 'kk' ? 'Телефон / WhatsApp' : lang === 'ru' ? 'Телефон / WhatsApp' : 'Phone / WhatsApp', text: CONTACT_PHONE_DISPLAY, href: `tel:+${CONTACT_PHONE_DIGITS}` },
+                { Icon: Globe, title: lang === 'kk' ? 'Сайт' : lang === 'ru' ? 'Сайт' : 'Website', text: 'kasipker.kz' },
+                { Icon: InstagramIcon, title: 'Instagram', text: '@kasipker_kazakhstan', href: 'https://www.instagram.com/kasipker_kazakhstan', external: true },
+                { Icon: YoutubeIcon, title: 'YouTube', text: '@kasipker.kazakhstan', href: 'https://www.youtube.com/@kasipker.kazakhstan', external: true },
+              ].map((c, i) => {
+                const Content = (
+                  <>
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-kasipker-navy-50 text-kasipker-navy-700">
+                      <c.Icon className="h-6 w-6" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-bold text-kasipker-navy-400 uppercase tracking-wider">{c.title}</p>
+                      <p className={`font-semibold text-kasipker-navy-800 ${c.isAddress ? '' : 'truncate'}`}>{c.text}</p>
+                      {c.isAddress && (
+                        <div className="mt-2">
+                          <Maps2GisButton />
+                        </div>
+                      )}
+                    </div>
+                  </>
+                );
+                return c.href ? (
+                  <a
+                    key={i}
+                    href={c.href}
+                    {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="card-kasipker flex items-center gap-4 cursor-pointer hover:border-kasipker-gold-400"
+                  >
+                    {Content}
+                  </a>
+                ) : (
+                  <div key={i} className={`card-kasipker flex items-center gap-4 ${c.isAddress ? 'sm:col-span-2' : ''}`}>
+                    {Content}
+                  </div>
+                );
+              })}
+            </div>
 
             {/* Quote */}
             <blockquote className="rounded-2xl bg-kasipker-navy-900 p-6">

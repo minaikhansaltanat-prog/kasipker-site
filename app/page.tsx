@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, clusters, personalities, countries, partners } from '@/lib/translations';
+import Maps2GisButton from '@/components/Maps2GisButton';
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, officeAddress } from '@/lib/contactInfo';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -280,7 +282,7 @@ export default function Home() {
                   {lang === 'kk' ? 'Клубтың презентациялық видеосы' : lang === 'ru' ? 'Презентационное видео клуба' : 'Club presentation video'}
                 </p>
                 <a
-                  href="https://www.youtube.com/@kasipker"
+                  href="https://www.youtube.com/@kasipker.kazakhstan"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-kasipker-gold-400 hover:text-kasipker-gold-300 transition-colors cursor-pointer"
@@ -802,17 +804,18 @@ export default function Home() {
               {
                 Icon: MapPin,
                 title: lang === 'kk' ? 'Мекенжай' : lang === 'ru' ? 'Адрес' : 'Address',
-                text: lang === 'kk' ? 'Алматы қ., Тұрғыт Озал к-сі 178, 3 қабат' : lang === 'ru' ? 'г. Алматы, ул. Тургут Озал 178, 3 этаж' : 'Almaty, Turgut Ozal str. 178, 3rd floor',
+                text: officeAddress(lang),
+                isAddress: true,
               },
               {
                 Icon: Mail,
                 title: 'Email',
-                text: 'info@kasipker.kz',
+                text: CONTACT_EMAIL,
               },
               {
                 Icon: Phone,
                 title: lang === 'kk' ? 'Телефон' : lang === 'ru' ? 'Телефон' : 'Phone',
-                text: '+7 (727) 000-00-00',
+                text: CONTACT_PHONE_DISPLAY,
               },
             ].map((item, i) => (
               <motion.div
@@ -825,6 +828,11 @@ export default function Home() {
                 </div>
                 <p className="text-xs font-bold uppercase tracking-widest text-kasipker-gold-400 mb-2">{item.title}</p>
                 <p className="text-white/80 font-semibold">{item.text}</p>
+                {item.isAddress && (
+                  <div className="mt-3">
+                    <Maps2GisButton />
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>

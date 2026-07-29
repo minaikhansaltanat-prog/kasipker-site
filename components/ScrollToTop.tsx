@@ -15,7 +15,7 @@ export default function ScrollToTop() {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Жоғарыға"
-      className={`fixed bottom-8 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-kasipker-navy-800 text-white shadow-elevated transition-all duration-300 hover:bg-kasipker-gold-400 hover:text-kasipker-gold-900 cursor-pointer ${
+      className={`fixed bottom-6 right-24 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-kasipker-navy-800 text-white shadow-elevated transition-all duration-300 hover:bg-kasipker-gold-400 hover:text-kasipker-gold-900 cursor-pointer ${
         visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
     >

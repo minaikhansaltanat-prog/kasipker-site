@@ -5,6 +5,16 @@ import { MapPin, Mail, Globe } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t } from '@/lib/translations';
 import LangSwitcher from './LangSwitcher';
+import { InstagramIcon, YoutubeIcon, WhatsappIcon, TelegramIcon } from './icons/BrandIcons';
+import Maps2GisButton from './Maps2GisButton';
+import { CONTACT_EMAIL, CONTACT_PHONE_DIGITS, officeAddress } from '@/lib/contactInfo';
+
+const SOCIAL_LINKS = [
+  { href: 'https://www.instagram.com/kasipker_kazakhstan', label: 'Instagram', Icon: InstagramIcon },
+  { href: 'https://www.youtube.com/@kasipker.kazakhstan', label: 'YouTube', Icon: YoutubeIcon },
+  { href: `https://wa.me/${CONTACT_PHONE_DIGITS}`, label: 'WhatsApp', Icon: WhatsappIcon },
+  { href: `https://t.me/+${CONTACT_PHONE_DIGITS}`, label: 'Telegram', Icon: TelegramIcon },
+];
 
 const SocialLink = ({ href, label, children }: { href: string; label: string; children: React.ReactNode }) => (
   <a
@@ -64,29 +74,11 @@ export default function Footer() {
             </p>
 
             <div className="mt-6 flex gap-3">
-              <SocialLink href="https://facebook.com" label="Facebook">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </SocialLink>
-              <SocialLink href="https://instagram.com" label="Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-              </SocialLink>
-              <SocialLink href="https://t.me" label="Telegram">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.92.44l-2.56-1.88-1.24 1.2c-.14.14-.26.26-.52.26l.18-2.62 4.74-4.28c.2-.18-.04-.28-.32-.1L7.46 14.5l-2.5-.78c-.54-.17-.55-.54.12-.8l9.8-3.78c.44-.16.84.1.76.66z" />
-                </svg>
-              </SocialLink>
-              <SocialLink href="https://youtube.com" label="YouTube">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
-                </svg>
-              </SocialLink>
+              {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+                <SocialLink key={label} href={href} label={label}>
+                  <Icon className="h-5 w-5" />
+                </SocialLink>
+              ))}
             </div>
           </div>
 
@@ -122,11 +114,18 @@ export default function Footer() {
             <ul className="flex flex-col gap-3 text-sm text-white/70">
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-kasipker-gold-400 mt-0.5 flex-shrink-0" />
-                <span>Алматы қ., Тұрғыт Озал к-сі 178, 3 қабат</span>
+                <div>
+                  <span>{officeAddress(lang)}</span>
+                  <div className="mt-1.5">
+                    <Maps2GisButton />
+                  </div>
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 text-kasipker-gold-400 mt-0.5 flex-shrink-0" />
-                <span>info@kasipker.kz</span>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-kasipker-gold-400 transition-colors cursor-pointer">
+                  {CONTACT_EMAIL}
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <Globe className="h-4 w-4 text-kasipker-gold-400 mt-0.5 flex-shrink-0" />
