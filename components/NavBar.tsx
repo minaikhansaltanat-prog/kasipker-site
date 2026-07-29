@@ -59,13 +59,13 @@ export default function NavBar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            <div className="inline-flex h-10 items-center rounded-full bg-white px-3 py-0 shadow-sm xl:h-auto xl:px-4 xl:py-1.5">
+            <div className="inline-flex h-11 items-center rounded-full bg-white px-2.5 py-0 shadow-sm xl:h-auto xl:px-4 xl:py-1.5">
               <Image
                 src="/logos/logo-main.png"
                 alt="Kasipker"
                 width={180}
                 height={56}
-                className="h-7 w-auto object-contain [mix-blend-mode:multiply] xl:h-14"
+                className="h-9 w-auto object-contain [mix-blend-mode:multiply] xl:h-14"
                 priority
               />
             </div>
@@ -104,7 +104,7 @@ export default function NavBar() {
             <div className="relative" onClick={e => e.stopPropagation()}>
               <button
                 onClick={() => setLangOpen(!langOpen)}
-                className={`flex h-10 items-center gap-1.5 rounded-lg px-3 text-sm font-bold transition-colors cursor-pointer ${
+                className={`flex h-11 items-center gap-1.5 rounded-lg px-3 text-sm font-bold transition-colors cursor-pointer ${
                   scrolled
                     ? 'text-kasipker-navy-700 hover:bg-kasipker-navy-50'
                     : 'text-white hover:bg-white/10'
@@ -138,7 +138,7 @@ export default function NavBar() {
             {/* CTA */}
             <Link
               href="/contact"
-              className="btn-gold hidden h-10 items-center py-0 text-xs sm:inline-flex sm:text-sm px-4 xl:h-auto xl:px-5 xl:py-2.5 cursor-pointer"
+              className="btn-gold hidden h-11 items-center whitespace-nowrap py-0 text-xs sm:inline-flex sm:text-sm px-4 xl:h-auto xl:px-5 xl:py-2.5 cursor-pointer"
             >
               {tr.nav_cta}
             </Link>
@@ -146,7 +146,7 @@ export default function NavBar() {
             {/* Mobile burger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`xl:hidden flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg cursor-pointer ${
+              className={`xl:hidden flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-lg cursor-pointer ${
                 scrolled ? 'text-kasipker-navy-800' : 'text-white'
               }`}
               aria-label="Menu"

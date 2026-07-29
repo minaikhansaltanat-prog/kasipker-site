@@ -68,7 +68,7 @@ export default function SiteSearch({ variant = 'light' }: { variant?: 'light' | 
       <button
         onClick={() => setOpen(true)}
         aria-label={tr.search_open}
-        className={`flex h-10 w-10 items-center justify-center rounded-full transition-colors cursor-pointer ${
+        className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors cursor-pointer ${
           variant === 'dark'
             ? 'text-kasipker-navy-700 hover:bg-kasipker-navy-50'
             : 'text-white hover:bg-white/10'
