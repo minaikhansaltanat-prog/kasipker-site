@@ -263,11 +263,11 @@ export default function Home() {
                 </span>
               </div>
 
-              {/* Video area: replace HERO_VIDEO_ID with your YouTube video ID */}
+              {/* Video area: Kasipker presentation video (privacy-enhanced YouTube embed) */}
               <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                 <iframe
                   className="absolute inset-0 w-full h-full"
-                  src="https://www.youtube.com/embed/?listType=user_uploads&list=kasipker&rel=0&modestbranding=1"
+                  src="https://www.youtube-nocookie.com/embed/_7D1kjvExdk?rel=0&modestbranding=1"
                   title="Kasipker Club Presentation"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
