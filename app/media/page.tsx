@@ -171,8 +171,8 @@ export default function MediaPage() {
                           <Calendar className="h-3.5 w-3.5" />
                           {formatNewsDate(article.date, lang)}
                         </p>
-                        <h4 className="mb-1 font-bold text-kasipker-navy-900">{article.title}</h4>
-                        <p className="mb-2 line-clamp-2 text-sm text-kasipker-navy-600">{article.excerpt}</p>
+                        <h4 className="mb-1 font-bold text-kasipker-navy-900">{article.title[lang]}</h4>
+                        <p className="mb-2 line-clamp-2 text-sm text-kasipker-navy-600">{article.excerpt[lang]}</p>
                         <span className="inline-flex items-center gap-1 text-xs font-bold text-kasipker-gold-600">
                           {tr.news_read_more} <ArrowRight className="h-3 w-3" />
                         </span>

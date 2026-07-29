@@ -43,7 +43,7 @@ export default function NewsArticlePage() {
               <Newspaper className="h-3.5 w-3.5" />
               {tr.media_tab_news}
             </span>
-            <h1 className="text-2xl font-black text-white md:text-4xl mb-4 leading-tight">{article.title}</h1>
+            <h1 className="text-2xl font-black text-white md:text-4xl mb-4 leading-tight">{article.title[lang]}</h1>
             <p className="flex items-center justify-center gap-2 text-sm text-white/60">
               <Calendar className="h-4 w-4" />
               {formattedDate}
@@ -62,7 +62,7 @@ export default function NewsArticlePage() {
           </Link>
 
           <article className="prose-none space-y-5">
-            {article.body.map((paragraph, i) => (
+            {article.body[lang].map((paragraph, i) => (
               <p key={i} className="text-base leading-relaxed text-kasipker-navy-800">
                 {paragraph}
               </p>
