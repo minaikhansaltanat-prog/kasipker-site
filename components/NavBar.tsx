@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLang } from '@/lib/LangContext';
 import { t, LANGS, Lang } from '@/lib/translations';
+import SiteSearch from './SiteSearch';
 
 export default function NavBar() {
   const { lang, setLang } = useLang();
@@ -96,6 +97,9 @@ export default function NavBar() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
+            {/* Search */}
+            <SiteSearch variant={scrolled ? 'dark' : 'light'} />
+
             {/* Language switcher */}
             <div className="relative" onClick={e => e.stopPropagation()}>
               <button
