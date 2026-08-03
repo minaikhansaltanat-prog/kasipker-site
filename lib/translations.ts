@@ -105,6 +105,7 @@ export const t: Record<Lang, Record<string, string>> = {
     news_back: 'Жаңалықтарға оралу',
     news_read_more: 'Толығырақ оқу',
     news_videos: 'Видео материалдар',
+    news_photos: 'Фотоматериалдар',
 
     events_eyebrow: 'Клуб Шаралары',
     events_title: 'Клуб Мүшелерінің Шаралары',
@@ -215,6 +216,7 @@ export const t: Record<Lang, Record<string, string>> = {
     news_back: 'Вернуться к новостям',
     news_read_more: 'Читать полностью',
     news_videos: 'Видеоматериалы',
+    news_photos: 'Фотоматериалы',
 
     events_eyebrow: 'Клубные мероприятия',
     events_title: 'Мероприятия членов клуба',
@@ -325,6 +327,7 @@ export const t: Record<Lang, Record<string, string>> = {
     news_back: 'Back to News',
     news_read_more: 'Read more',
     news_videos: 'Video materials',
+    news_photos: 'Photos',
 
     events_eyebrow: 'Club Events',
     events_title: 'Club Members Events',
@@ -435,6 +438,7 @@ export const t: Record<Lang, Record<string, string>> = {
     news_back: '返回新闻',
     news_read_more: '阅读全文',
     news_videos: '视频资料',
+    news_photos: '照片资料',
 
     events_eyebrow: '俱乐部活动',
     events_title: '会员活动',
@@ -545,6 +549,7 @@ export const t: Record<Lang, Record<string, string>> = {
     news_back: 'Haberlere Dön',
     news_read_more: 'Devamını Oku',
     news_videos: 'Video Materyalleri',
+    news_photos: 'Fotoğraflar',
 
     events_eyebrow: 'Kulüp Etkinlikleri',
     events_title: 'Kulüp Üyelerinin Etkinlikleri',

@@ -36,7 +36,9 @@ export interface NewsArticle {
   title: Record<Lang, string>;
   excerpt: Record<Lang, string>;
   body: Record<Lang, string[]>;
+  images?: string[]; // paths under /public
   videoIds: string[]; // YouTube video IDs (privacy-enhanced embed)
+  videoAspect?: 'landscape' | 'portrait'; // 'portrait' for YouTube Shorts, default 'landscape'
 }
 
 export const NEWS: NewsArticle[] = [
@@ -106,5 +108,69 @@ export const NEWS: NewsArticle[] = [
       ],
     },
     videoIds: ['myofF7Ha2To', 'muHFw-3dTTE', 'JYj9MlWfSBs', 'xCpsQA-ioVk', 'MuLIimZueEg', 'V9q0cWwDRGw'],
+  },
+  {
+    slug: 'kinogerler-odagimen-tanysu',
+    date: '2026-07-30',
+    sourceLang: 'kk',
+    title: {
+      kk: 'Kasipker қауымдастығы тарихы терең «Киногерлер» одағымен танысты',
+      ru: 'Альянс Kasipker посетил историческое объединение «Киногерлер»',
+      en: "Kasipker Alliance Visits the Historic 'Kinogerler' Filmmakers' Union",
+      zh: 'Kasipker联盟走访历史悠久的"电影人"协会',
+      tr: "Kasipker İttifakı, Köklü \"Kinogerler\" Sinemacılar Birliği'ni Ziyaret Etti",
+    },
+    excerpt: {
+      kk: '30 шілде күні Kasipker қауымдастығы «Байтақ» жасыл партиясының өкілдерімен бірге Шәкен Айманов негізін қалаған тарихы терең «Киногерлер» одағының жұмысымен танысып, серіктестік бастамаларын талқылады.',
+      ru: '30 июля альянс Kasipker вместе с представителями партии «Байтак жасылдар» посетил историческое объединение кинематографистов «Киногерлер», основанное Шакеном Аймановым, и обсудил направления будущего партнёрства.',
+      en: "On July 30, the Kasipker Alliance, together with representatives of the 'Baytak Zhasylar' party, visited the historic 'Kinogerler' filmmakers' union founded by Shaken Aimanov, and discussed future partnership initiatives.",
+      zh: '7月30日，Kasipker联盟与"拜塔克绿色党"代表一同走访了由沙肯·艾马诺夫创立的历史悠久的"电影人"（Киногерлер）协会，并商讨了未来的合作方向。',
+      tr: "30 Temmuz'da Kasipker İttifakı, \"Baytak Jasyldar\" partisi temsilcileriyle birlikte, Şaken Aymanov tarafından kurulan köklü \"Kinogerler\" sinemacılar birliğini ziyaret etti ve gelecekteki ortaklık girişimlerini görüştü.",
+    },
+    body: {
+      kk: [
+        '30 шілде күні Kasipker қауымдастығы «Байтақ» жасыл партиясының өкілдерімен бірге тарихы терең «Киногерлер» одағының жұмысымен танысып қайтты.',
+        'Кездесудің басты мақсаты — алдағы серіктестік пен ұлттық идеологияны нығайту бағытындағы бірлескен жұмыстарды талқылау болды. «Байтақ» партиясы арқылы парламентте кино саласына қатысты ұсыныстар енгізу, сондай-ақ осы салаға қатысты жаңа заң қабылдау мәселесі көтерілді.',
+        'Қазіргі таңда «Киногерлер» үйі жеке меншік инвесторлардың қолдауымен жөндеуден өтіп жатыр. Кездесу дәл осы ремонт барысында өтіп, біз ұйымның қазіргі жай-күйіне куә болдық.',
+        'Kasipker қауымдастығы кино саласын коммерцияландыру бағытында қолдау көрсетуге дайын екенін жеткізді. Алғашқы қадам ретінде — Шәкен Айманов атамыз негізін қалаған, тарихы терең «Киногерлер» қауымдастығына толыққанды сайт әзірлеп беруден бастаймыз.',
+        'Алдағы аптада тараптар Kasipker альянсының офисінде кездесіп, серіктестік меморандумға қол қойылатын болады.',
+        'Біздің басты мақсатымыз — ұлттық идеологияның тұтқасы болуға тиісті қауымдастықтар мен тұлғалардың жұмысына қолдау көрсету.',
+      ],
+      ru: [
+        '30 июля альянс Kasipker вместе с представителями партии «Байтак жасылдар» ознакомился с работой исторического объединения «Киногерлер».',
+        'Главной целью встречи стало обсуждение будущего партнёрства и совместной работы по укреплению национальной идеологии. Через партию «Байтак» был поднят вопрос о внесении в парламент предложений по киноотрасли, а также о принятии нового закона в этой сфере.',
+        'В настоящее время Дом «Киногерлер» проходит ремонт при поддержке частных инвесторов. Встреча состоялась именно во время этого ремонта, и мы своими глазами увидели нынешнее состояние организации.',
+        'Альянс Kasipker заявил о готовности оказать поддержку в направлении коммерциализации киноотрасли. В качестве первого шага мы начнём с разработки полноценного сайта для объединения «Киногерлер», основанного нашим великим Шакеном Аймановым.',
+        'На следующей неделе стороны встретятся в офисе альянса Kasipker и подпишут меморандум о партнёрстве.',
+        'Наша главная цель — оказывать поддержку работе объединений и личностей, призванных быть опорой национальной идеологии.',
+      ],
+      en: [
+        "On July 30, the Kasipker Alliance, together with representatives of the 'Baytak Zhasylar' party, familiarized itself with the work of the historic 'Kinogerler' union.",
+        "The main goal of the meeting was to discuss future partnership and joint work aimed at strengthening national ideology. Through the 'Baytak' party, the issue of introducing proposals on the film industry to parliament, as well as adopting a new law in this field, was raised.",
+        "The 'Kinogerler' House is currently undergoing renovation with the support of private investors. The meeting took place during this very renovation, and we witnessed the organization's current condition firsthand.",
+        "The Kasipker Alliance stated its readiness to support the commercialization of the film industry. As a first step, we will begin by developing a full-fledged website for the 'Kinogerler' union, founded by our great Shaken Aimanov.",
+        'Next week, the parties will meet at the Kasipker Alliance office and sign a partnership memorandum.',
+        'Our main goal is to support the work of associations and individuals meant to serve as pillars of national ideology.',
+      ],
+      zh: [
+        '7月30日，Kasipker联盟与"拜塔克绿色党"代表一同，实地了解了历史悠久的"电影人"（Киногерлер）协会的工作情况。',
+        '此次会晤的主要目的是探讨未来的合作以及在加强民族意识形态方面的共同工作。会上还提出通过"拜塔克"党向议会提交电影产业相关提案，并推动出台该领域新法律的议题。',
+        '目前，"电影人之家"正在私人投资者的支持下进行修缮。此次会面正值维修期间，我们也因此亲眼见证了该机构目前的状况。',
+        'Kasipker联盟表示愿意在电影产业商业化方向上提供支持。作为第一步，我们将从为由我们伟大的沙肯·艾马诺夫创立的"电影人"协会打造一个完整的官方网站开始。',
+        '下周，双方将在Kasipker联盟办公室会面，并签署合作备忘录。',
+        '我们的主要目标是支持那些理应成为民族意识形态支柱的团体和人士的工作。',
+      ],
+      tr: [
+        "30 Temmuz'da Kasipker İttifakı, \"Baytak Jasyldar\" partisi temsilcileriyle birlikte, köklü tarihe sahip \"Kinogerler\" birliğinin çalışmalarıyla tanıştı.",
+        "Görüşmenin temel amacı, gelecekteki ortaklık ve ulusal ideolojiyi güçlendirme yönündeki ortak çalışmaları görüşmekti. \"Baytak\" partisi aracılığıyla parlamentoya sinema sektörüyle ilgili önerilerin sunulması ve bu alanda yeni bir yasanın kabul edilmesi konusu da gündeme getirildi.",
+        "Şu anda \"Kinogerler\" Evi, özel yatırımcıların desteğiyle onarımdan geçiyor. Görüşme tam da bu tadilat sürecinde gerçekleşti ve kuruluşun mevcut durumuna bizzat tanık olduk.",
+        "Kasipker İttifakı, sinema sektörünün ticarileştirilmesi yönünde destek vermeye hazır olduğunu bildirdi. İlk adım olarak, büyük atamız Şaken Aymanov'un kurduğu köklü \"Kinogerler\" birliği için eksiksiz bir web sitesi hazırlamakla başlayacağız.",
+        'Önümüzdeki hafta taraflar Kasipker İttifakı ofisinde bir araya gelecek ve bir ortaklık mutabakat zaptı imzalayacaklar.',
+        'Temel amacımız, ulusal ideolojinin dayanağı olması gereken topluluk ve kişilerin çalışmalarına destek vermektir.',
+      ],
+    },
+    images: ['/images/news/kinogerler-1.jpg', '/images/news/kinogerler-2.jpg', '/images/news/kinogerler-3.jpg'],
+    videoIds: ['PBBnUPQwfF0', 'I5ZbSQKY-qY', 'c3i0CYHIqZI'],
+    videoAspect: 'portrait',
   },
 ];

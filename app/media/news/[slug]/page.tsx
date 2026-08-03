@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { ArrowLeft, Calendar, Newspaper } from 'lucide-react';
@@ -61,6 +62,19 @@ export default function NewsArticlePage() {
             <ArrowLeft className="h-4 w-4" /> {tr.news_back}
           </Link>
 
+          {article.images && article.images.length > 0 && (
+            <div className="relative mb-8 w-full overflow-hidden rounded-2xl shadow-card" style={{ paddingBottom: '62%' }}>
+              <Image
+                src={article.images[0]}
+                alt={article.title[lang]}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 720px"
+                priority
+              />
+            </div>
+          )}
+
           <article className="prose-none space-y-5">
             {article.body[lang].map((paragraph, i) => (
               <p key={i} className="text-base leading-relaxed text-kasipker-navy-800">
@@ -69,12 +83,35 @@ export default function NewsArticlePage() {
             ))}
           </article>
 
+          {article.images && article.images.length > 1 && (
+            <div className="mt-12">
+              <h2 className="text-lg font-extrabold text-kasipker-navy-900 mb-5">{tr.news_photos}</h2>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {article.images.slice(1).map((src, i) => (
+                  <div key={src} className="relative w-full overflow-hidden rounded-2xl shadow-card" style={{ paddingBottom: '66%' }}>
+                    <Image
+                      src={src}
+                      alt={`${article.title[lang]} ${i + 2}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 360px"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {article.videoIds.length > 0 && (
             <div className="mt-12">
               <h2 className="text-lg font-extrabold text-kasipker-navy-900 mb-5">{tr.news_videos}</h2>
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className={`grid gap-6 ${article.videoAspect === 'portrait' ? 'grid-cols-2 sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
                 {article.videoIds.map(id => (
-                  <div key={id} className="relative w-full overflow-hidden rounded-2xl shadow-card" style={{ paddingBottom: '56.25%' }}>
+                  <div
+                    key={id}
+                    className="relative w-full overflow-hidden rounded-2xl shadow-card"
+                    style={{ paddingBottom: article.videoAspect === 'portrait' ? '177.78%' : '56.25%' }}
+                  >
                     <iframe
                       className="absolute inset-0 h-full w-full"
                       src={`https://www.youtube-nocookie.com/embed/${id}`}
