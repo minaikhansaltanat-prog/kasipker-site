@@ -604,6 +604,7 @@ export const personalities = [
     linkedin: '',
     instagram: '',
     telegram: '',
+    website: '',
   },
   {
     id: 2,
@@ -617,6 +618,7 @@ export const personalities = [
     linkedin: '',
     instagram: 'https://www.instagram.com/subhankul_minayhan',
     telegram: '',
+    website: '',
   },
   {
     id: 3,
@@ -660,6 +662,7 @@ export const personalities = [
     linkedin: '',
     instagram: '',
     telegram: '',
+    website: '',
   },
   {
     id: 7,
@@ -703,6 +706,7 @@ export const personalities = [
     linkedin: '',
     instagram: 'https://www.instagram.com/aitu_men',
     telegram: '',
+    website: '',
   },
   {
     id: 6,
@@ -746,6 +750,7 @@ export const personalities = [
     linkedin: '',
     instagram: '',
     telegram: '',
+    website: '',
   },
   {
     id: 5,
@@ -789,6 +794,7 @@ export const personalities = [
     linkedin: '',
     instagram: '',
     telegram: '',
+    website: '',
   },
   {
     id: 4,
@@ -832,6 +838,51 @@ export const personalities = [
     linkedin: '',
     instagram: 'https://www.instagram.com/eldos_aibekov',
     telegram: '',
+    website: '',
+  },
+  {
+    id: 8,
+    photo: '/images/uldana-ospanbek.jpg',
+    kk: {
+      name: 'Оспанбек Ұлдана',
+      position: 'Kasipker қауымдастығының маркетинг бөлімінің директоры',
+      company: 'Kasipker Кәсіпкерлер Альянсы',
+      bio: 'Kasipker қауымдастығының маркетинг бөлімінің директоры. Бизнес-стратегия, толыққанды маркетинг, жасанды интеллект және B2B бағыттарында тәжірибелі маман.',
+      highlights: ['CEO', 'Business Strategist', 'Marketing 360°', 'AI', 'B2B', 'Creative Industries'],
+    },
+    ru: {
+      name: 'Оспанбек Улдана',
+      position: 'Директор департамента маркетинга Альянса Kasipker',
+      company: 'Союз предпринимателей Kasipker',
+      bio: 'Директор департамента маркетинга Альянса Kasipker. Опытный специалист в области бизнес-стратегии, комплексного маркетинга, искусственного интеллекта и B2B-направления.',
+      highlights: ['CEO', 'Business Strategist', 'Marketing 360°', 'AI', 'B2B', 'Creative Industries'],
+    },
+    en: {
+      name: 'Uldana Ospanbek',
+      position: 'Director of Marketing at Kasipker Alliance',
+      company: 'Kasipker Entrepreneurs Alliance',
+      bio: 'Director of Marketing at the Kasipker Alliance. Experienced specialist in business strategy, 360° marketing, artificial intelligence, and B2B.',
+      highlights: ['CEO', 'Business Strategist', 'Marketing 360°', 'AI', 'B2B', 'Creative Industries'],
+    },
+    zh: {
+      name: '奥斯潘别克·乌尔达娜',
+      position: 'Kasipker联盟市场部总监',
+      company: 'Kasipker企业家联盟',
+      bio: 'Kasipker联盟市场部总监。在商业战略、全方位营销、人工智能和B2B领域拥有丰富经验的专家。',
+      highlights: ['CEO', 'Business Strategist', 'Marketing 360°', 'AI', 'B2B', 'Creative Industries'],
+    },
+    tr: {
+      name: 'Uldana Ospanbek',
+      position: 'Kasipker İttifakı Pazarlama Direktörü',
+      company: 'Kasipker Girişimciler İttifakı',
+      bio: 'Kasipker İttifakı Pazarlama Direktörü. İş stratejisi, 360° pazarlama, yapay zeka ve B2B alanlarında deneyimli uzman.',
+      highlights: ['CEO', 'Business Strategist', 'Marketing 360°', 'AI', 'B2B', 'Creative Industries'],
+    },
+    categories: ['Мамандар'],
+    linkedin: '',
+    instagram: 'https://www.instagram.com/odessa_o.s',
+    telegram: '',
+    website: 'https://minaikhansaltanat-prog.github.io/uldana/',
   },
 ];
 

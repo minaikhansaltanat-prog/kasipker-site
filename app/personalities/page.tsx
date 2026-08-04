@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, Star } from 'lucide-react';
+import { ChevronDown, ChevronUp, Star, Globe } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, personalities, pickByLang } from '@/lib/translations';
 
@@ -170,7 +170,7 @@ export default function PersonalitiesPage() {
                 <BioText text={info.bio} lang={lang} />
 
                 {/* Social */}
-                {(person.linkedin || person.instagram || person.telegram) && (
+                {(person.linkedin || person.instagram || person.telegram || person.website) && (
                   <div className="mt-4 flex flex-wrap gap-2 border-t border-kasipker-navy-50 pt-3">
                     {person.instagram && (
                       <a
@@ -208,6 +208,17 @@ export default function PersonalitiesPage() {
                         className="inline-flex items-center gap-1.5 rounded-lg bg-blue-50 border border-blue-100 px-3 py-1.5 text-xs font-bold text-blue-800 hover:bg-blue-100 transition-colors cursor-pointer"
                       >
                         LinkedIn
+                      </a>
+                    )}
+                    {person.website && (
+                      <a
+                        href={person.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg bg-kasipker-gold-50 border border-kasipker-gold-200 px-3 py-1.5 text-xs font-bold text-kasipker-gold-700 hover:bg-kasipker-gold-100 transition-colors cursor-pointer"
+                      >
+                        <Globe className="h-3.5 w-3.5 flex-shrink-0" />
+                        {pickByLang(lang, 'Веб-сайт', 'Веб-сайт', 'Website', '个人网站', 'Web Sitesi')}
                       </a>
                     )}
                   </div>
