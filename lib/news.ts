@@ -173,4 +173,53 @@ export const NEWS: NewsArticle[] = [
     videoIds: ['PBBnUPQwfF0', 'I5ZbSQKY-qY', 'c3i0CYHIqZI'],
     videoAspect: 'portrait',
   },
+  {
+    slug: 'qurultay-forum-2026',
+    date: '2026-08-03',
+    sourceLang: 'kk',
+    title: {
+      kk: 'Kasipker қауымдастығы «QURULTAY» құрылысшылар форумына қатысты',
+      ru: 'Альянс Kasipker принял участие в форуме строителей «QURULTAY»',
+      en: "Kasipker Alliance Takes Part in the 'QURULTAY' Builders Forum",
+      zh: 'Kasipker联盟参加"QURULTAY"建筑商论坛',
+      tr: "Kasipker İttifakı \"QURULTAY\" İnşaatçılar Forumu'na Katıldı",
+    },
+    excerpt: {
+      kk: 'Kasipker қауымдастығының басшылығы — Жақыпбек Бастаубаев пен Салтанат Минайхан, сондай-ақ Қауымдастық кеңесшісі, Алматы қалалық мәслихатының депутаты Еркін Рақышев «QURULTAY» құрылысшылар форумына қатысып қайтты.',
+      ru: 'Руководство альянса Kasipker — Жакыпбек Бастаубаев и Салтанат Минайхан, а также советник Альянса, депутат Алматинского городского маслихата Еркин Рахышев приняли участие в форуме строителей «QURULTAY».',
+      en: 'The leadership of the Kasipker Alliance — Zhakypbek Bastaubayev and Saltanat Minaykhan — together with Alliance advisor and Almaty City Maslikhat deputy Yerkin Rakyshev, took part in the "QURULTAY" builders forum.',
+      zh: 'Kasipker联盟领导层——扎克普别克·巴斯陶巴耶夫和萨尔塔纳特·米娜依汗，以及联盟顾问、阿拉木图市马斯利哈特议员叶尔肯·拉克舍夫，一同参加了"QURULTAY"建筑商论坛。',
+      tr: 'Kasipker İttifakı liderliği — Jakıpbek Bastaubayev ve Saltanat Minaykhan — ile İttifak danışmanı, Almatı Şehir Maslihatı milletvekili Erkin Rakışev, "QURULTAY" inşaatçılar forumuna katıldı.',
+    },
+    body: {
+      kk: [
+        'Кеше Kasipker қауымдастығының басшылығы — Жақыпбек Бастаубаев пен Салтанат Минайхан, сондай-ақ Қауымдастық кеңесшісі, Алматы қалалық мәслихатының депутаты Еркін Рақышев мырза «QURULTAY» құрылысшылар форумына қатысып қайтты.',
+        'QURULTAY — құрылыс индустриясының жетекші өкілдерін, кәсіпкерлерді, мердігерлерді, инженерлерді және сәулетшілерді бір алаңға жинайтын ауқымды форум. Мақсаты — саланың мамандарына жаңа серіктестер табуға, тәжірибе алмасуға, нарықтағы өзекті өзгерістерді талқылауға және бизнесті жаңа деңгейге шығаруға мүмкіндік беру.',
+        'Форум күшті спикерлер, нақты кейстер және құрылыс саласының болашағы жайлы ашық талқылаулармен ерекшеленеді. Kasipker қауымдастығы саланың дамуына бағытталған осындай бастамаларды қолдап, белсенді қатысып отыр.',
+      ],
+      ru: [
+        'Вчера руководство альянса Kasipker — Жакыпбек Бастаубаев и Салтанат Минайхан, а также советник Альянса, депутат Алматинского городского маслихата Еркин Рахышев приняли участие в форуме строителей «QURULTAY».',
+        'QURULTAY — масштабный форум, объединяющий на одной площадке ведущих представителей строительной индустрии, предпринимателей, подрядчиков, инженеров и архитекторов. Его цель — дать специалистам отрасли возможность найти новых партнёров, обменяться опытом, обсудить актуальные изменения на рынке и вывести бизнес на новый уровень.',
+        'Форум отличается сильными спикерами, конкретными кейсами и открытыми дискуссиями о будущем строительной отрасли. Альянс Kasipker поддерживает подобные инициативы, направленные на развитие отрасли, и принимает в них активное участие.',
+      ],
+      en: [
+        "Yesterday, the leadership of the Kasipker Alliance — Zhakypbek Bastaubayev and Saltanat Minaykhan — together with the Alliance's advisor, deputy of the Almaty City Maslikhat Yerkin Rakyshev, took part in the 'QURULTAY' builders forum.",
+        'QURULTAY is a large-scale forum that brings together leading representatives of the construction industry, entrepreneurs, contractors, engineers, and architects on one platform. Its goal is to give industry professionals the opportunity to find new partners, exchange experience, discuss current market changes, and take their business to a new level.',
+        'The forum stands out for its strong speakers, concrete case studies, and open discussions about the future of the construction industry. The Kasipker Alliance supports such initiatives aimed at industry development and actively takes part in them.',
+      ],
+      zh: [
+        '昨天，Kasipker联盟领导层——扎克普别克·巴斯陶巴耶夫和萨尔塔纳特·米娜依汗，以及联盟顾问、阿拉木图市马斯利哈特议员叶尔肯·拉克舍夫一同参加了"QURULTAY"建筑商论坛。',
+        'QURULTAY是一个大型论坛，汇集了建筑行业的主要代表、企业家、承包商、工程师和建筑师。其目的是为业内专业人士提供寻找新合作伙伴、交流经验、探讨市场最新变化以及推动业务迈向新高度的机会。',
+        '本次论坛以强大的演讲嘉宾阵容、真实案例分享以及关于建筑行业未来的公开讨论而著称。Kasipker联盟积极支持并参与此类致力于推动行业发展的举措。',
+      ],
+      tr: [
+        'Dün, Kasipker İttifakı liderliği — Jakıpbek Bastaubayev ve Saltanat Minaykhan — ile İttifak danışmanı, Almatı Şehir Maslihatı milletvekili Erkin Rakışev, "QURULTAY" inşaatçılar forumuna katıldı.',
+        'QURULTAY, inşaat sektörünün önde gelen temsilcilerini, girişimcileri, müteahhitleri, mühendisleri ve mimarları tek bir platformda bir araya getiren büyük ölçekli bir forumdur. Amacı, sektör uzmanlarına yeni ortaklar bulma, deneyim paylaşma, piyasadaki güncel değişiklikleri tartışma ve işlerini yeni bir seviyeye taşıma fırsatı sunmaktır.',
+        'Forum, güçlü konuşmacıları, somut vaka çalışmaları ve inşaat sektörünün geleceği hakkındaki açık tartışmalarıyla dikkat çekiyor. Kasipker İttifakı, sektörün gelişimine yönelik bu tür girişimleri destekliyor ve bunlara aktif olarak katılıyor.',
+      ],
+    },
+    images: ['/images/news/qurultay-1.jpg', '/images/news/qurultay-2.jpg'],
+    videoIds: ['TKwi_ZzB6GQ'],
+    videoAspect: 'portrait',
+  },
 ];
