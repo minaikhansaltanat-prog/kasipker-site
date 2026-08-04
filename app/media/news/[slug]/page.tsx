@@ -63,12 +63,12 @@ export default function NewsArticlePage() {
           </Link>
 
           {article.images && article.images.length > 0 && (
-            <div className="relative mb-8 w-full overflow-hidden rounded-2xl shadow-card" style={{ paddingBottom: '62%' }}>
+            <div className="relative mb-8 w-full overflow-hidden rounded-2xl bg-kasipker-navy-900 shadow-card" style={{ paddingBottom: '75%' }}>
               <Image
                 src={article.images[0]}
                 alt={article.title[lang]}
                 fill
-                className="object-cover"
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, 720px"
                 priority
               />
@@ -88,12 +88,12 @@ export default function NewsArticlePage() {
               <h2 className="text-lg font-extrabold text-kasipker-navy-900 mb-5">{tr.news_photos}</h2>
               <div className="grid gap-4 sm:grid-cols-2">
                 {article.images.slice(1).map((src, i) => (
-                  <div key={src} className="relative w-full overflow-hidden rounded-2xl shadow-card" style={{ paddingBottom: '66%' }}>
+                  <div key={src} className="relative w-full overflow-hidden rounded-2xl bg-kasipker-navy-900 shadow-card" style={{ paddingBottom: '75%' }}>
                     <Image
                       src={src}
                       alt={`${article.title[lang]} ${i + 2}`}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 768px) 100vw, 360px"
                     />
                   </div>

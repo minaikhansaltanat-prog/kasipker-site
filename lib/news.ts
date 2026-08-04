@@ -218,7 +218,7 @@ export const NEWS: NewsArticle[] = [
         'Forum, güçlü konuşmacıları, somut vaka çalışmaları ve inşaat sektörünün geleceği hakkındaki açık tartışmalarıyla dikkat çekiyor. Kasipker İttifakı, sektörün gelişimine yönelik bu tür girişimleri destekliyor ve bunlara aktif olarak katılıyor.',
       ],
     },
-    images: ['/images/news/qurultay-1.jpg', '/images/news/qurultay-2.jpg'],
+    images: ['/images/news/qurultay-2.jpg', '/images/news/qurultay-1.jpg'],
     videoIds: ['TKwi_ZzB6GQ'],
     videoAspect: 'portrait',
   },
