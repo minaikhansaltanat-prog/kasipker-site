@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Presentation, Coffee, UtensilsCrossed, Heart, Users, Handshake, ArrowRight, Calendar,
+  Presentation, Coffee, UtensilsCrossed, Heart, Users, Handshake, ArrowRight, Calendar, CircleDot,
 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, pickByLang } from '@/lib/translations';
@@ -57,6 +57,21 @@ const EVENT_TYPES = [
     desc_en: 'Morning business meetings. Building important contacts and partnerships over breakfast.',
     desc_zh: '早晨商务会议。在早餐中建立重要的人脉和合作关系。',
     desc_tr: 'Sabah iş toplantıları. Kahvaltı eşliğinde önemli bağlantılar ve ortaklıklar kurulur.',
+  },
+  {
+    Icon: CircleDot,
+    color: 'bg-teal-50 text-teal-700',
+    freq_kk: 'Жыл сайын', freq_ru: 'Ежегодно', freq_en: 'Annually', freq_zh: '每年', freq_tr: 'Yıllık',
+    kk: 'Бильярд клубы',
+    ru: 'Бильярдный клуб',
+    en: 'Billiards Club',
+    zh: '台球俱乐部',
+    tr: 'Bilardo Kulübü',
+    desc_kk: '1999 жылдан бері жұмыс істейтін НАП бильярд клубы. Жыл сайын халықаралық және республикалық турнирлер өтеді.',
+    desc_ru: 'Бильярдный клуб НАП, работающий с 1999 года. Ежегодно проходят международные и республиканские турниры.',
+    desc_en: 'The NAP Billiards Club, running since 1999. Hosts international and national tournaments every year.',
+    desc_zh: '自1999年运营至今的NAP台球俱乐部。每年举办国际和国内锦标赛。',
+    desc_tr: "1999'dan beri faaliyet gösteren NAP Bilardo Kulübü. Her yıl uluslararası ve ulusal turnuvalar düzenlenir.",
   },
   {
     Icon: Heart,
