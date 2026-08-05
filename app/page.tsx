@@ -9,11 +9,12 @@ import {
   ArrowRight, Users, Globe, Award, Calendar, Star,
   Presentation, Coffee, UtensilsCrossed, Heart, Handshake, CircleDot,
   Mic, FileText, BookOpen, Newspaper,
-  Camera, MapPin, Mail, Phone,
+  Camera, MapPin, Mail, Phone, UserPlus,
 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, clusters, personalities, countries, partners, pickByLang } from '@/lib/translations';
 import Maps2GisButton from '@/components/Maps2GisButton';
+import EventActionModal, { EventActionMode } from '@/components/EventActionModal';
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, officeAddress } from '@/lib/contactInfo';
 
 const fadeUp = {
@@ -175,6 +176,7 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
 export default function Home() {
   const { lang } = useLang();
   const tr = t[lang];
+  const [action, setAction] = useState<{ eventName: string; mode: EventActionMode } | null>(null);
 
   return (
     <div className="overflow-x-hidden">
@@ -656,7 +658,21 @@ export default function Home() {
                     <Calendar className="h-3.5 w-3.5 text-kasipker-gold-400 flex-shrink-0" />
                     <span className="text-xs font-semibold text-kasipker-gold-500">{freq}</span>
                   </div>
-                  <p className="text-sm text-kasipker-navy-600 leading-relaxed flex-1">{desc}</p>
+                  <p className="text-sm text-kasipker-navy-600 leading-relaxed flex-1 mb-5">{desc}</p>
+                  <div className="flex flex-col gap-2 sm:flex-row">
+                    <button
+                      onClick={() => setAction({ eventName: name, mode: 'register' })}
+                      className="btn-primary text-xs py-2 flex-1 cursor-pointer inline-flex items-center justify-center gap-1.5"
+                    >
+                      {tr.events_register}
+                    </button>
+                    <button
+                      onClick={() => setAction({ eventName: name, mode: 'invite' })}
+                      className="btn-outline text-xs py-2 flex-1 cursor-pointer inline-flex items-center justify-center gap-1.5"
+                    >
+                      {pickByLang(lang, 'Шақыру', 'Пригласить', 'Invite', '邀请', 'Davet Et')} <UserPlus className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
                 </motion.div>
               );
             })}
@@ -909,6 +925,13 @@ export default function Home() {
         </div>
       </section>
 
+      {action && (
+        <EventActionModal
+          eventName={action.eventName}
+          mode={action.mode}
+          onClose={() => setAction(null)}
+        />
+      )}
     </div>
   );
 }

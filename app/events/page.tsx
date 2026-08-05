@@ -1,11 +1,13 @@
 'use client';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import {
-  Presentation, Coffee, UtensilsCrossed, Heart, Users, Handshake, ArrowRight, Calendar, CircleDot,
+  Presentation, Coffee, UtensilsCrossed, Heart, Users, Handshake, ArrowRight, Calendar, CircleDot, UserPlus,
 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, pickByLang } from '@/lib/translations';
+import EventActionModal, { EventActionMode } from '@/components/EventActionModal';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -123,6 +125,7 @@ const EVENT_TYPES = [
 export default function EventsPage() {
   const { lang } = useLang();
   const tr = t[lang];
+  const [action, setAction] = useState<{ eventName: string; mode: EventActionMode } | null>(null);
 
   return (
     <div className="min-h-screen bg-white pt-24">
@@ -187,12 +190,20 @@ export default function EventsPage() {
 
                 <p className="text-sm text-kasipker-navy-600 leading-relaxed flex-1 mb-6">{desc}</p>
 
-                <Link
-                  href="/contact"
-                  className="btn-primary text-sm py-2.5 w-full cursor-pointer inline-flex items-center justify-center gap-2"
-                >
-                  {tr.events_register} <ArrowRight className="h-4 w-4" />
-                </Link>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                  <button
+                    onClick={() => setAction({ eventName: name, mode: 'register' })}
+                    className="btn-primary text-sm py-2.5 flex-1 cursor-pointer inline-flex items-center justify-center gap-2"
+                  >
+                    {tr.events_register} <ArrowRight className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => setAction({ eventName: name, mode: 'invite' })}
+                    className="btn-outline text-sm py-2.5 flex-1 cursor-pointer inline-flex items-center justify-center gap-2"
+                  >
+                    {pickByLang(lang, 'Шақыру', 'Пригласить', 'Invite', '邀请', 'Davet Et')} <UserPlus className="h-4 w-4" />
+                  </button>
+                </div>
               </motion.div>
             );
           })}
@@ -229,6 +240,14 @@ export default function EventsPage() {
           </motion.div>
         </div>
       </section>
+
+      {action && (
+        <EventActionModal
+          eventName={action.eventName}
+          mode={action.mode}
+          onClose={() => setAction(null)}
+        />
+      )}
     </div>
   );
 }
