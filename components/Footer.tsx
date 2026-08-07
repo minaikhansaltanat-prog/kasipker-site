@@ -55,7 +55,7 @@ export default function Footer() {
 
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Logo + about */}
           <div className="lg:col-span-2">
             <div className="inline-flex bg-white rounded-2xl px-3 py-2 mb-4">
@@ -144,6 +144,22 @@ export default function Footer() {
                 {pickByLang(lang, 'Тіл', 'Язык', 'Language', '语言', 'Dil')}
               </p>
               <LangSwitcher variant="footer" />
+            </div>
+          </div>
+
+          {/* QR code */}
+          <div className="flex flex-col items-start md:items-end lg:items-start">
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-kasipker-gold-400">
+              {pickByLang(lang, 'Сайтты сканерлеңіз', 'Отсканируйте сайт', 'Scan the Site', '扫码访问网站', 'Siteyi Tarayın')}
+            </h3>
+            <div className="overflow-hidden rounded-2xl bg-white p-2 shadow-elevated">
+              <Image
+                src="/images/qr-kasipker.png"
+                alt={pickByLang(lang, 'Kasipker сайтының QR-коды', 'QR-код сайта Kasipker', 'Kasipker website QR code', 'Kasipker网站二维码', 'Kasipker web sitesi QR kodu')}
+                width={280}
+                height={351}
+                className="h-auto w-32"
+              />
             </div>
           </div>
         </div>
