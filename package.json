@@ -12,14 +12,17 @@
     "framer-motion": "^11.18.2",
     "lucide-react": "^1.17.0",
     "next": "14.2.5",
+    "pg": "^8.23.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.14.3",
+    "@types/pg": "^8.23.1",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^17.4.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5",
     "playwright": "^1.60.0",

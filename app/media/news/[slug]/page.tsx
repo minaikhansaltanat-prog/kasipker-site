@@ -7,6 +7,7 @@ import { ArrowLeft, Calendar, Newspaper } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, pickByLang } from '@/lib/translations';
 import { NEWS, formatNewsDate } from '@/lib/news';
+import CommentSection from '@/components/CommentSection';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -124,6 +125,8 @@ export default function NewsArticlePage() {
               </div>
             </div>
           )}
+
+          <CommentSection slug={article.slug} />
         </motion.div>
       </div>
     </div>
