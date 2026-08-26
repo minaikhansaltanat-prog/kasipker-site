@@ -382,8 +382,8 @@ export const NEWS: NewsArticle[] = [
       ],
     },
     images: [
-      '/images/news/erkin-rakyshev-futbol-jobasy-1.jpg',
       '/images/news/erkin-rakyshev-futbol-jobasy-2.jpg',
+      '/images/news/erkin-rakyshev-futbol-jobasy-1.jpg',
       '/images/news/erkin-rakyshev-futbol-jobasy-3.jpg',
       '/images/news/erkin-rakyshev-futbol-jobasy-4.jpg',
       '/images/news/erkin-rakyshev-futbol-jobasy-5.jpg',
