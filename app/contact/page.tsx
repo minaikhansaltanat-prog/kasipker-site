@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { MapPin, Mail, Globe, Phone } from 'lucide-react';
+import { MapPin, Mail, Globe, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, clusters, pickByLang } from '@/lib/translations';
 import { InstagramIcon, YoutubeIcon } from '@/components/icons/BrandIcons';
@@ -17,14 +17,33 @@ export default function ContactPage() {
   const { lang } = useLang();
   const tr = t[lang];
   const [submitted, setSubmitted] = useState(false);
+  const [waLink, setWaLink] = useState('');
   const [formData, setFormData] = useState({
     name: '', phone: '', email: '', city: '', sector: '', message: '',
   });
   const [honeypot, setHoneypot] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (honeypot) return; // bot trap: real users never fill the hidden field
+
+    // WhatsApp's markup renders single-asterisk *text* as bold, so each
+    // field label comes through highlighted for whoever reads it on the
+    // Kasipker side -- same wa.me deep-link pattern already used by
+    // components/EventActionModal.tsx (this app has no backend to submit
+    // a form to, so "send" means opening WhatsApp with the message
+    // pre-filled; the visitor still has to press Send there).
+    const message = pickByLang(
+      lang,
+      `Сәлеметсіз бе! Kasipker Кәсіпкерлер Альянсына мүше болғым келеді.\n\n*Аты-жөні:* ${formData.name}\n*Телефон:* ${formData.phone}\n*Email:* ${formData.email}\n*Қала:* ${formData.city}\n*Сектор:* ${formData.sector || '—'}\n*Хабарлама:* ${formData.message || '—'}`,
+      `Здравствуйте! Хочу стать членом Союза предпринимателей Kasipker.\n\n*Имя:* ${formData.name}\n*Телефон:* ${formData.phone}\n*Email:* ${formData.email}\n*Город:* ${formData.city}\n*Сфера бизнеса:* ${formData.sector || '—'}\n*Сообщение:* ${formData.message || '—'}`,
+      `Hello! I would like to become a member of the Kasipker Entrepreneurs Alliance.\n\n*Name:* ${formData.name}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*City:* ${formData.city}\n*Business sector:* ${formData.sector || '—'}\n*Message:* ${formData.message || '—'}`,
+      `您好！我想成为Kasipker企业家联盟的会员。\n\n*姓名：*${formData.name}\n*电话：*${formData.phone}\n*电子邮件：*${formData.email}\n*城市：*${formData.city}\n*业务领域：*${formData.sector || '—'}\n*留言：*${formData.message || '—'}`,
+      `Merhaba! Kasipker Girişimciler İttifakı'na üye olmak istiyorum.\n\n*Ad Soyad:* ${formData.name}\n*Telefon:* ${formData.phone}\n*E-posta:* ${formData.email}\n*Şehir:* ${formData.city}\n*İş sektörü:* ${formData.sector || '—'}\n*Mesaj:* ${formData.message || '—'}`
+    );
+    const link = `https://wa.me/${CONTACT_PHONE_DIGITS}?text=${encodeURIComponent(message)}`;
+    setWaLink(link);
+    window.open(link, '_blank');
     setSubmitted(true);
   };
 
@@ -56,8 +75,32 @@ export default function ContactPage() {
           <motion.div initial="hidden" animate="visible" custom={0.1} variants={fadeUp} className="card-kasipker">
             {submitted ? (
               <div className="flex flex-col items-center gap-4 py-12 text-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-kasipker-navy-50 text-4xl">✅</div>
-                <h3 className="text-xl font-extrabold text-kasipker-navy-900">{tr.contact_form_success}</h3>
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-50 text-green-600">
+                  <CheckCircle2 className="h-8 w-8" />
+                </div>
+                <h3 className="text-xl font-extrabold text-kasipker-navy-900">
+                  {pickByLang(lang, 'WhatsApp ашылды', 'WhatsApp открыт', 'WhatsApp opened', 'WhatsApp已打开', 'WhatsApp açıldı')}
+                </h3>
+                <p className="text-sm text-kasipker-navy-500">
+                  {pickByLang(
+                    lang,
+                    'Хабарлама дайын күйде ашылды — жіберу үшін WhatsApp терезесінде «Жіберу» батырмасын басыңыз.',
+                    'Сообщение открыто в готовом виде — нажмите «Отправить» в окне WhatsApp.',
+                    'Your message is ready in WhatsApp — press "Send" there to complete it.',
+                    '消息已在WhatsApp中准备就绪——请在WhatsApp窗口中点击"发送"。',
+                    'Mesajınız WhatsApp\'ta hazır — göndermek için WhatsApp penceresinde "Gönder"e basın.'
+                  )}
+                </p>
+                {waLink && (
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-bold text-kasipker-navy-600 underline hover:text-kasipker-navy-900 cursor-pointer"
+                  >
+                    {pickByLang(lang, 'Ашылмаса — осы жерді басыңыз', 'Не открылось — нажмите здесь', "Didn't open — click here", '未打开——点击此处', 'Açılmadıysa — buraya tıklayın')}
+                  </a>
+                )}
               </div>
             ) : (
               <>
@@ -151,8 +194,9 @@ export default function ContactPage() {
                       className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors resize-none"
                     />
                   </div>
-                  <button type="submit" className="btn-gold w-full py-4 text-base font-bold">
-                    {tr.contact_form_submit}
+                  <button type="submit" className="btn-gold w-full py-4 text-base font-bold inline-flex items-center justify-center gap-2">
+                    {pickByLang(lang, 'WhatsApp арқылы жіберу', 'Отправить через WhatsApp', 'Send via WhatsApp', '通过WhatsApp发送', 'WhatsApp ile Gönder')}
+                    <Send className="h-4 w-4" />
                   </button>
                 </form>
               </>

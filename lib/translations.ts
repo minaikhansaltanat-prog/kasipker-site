@@ -80,8 +80,6 @@ export const t: Record<Lang, Record<string, string>> = {
     contact_form_city: 'Қала / Облыс',
     contact_form_sector: 'Бизнес саласы',
     contact_form_message: 'Хабарлама (опционал)',
-    contact_form_submit: 'Жіберу',
-    contact_form_success: 'Рахмет! Менеджеріміз 24 сағат ішінде байланысады.',
 
     footer_slogan: '«Бірге — күштіміз. Бірге — өрлейміз.»',
     footer_rights: 'Барлық құқықтар қорғалған',
@@ -191,8 +189,6 @@ export const t: Record<Lang, Record<string, string>> = {
     contact_form_city: 'Город / Область',
     contact_form_sector: 'Сфера бизнеса',
     contact_form_message: 'Сообщение (опционально)',
-    contact_form_submit: 'Отправить',
-    contact_form_success: 'Спасибо! Наш менеджер свяжется с вами в течение 24 часов.',
 
     footer_slogan: '«Вместе — мы сила. Вместе — мы развиваемся.»',
     footer_rights: 'Все права защищены',
@@ -302,8 +298,6 @@ export const t: Record<Lang, Record<string, string>> = {
     contact_form_city: 'City / Region',
     contact_form_sector: 'Business Sector',
     contact_form_message: 'Message (optional)',
-    contact_form_submit: 'Send',
-    contact_form_success: 'Thank you! Our manager will contact you within 24 hours.',
 
     footer_slogan: '"Together we are stronger. Together we grow."',
     footer_rights: 'All rights reserved',
@@ -413,8 +407,6 @@ export const t: Record<Lang, Record<string, string>> = {
     contact_form_city: '城市 / 地区',
     contact_form_sector: '业务领域',
     contact_form_message: '留言（可选）',
-    contact_form_submit: '发送',
-    contact_form_success: '谢谢！我们的经理将在24小时内与您联系。',
 
     footer_slogan: '"团结就是力量，共同成长。"',
     footer_rights: '版权所有',
@@ -524,8 +516,6 @@ export const t: Record<Lang, Record<string, string>> = {
     contact_form_city: 'Şehir / İl',
     contact_form_sector: 'İş Sektörü',
     contact_form_message: 'Mesaj (isteğe bağlı)',
-    contact_form_submit: 'Gönder',
-    contact_form_success: 'Teşekkürler! Yöneticimiz 24 saat içinde sizinle iletişime geçecek.',
 
     footer_slogan: '"Birlikte güçlüyüz. Birlikte yükseliyoruz."',
     footer_rights: 'Tüm hakları saklıdır',
