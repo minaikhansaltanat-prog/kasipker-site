@@ -45,10 +45,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ comments });
   } catch (err) {
     console.error('GET /api/comments failed:', err);
-    return NextResponse.json(
-      { error: 'database error', hasDatabaseUrl: !!process.env.DATABASE_URL, message: err instanceof Error ? err.message : String(err) },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'database error' }, { status: 500 });
   }
 }
 
@@ -111,9 +108,6 @@ export async function POST(req: NextRequest) {
     );
   } catch (err) {
     console.error('POST /api/comments failed:', err);
-    return NextResponse.json(
-      { error: 'database error', hasDatabaseUrl: !!process.env.DATABASE_URL, message: err instanceof Error ? err.message : String(err) },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'database error' }, { status: 500 });
   }
 }
