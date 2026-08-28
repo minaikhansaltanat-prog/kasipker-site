@@ -28,20 +28,28 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'slug is required' }, { status: 400 });
   }
 
-  const pool = getPool();
-  const result = await pool.query(
-    'SELECT id, author_name, body, created_at FROM comments WHERE article_slug = $1 ORDER BY created_at ASC',
-    [slug]
-  );
+  try {
+    const pool = getPool();
+    const result = await pool.query(
+      'SELECT id, author_name, body, created_at FROM comments WHERE article_slug = $1 ORDER BY created_at ASC',
+      [slug]
+    );
 
-  const comments = result.rows.map((row) => ({
-    id: row.id,
-    authorName: row.author_name,
-    body: row.body,
-    createdAt: row.created_at,
-  }));
+    const comments = result.rows.map((row) => ({
+      id: row.id,
+      authorName: row.author_name,
+      body: row.body,
+      createdAt: row.created_at,
+    }));
 
-  return NextResponse.json({ comments });
+    return NextResponse.json({ comments });
+  } catch (err) {
+    console.error('GET /api/comments failed:', err);
+    return NextResponse.json(
+      { error: 'database error', hasDatabaseUrl: !!process.env.DATABASE_URL, message: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -77,27 +85,35 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'comment is too long' }, { status: 400 });
   }
 
-  const ipHash = hashIp(getClientIp(req));
-  const pool = getPool();
+  try {
+    const ipHash = hashIp(getClientIp(req));
+    const pool = getPool();
 
-  const recentCount = await pool.query(
-    `SELECT count(*) FROM comments WHERE ip_hash = $1 AND created_at > now() - interval '${RATE_LIMIT_WINDOW_MINUTES} minutes'`,
-    [ipHash]
-  );
-  if (Number(recentCount.rows[0].count) >= RATE_LIMIT_MAX_COMMENTS) {
-    return NextResponse.json({ error: 'rate limited' }, { status: 429 });
+    const recentCount = await pool.query(
+      `SELECT count(*) FROM comments WHERE ip_hash = $1 AND created_at > now() - interval '${RATE_LIMIT_WINDOW_MINUTES} minutes'`,
+      [ipHash]
+    );
+    if (Number(recentCount.rows[0].count) >= RATE_LIMIT_MAX_COMMENTS) {
+      return NextResponse.json({ error: 'rate limited' }, { status: 429 });
+    }
+
+    const result = await pool.query(
+      `INSERT INTO comments (article_slug, author_name, body, ip_hash)
+       VALUES ($1, $2, $3, $4)
+       RETURNING id, author_name, body, created_at`,
+      [slug, authorName.trim(), body.trim(), ipHash]
+    );
+
+    const row = result.rows[0];
+    return NextResponse.json(
+      { comment: { id: row.id, authorName: row.author_name, body: row.body, createdAt: row.created_at } },
+      { status: 201 }
+    );
+  } catch (err) {
+    console.error('POST /api/comments failed:', err);
+    return NextResponse.json(
+      { error: 'database error', hasDatabaseUrl: !!process.env.DATABASE_URL, message: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
   }
-
-  const result = await pool.query(
-    `INSERT INTO comments (article_slug, author_name, body, ip_hash)
-     VALUES ($1, $2, $3, $4)
-     RETURNING id, author_name, body, created_at`,
-    [slug, authorName.trim(), body.trim(), ipHash]
-  );
-
-  const row = result.rows[0];
-  return NextResponse.json(
-    { comment: { id: row.id, authorName: row.author_name, body: row.body, createdAt: row.created_at } },
-    { status: 201 }
-  );
 }
