@@ -5,9 +5,14 @@ import { useState } from 'react';
 import { ChevronDown, ChevronUp, Star, Globe } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, personalities, pickByLang } from '@/lib/translations';
+import PersonalityModal from '@/components/PersonalityModal';
 
 const BIO_LIMIT = 120;
 
+// stopPropagation here (and on the social links below) keeps this click
+// from also bubbling up to the card's own onClick, which opens the full
+// profile modal -- otherwise collapsing the inline preview or opening a
+// social link would simultaneously pop the modal open too.
 function BioText({ text, lang }: { text: string; lang: string }) {
   const [expanded, setExpanded] = useState(false);
   if (text.length <= BIO_LIMIT) {
@@ -19,7 +24,10 @@ function BioText({ text, lang }: { text: string; lang: string }) {
         {expanded ? text : text.slice(0, BIO_LIMIT) + '...'}
       </p>
       <button
-        onClick={() => setExpanded(v => !v)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setExpanded((v) => !v);
+        }}
         className="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-kasipker-navy-700 hover:text-kasipker-gold-500 transition-colors cursor-pointer"
       >
         {expanded
@@ -53,6 +61,7 @@ export default function PersonalitiesPage() {
   const tr = t[lang];
   const [activeCatId, setActiveCatId] = useState('all');
   const [search, setSearch] = useState('');
+  const [selectedPerson, setSelectedPerson] = useState<(typeof personalities)[number] | null>(null);
 
   const filtered = personalities.filter(p => {
     const info = pickByLang(lang, p.kk, p.ru, p.en, p.zh, p.tr);
@@ -60,6 +69,11 @@ export default function PersonalitiesPage() {
     const matchSearch = search === '' || info.name.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });
+
+  const categoryLabel = (cat: string) => {
+    const catDef = CATEGORIES.find(c => c.id === cat);
+    return catDef ? pickByLang(lang, catDef.kk, catDef.ru, catDef.en, catDef.zh, catDef.tr) : cat;
+  };
 
   return (
     <div className="min-h-screen bg-white pt-24">
@@ -120,7 +134,13 @@ export default function PersonalitiesPage() {
                 viewport={{ once: true }}
                 custom={i * 0.05}
                 variants={fadeUp}
-                className="card-kasipker overflow-hidden group flex flex-col"
+                onClick={() => setSelectedPerson(person)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') setSelectedPerson(person);
+                }}
+                className="card-kasipker overflow-hidden group flex flex-col cursor-pointer"
               >
                 {/* Photo */}
                 <div className="relative h-56 w-full overflow-hidden rounded-xl mb-3">
@@ -136,15 +156,11 @@ export default function PersonalitiesPage() {
 
                 {/* Category badges — outside photo so face is never covered */}
                 <div className="flex flex-wrap gap-1 mb-3">
-                  {person.categories.map(cat => {
-                    const catDef = CATEGORIES.find(c => c.id === cat);
-                    const catLabel = catDef ? pickByLang(lang, catDef.kk, catDef.ru, catDef.en, catDef.zh, catDef.tr) : cat;
-                    return (
-                      <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
-                        {catLabel}
-                      </span>
-                    );
-                  })}
+                  {person.categories.map(cat => (
+                    <span key={cat} className="inline-block rounded-full bg-kasipker-gold-400 px-2.5 py-1 text-[10px] font-black text-kasipker-gold-900">
+                      {categoryLabel(cat)}
+                    </span>
+                  ))}
                 </div>
 
                 {/* Info */}
@@ -177,6 +193,7 @@ export default function PersonalitiesPage() {
                         href={person.instagram}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 px-3 py-1.5 text-xs font-bold text-purple-700 hover:from-purple-100 hover:to-pink-100 transition-colors cursor-pointer"
                       >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5 flex-shrink-0">
@@ -192,6 +209,7 @@ export default function PersonalitiesPage() {
                         href={person.telegram}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1.5 rounded-lg bg-blue-50 border border-blue-100 px-3 py-1.5 text-xs font-bold text-blue-700 hover:bg-blue-100 transition-colors cursor-pointer"
                       >
                         <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5 flex-shrink-0">
@@ -205,6 +223,7 @@ export default function PersonalitiesPage() {
                         href={person.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1.5 rounded-lg bg-blue-50 border border-blue-100 px-3 py-1.5 text-xs font-bold text-blue-800 hover:bg-blue-100 transition-colors cursor-pointer"
                       >
                         LinkedIn
@@ -215,6 +234,7 @@ export default function PersonalitiesPage() {
                         href={person.website}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="inline-flex items-center gap-1.5 rounded-lg bg-kasipker-gold-50 border border-kasipker-gold-200 px-3 py-1.5 text-xs font-bold text-kasipker-gold-700 hover:bg-kasipker-gold-100 transition-colors cursor-pointer"
                       >
                         <Globe className="h-3.5 w-3.5 flex-shrink-0" />
@@ -234,6 +254,15 @@ export default function PersonalitiesPage() {
           </div>
         )}
       </div>
+
+      {selectedPerson && (
+        <PersonalityModal
+          person={selectedPerson}
+          lang={lang}
+          categoryLabel={categoryLabel}
+          onClose={() => setSelectedPerson(null)}
+        />
+      )}
     </div>
   );
 }
