@@ -166,9 +166,14 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-10 border-t border-white/10 pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-white/50">
-            &copy; 2026 Kasipker &mdash; {tr.footer_rights}
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <p className="text-xs text-white/50">
+              &copy; 2026 Kasipker &mdash; {tr.footer_rights}
+            </p>
+            <Link href="/oferta" className="cursor-pointer text-xs text-white/50 underline hover:text-kasipker-gold-400">
+              {pickByLang(lang, 'Жария оферта', 'Публичная оферта', 'Public offer', '公开要约', 'Kamu teklifi')}
+            </Link>
+          </div>
           <p className="text-xs text-white/30 italic">
             {tr.footer_slogan}
           </p>

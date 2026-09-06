@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Link from 'next/link';
 import { MapPin, Mail, Globe, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, clusters, pickByLang } from '@/lib/translations';
@@ -22,10 +23,12 @@ export default function ContactPage() {
     name: '', phone: '', email: '', city: '', sector: '', message: '',
   });
   const [honeypot, setHoneypot] = useState('');
+  const [agreedToOffer, setAgreedToOffer] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (honeypot) return; // bot trap: real users never fill the hidden field
+    if (!agreedToOffer) return; // belt-and-suspenders alongside the checkbox's own `required`
 
     // WhatsApp's markup renders single-asterisk *text* as bold, so each
     // field label comes through highlighted for whoever reads it on the
@@ -194,7 +197,52 @@ export default function ContactPage() {
                       className="w-full rounded-xl border border-kasipker-navy-100 px-4 py-3 text-sm outline-none focus:border-kasipker-navy-700 transition-colors resize-none"
                     />
                   </div>
-                  <button type="submit" className="btn-gold w-full py-4 text-base font-bold inline-flex items-center justify-center gap-2">
+                  <label className="flex items-start gap-2.5 text-xs text-kasipker-navy-600">
+                    <input
+                      required
+                      type="checkbox"
+                      checked={agreedToOffer}
+                      onChange={(e) => setAgreedToOffer(e.target.checked)}
+                      className="mt-0.5 h-4 w-4 flex-shrink-0 cursor-pointer accent-kasipker-navy-700"
+                    />
+                    <span>
+                      {pickByLang(
+                        lang,
+                        'Мен ',
+                        'Я ознакомлен(а) с ',
+                        'I have read and agree to the ',
+                        '我已阅读并同意',
+                        'Okudum ve kabul ediyorum: '
+                      )}
+                      <Link
+                        href="/oferta"
+                        target="_blank"
+                        className="cursor-pointer font-semibold text-kasipker-navy-800 underline hover:text-kasipker-gold-600"
+                      >
+                        {pickByLang(
+                          lang,
+                          'жария офертамен (мүшелік туралы келісім)',
+                          'публичной офертой (соглашением о членстве)',
+                          'public offer (membership agreement)',
+                          '公开要约（会员协议）',
+                          'kamu teklifini (üyelik sözleşmesi)'
+                        )}
+                      </Link>
+                      {pickByLang(
+                        lang,
+                        ' таныстым және оның шарттарын толық көлемде қабылдаймын.',
+                        ' и принимаю её условия в полном объёме.',
+                        ' and accept its terms in full.',
+                        '的条款并完全接受其条款。',
+                        '.'
+                      )}
+                    </span>
+                  </label>
+                  <button
+                    type="submit"
+                    disabled={!agreedToOffer}
+                    className="btn-gold w-full py-4 text-base font-bold inline-flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
                     {pickByLang(lang, 'WhatsApp арқылы жіберу', 'Отправить через WhatsApp', 'Send via WhatsApp', '通过WhatsApp发送', 'WhatsApp ile Gönder')}
                     <Send className="h-4 w-4" />
                   </button>
