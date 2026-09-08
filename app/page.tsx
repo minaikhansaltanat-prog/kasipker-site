@@ -181,6 +181,11 @@ export default function Home() {
   const tr = t[lang];
   const [action, setAction] = useState<{ eventName: string; mode: EventActionMode } | null>(null);
 
+  // "Неге Kasipker?" section video: kk/ru-only sources (same "kk unless ru"
+  // default already used in app/oferta/page.tsx) -- en/zh/tr visitors see
+  // the Kazakh cut, since neither language has its own dub.
+  const whyVideoId = lang === 'ru' ? 'mVufwoIJfnI' : '7Tq22jjCrYU';
+
   return (
     <div className="overflow-x-hidden">
 
@@ -465,6 +470,49 @@ export default function Home() {
             <span className="section-eyebrow">{tr.why_eyebrow}</span>
             <h2 className="section-title mb-6">{tr.why_title}</h2>
             <p className="leading-relaxed text-kasipker-navy-600">{tr.why_intro}</p>
+          </motion.div>
+
+          {/* Video presentation card -- kk/ru cut switches with site language */}
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.1} variants={fadeUp}
+            className="mx-auto mb-14 max-w-3xl overflow-hidden rounded-2xl border border-kasipker-navy-100 shadow-elevated"
+          >
+            <div className="flex items-center gap-2 border-b border-kasipker-gold-400/20 bg-kasipker-gold-400/10 px-4 py-2.5">
+              <div className="flex gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
+              </div>
+              <span className="ml-2 text-[10px] font-bold uppercase tracking-widest text-kasipker-gold-600">
+                {tr.why_eyebrow}
+              </span>
+            </div>
+
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${whyVideoId}?rel=0&modestbranding=1`}
+                title={tr.why_eyebrow}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+
+            <div className="flex items-center justify-between bg-kasipker-navy-50 px-5 py-3">
+              <p className="text-xs font-semibold text-kasipker-navy-600">{tr.why_video_caption}</p>
+              <a
+                href="https://www.youtube.com/@kasipker.kazakhstan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-kasipker-gold-600 hover:text-kasipker-gold-700 transition-colors cursor-pointer"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
+                </svg>
+                YouTube
+              </a>
+            </div>
           </motion.div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

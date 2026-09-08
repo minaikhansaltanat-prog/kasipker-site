@@ -57,6 +57,7 @@ export const t: Record<Lang, Record<string, string>> = {
     why_eyebrow: 'Неге Kasipker?',
     why_title: 'Кәсіпкерлікте нақты нәтиже беретін экожүйе',
     why_intro: 'Серіктес тексерілмейді, Қытаймен байланыс тек делдалдар арқылы, заңды қорғаныс пен қаржыға қолжетімділік жеткіліксіз — көптеген кәсіпкер осы бесеуімен жалғыз күреседі. Kasipker 1999 жылдан бері қалыптасқан тәжірибемен дәл осы мәселелерді бір алаңда шешеді.',
+    why_video_caption: 'Видео презентация',
 
     clusters_eyebrow: 'Салалық Кластерлер',
     clusters_title: '12 Сала Бойынша Бірлестік',
@@ -170,6 +171,7 @@ export const t: Record<Lang, Record<string, string>> = {
     why_eyebrow: 'Почему Kasipker?',
     why_title: 'Экосистема, которая даёт реальный результат в бизнесе',
     why_intro: 'Партнёр не проверен, связь с Китаем — только через посредников, юридической защиты и доступа к финансированию недостаточно — многие предприниматели борются с этим в одиночку. Kasipker решает именно эти проблемы на одной платформе, опираясь на опыт с 1999 года.',
+    why_video_caption: 'Видео презентация',
 
     clusters_eyebrow: 'Отраслевые кластеры',
     clusters_title: 'Объединение по 12 отраслям',
@@ -283,6 +285,7 @@ export const t: Record<Lang, Record<string, string>> = {
     why_eyebrow: 'Why Kasipker?',
     why_title: 'An ecosystem built to deliver real business results',
     why_intro: 'Unverified partners, access to China only through middlemen, insufficient legal protection and financing — many entrepreneurs face all of this alone. Kasipker solves exactly these problems on one platform, built on experience since 1999.',
+    why_video_caption: 'Video presentation',
 
     clusters_eyebrow: 'Industry Clusters',
     clusters_title: 'United Across 12 Industries',
@@ -396,6 +399,7 @@ export const t: Record<Lang, Record<string, string>> = {
     why_eyebrow: '为什么选择Kasipker？',
     why_title: '真正为企业带来成果的生态系统',
     why_intro: '合作伙伴未经核实、与中国的联系只能通过中间商、法律保护和融资渠道不足——许多企业家独自应对这一切。Kasipker凭借自1999年以来积累的经验，在一个平台上专门解决这些问题。',
+    why_video_caption: '视频介绍',
 
     clusters_eyebrow: '产业集群',
     clusters_title: '12个行业联合',
@@ -509,6 +513,7 @@ export const t: Record<Lang, Record<string, string>> = {
     why_eyebrow: 'Neden Kasipker?',
     why_title: 'İşletmenize gerçek sonuçlar sağlayan bir ekosistem',
     why_intro: 'Doğrulanmamış ortaklar, Çin ile yalnızca aracılar üzerinden bağlantı, yetersiz hukuki koruma ve finansmana erişim — birçok girişimci bunların hepsiyle tek başına mücadele ediyor. Kasipker, 1999\'dan bu yana biriktirdiği deneyimle tam olarak bu sorunları tek bir platformda çözüyor.',
+    why_video_caption: 'Video Sunumu',
 
     clusters_eyebrow: 'Sektör Kümeleri',
     clusters_title: '12 Sektörde Birlik',
