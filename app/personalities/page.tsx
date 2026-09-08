@@ -1,8 +1,8 @@
 'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, Star, Globe } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { ChevronDown, ChevronUp, Star, Globe, Plus } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, personalities, pickByLang } from '@/lib/translations';
 import PersonalityModal from '@/components/PersonalityModal';
@@ -44,6 +44,14 @@ const fadeUp = {
   visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut', delay: d } }),
 };
 
+// 3 full rows at the lg breakpoint's 3-column grid (see the grid's own
+// className below) -- an initial view that doesn't overwhelm the page;
+// "Толығырақ" reveals the rest on demand instead of an ever-growing list
+// or auto-loading on scroll.
+const ROWS_VISIBLE_INITIALLY = 3;
+const CARDS_PER_ROW_DESKTOP = 3;
+const INITIAL_VISIBLE_COUNT = ROWS_VISIBLE_INITIALLY * CARDS_PER_ROW_DESKTOP;
+
 const CATEGORIES: { id: string; kk: string; ru: string; en: string; zh: string; tr: string }[] = [
   { id: 'all', kk: 'Барлығы', ru: 'Все', en: 'All', zh: '全部', tr: 'Tümü' },
   { id: 'Бизнесмендер', kk: 'Бизнесмендер', ru: 'Бизнесмены', en: 'Businessmen', zh: '商界人士', tr: 'İş İnsanları' },
@@ -62,6 +70,7 @@ export default function PersonalitiesPage() {
   const [activeCatId, setActiveCatId] = useState('all');
   const [search, setSearch] = useState('');
   const [selectedPerson, setSelectedPerson] = useState<(typeof personalities)[number] | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   const filtered = personalities.filter(p => {
     const info = pickByLang(lang, p.kk, p.ru, p.en, p.zh, p.tr);
@@ -69,6 +78,15 @@ export default function PersonalitiesPage() {
     const matchSearch = search === '' || info.name.toLowerCase().includes(search.toLowerCase());
     return matchCat && matchSearch;
   });
+
+  // Switching category or searching re-collapses the list -- otherwise a
+  // narrower result set that was previously expanded could jump straight
+  // to showing everything with no way to re-collapse it.
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeCatId, search]);
+
+  const visible = showAll ? filtered : filtered.slice(0, INITIAL_VISIBLE_COUNT);
 
   const categoryLabel = (cat: string) => {
     const catDef = CATEGORIES.find(c => c.id === cat);
@@ -124,7 +142,7 @@ export default function PersonalitiesPage() {
 
         {/* Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {filtered.map((person, i) => {
+          {visible.map((person, i) => {
             const info = pickByLang(lang, person.kk, person.ru, person.en, person.zh, person.tr);
             return (
               <motion.div
@@ -247,6 +265,20 @@ export default function PersonalitiesPage() {
             );
           })}
         </div>
+
+        {!showAll && filtered.length > INITIAL_VISIBLE_COUNT && (
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll(true)}
+              className="btn-outline inline-flex items-center gap-2 cursor-pointer"
+            >
+              <Plus className="h-4 w-4" />
+              {pickByLang(lang, 'Толығырақ', 'Показать ещё', 'Show more', '显示更多', 'Daha Fazla Göster')}
+              <span className="text-xs font-normal opacity-70">({filtered.length - INITIAL_VISIBLE_COUNT})</span>
+            </button>
+          </div>
+        )}
 
         {filtered.length === 0 && (
           <div className="py-20 text-center text-kasipker-navy-400">
