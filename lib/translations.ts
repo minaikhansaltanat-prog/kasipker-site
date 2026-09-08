@@ -54,6 +54,10 @@ export const t: Record<Lang, Record<string, string>> = {
     about_vision: 'Визия',
     about_vision_text: 'Орталық Азиядағы ең ықпалды кәсіпкерлер альянсы болу — 2030 жылға дейін.',
 
+    why_eyebrow: 'Неге Kasipker?',
+    why_title: 'Кәсіпкерлікте нақты нәтиже беретін экожүйе',
+    why_intro: 'Серіктес тексерілмейді, Қытаймен байланыс тек делдалдар арқылы, заңды қорғаныс пен қаржыға қолжетімділік жеткіліксіз — көптеген кәсіпкер осы бесеуімен жалғыз күреседі. Kasipker 1999 жылдан бері қалыптасқан тәжірибемен дәл осы мәселелерді бір алаңда шешеді.',
+
     clusters_eyebrow: 'Салалық Кластерлер',
     clusters_title: '12 Сала Бойынша Бірлестік',
     clusters_sub: 'Kasipker мүшелері бизнес саласы бойынша тиісті кластерге кіреді',
@@ -162,6 +166,10 @@ export const t: Record<Lang, Record<string, string>> = {
     about_mission_text: 'Объединить предпринимателей Казахстана на одной платформе, защитить их интересы и открыть путь на международный рынок.',
     about_vision: 'Видение',
     about_vision_text: 'Стать самым влиятельным союзом предпринимателей в Центральной Азии к 2030 году.',
+
+    why_eyebrow: 'Почему Kasipker?',
+    why_title: 'Экосистема, которая даёт реальный результат в бизнесе',
+    why_intro: 'Партнёр не проверен, связь с Китаем — только через посредников, юридической защиты и доступа к финансированию недостаточно — многие предприниматели борются с этим в одиночку. Kasipker решает именно эти проблемы на одной платформе, опираясь на опыт с 1999 года.',
 
     clusters_eyebrow: 'Отраслевые кластеры',
     clusters_title: 'Объединение по 12 отраслям',
@@ -272,6 +280,10 @@ export const t: Record<Lang, Record<string, string>> = {
     about_vision: 'Vision',
     about_vision_text: 'To become the most influential entrepreneurs alliance in Central Asia by 2030.',
 
+    why_eyebrow: 'Why Kasipker?',
+    why_title: 'An ecosystem built to deliver real business results',
+    why_intro: 'Unverified partners, access to China only through middlemen, insufficient legal protection and financing — many entrepreneurs face all of this alone. Kasipker solves exactly these problems on one platform, built on experience since 1999.',
+
     clusters_eyebrow: 'Industry Clusters',
     clusters_title: 'United Across 12 Industries',
     clusters_sub: 'Kasipker members join clusters based on their business sector',
@@ -381,6 +393,10 @@ export const t: Record<Lang, Record<string, string>> = {
     about_vision: '愿景',
     about_vision_text: '到2030年成为中亚最具影响力的企业家联盟。',
 
+    why_eyebrow: '为什么选择Kasipker？',
+    why_title: '真正为企业带来成果的生态系统',
+    why_intro: '合作伙伴未经核实、与中国的联系只能通过中间商、法律保护和融资渠道不足——许多企业家独自应对这一切。Kasipker凭借自1999年以来积累的经验，在一个平台上专门解决这些问题。',
+
     clusters_eyebrow: '产业集群',
     clusters_title: '12个行业联合',
     clusters_sub: 'Kasipker会员按商业领域加入相应集群',
@@ -489,6 +505,10 @@ export const t: Record<Lang, Record<string, string>> = {
     about_mission_text: 'Kazakistan girişimcilerini tek bir platformda birleştirmek, çıkarlarını korumak ve uluslararası pazara açılma yolunu açmak.',
     about_vision: 'Vizyon',
     about_vision_text: '2030 yılına kadar Orta Asya\'nın en etkili girişimciler birliği olmak.',
+
+    why_eyebrow: 'Neden Kasipker?',
+    why_title: 'İşletmenize gerçek sonuçlar sağlayan bir ekosistem',
+    why_intro: 'Doğrulanmamış ortaklar, Çin ile yalnızca aracılar üzerinden bağlantı, yetersiz hukuki koruma ve finansmana erişim — birçok girişimci bunların hepsiyle tek başına mücadele ediyor. Kasipker, 1999\'dan bu yana biriktirdiği deneyimle tam olarak bu sorunları tek bir platformda çözüyor.',
 
     clusters_eyebrow: 'Sektör Kümeleri',
     clusters_title: '12 Sektörde Birlik',
@@ -1016,6 +1036,62 @@ export const personalities = [
     instagram: '',
     telegram: '',
     website: 'https://www.samganiits.kz/',
+  },
+];
+
+// "Неге Kasipker?" homepage section -- distilled from the internal
+// "Неге Kasipker?" sales-presentation script (26-slide plan, section III
+// "Құндылық блоктары" / value blocks I-VI). Only kk/ru came from that
+// source document; en/zh/tr are translations of it, same as every other
+// piece of content on this site.
+export const whyKasipkerBlocks: { icon: 'shield' | 'globe' | 'scale' | 'banknote' | 'cpu' | 'users'; kk: { title: string; desc: string }; ru: { title: string; desc: string }; en: { title: string; desc: string }; zh: { title: string; desc: string }; tr: { title: string; desc: string } }[] = [
+  {
+    icon: 'shield',
+    kk: { title: 'Сенімді іскерлік орта', desc: 'Тексерілген (Verified) серіктестер, дауларды медиация арқылы шешу және мүшеден мүшеге сату жүйесі — 10–15% жеңілдік пен кэшбэк.' },
+    ru: { title: 'Доверенная деловая среда', desc: 'Проверенные (Verified) партнёры, разрешение споров через медиацию и система продаж между членами — скидка 10–15% и кэшбэк.' },
+    en: { title: 'A trusted business environment', desc: 'Verified partners, dispute resolution through mediation, and a member-to-member sales system with 10–15% discounts and cashback.' },
+    zh: { title: '值得信赖的商业环境', desc: '经过核实（Verified）的合作伙伴、通过调解解决纠纷，以及会员间销售系统——享受10–15%的折扣和返现。' },
+    tr: { title: 'Güvenilir bir iş ortamı', desc: 'Doğrulanmış (Verified) ortaklar, arabuluculuk yoluyla anlaşmazlık çözümü ve %10–15 indirim ile geri ödeme sunan üyeden üyeye satış sistemi.' },
+  },
+  {
+    icon: 'globe',
+    kk: { title: 'Қытаймен тікелей байланыс', desc: 'Қытай палаталары мен қауымдастықтарымен ресми меморандумдар, зауытпен делдалсыз жұмыс және Хоргос арқылы бір терезе логистика.' },
+    ru: { title: 'Прямая связь с Китаем', desc: 'Официальные меморандумы с китайскими палатами и ассоциациями, работа с заводом без посредников и логистика «одного окна» через Хоргос.' },
+    en: { title: 'Direct access to China', desc: 'Official memorandums with Chinese chambers and associations, factory-direct sourcing with no middlemen, and one-window logistics through Khorgos.' },
+    zh: { title: '与中国的直接联系', desc: '与中国商会和协会签署正式备忘录，无中间商直接对接工厂，并通过霍尔果斯实现一站式物流。' },
+    tr: { title: 'Çin ile doğrudan bağlantı', desc: 'Çin ticaret odaları ve dernekleriyle resmi mutabakat zabıtları, aracısız fabrika bağlantısı ve Khorgos üzerinden tek pencere lojistik.' },
+  },
+  {
+    icon: 'scale',
+    kk: { title: 'Құқықтық қорғаныс', desc: 'Халықаралық арбитраж, бухгалтерлік және әкімшілік кедергілерді еңсеруге кәсіби заң қолдауы.' },
+    ru: { title: 'Юридическая защита', desc: 'Международный арбитраж, профессиональная правовая поддержка в преодолении бухгалтерских и административных барьеров.' },
+    en: { title: 'Legal protection', desc: 'International arbitration and professional legal support for overcoming accounting and administrative barriers.' },
+    zh: { title: '法律保护', desc: '国际仲裁，以及在克服会计与行政障碍方面的专业法律支持。' },
+    tr: { title: 'Hukuki koruma', desc: 'Uluslararası tahkim ve muhasebe ile idari engelleri aşmak için profesyonel hukuki destek.' },
+  },
+  {
+    icon: 'banknote',
+    kk: { title: 'Қаржыландыруға қолжетімділік', desc: 'Инвесторлар клубы, банк кредиті, микроқаржы ұйымдары, гранттар мен субсидиялар — бизнесіңізге сай арна табамыз.' },
+    ru: { title: 'Доступ к финансированию', desc: 'Клуб инвесторов, банковские кредиты, микрофинансовые организации, гранты и субсидии — подберём канал под ваш бизнес.' },
+    en: { title: 'Access to financing', desc: 'Investor club, bank loans, microfinance organizations, grants and subsidies — we match you to the right channel for your business.' },
+    zh: { title: '融资渠道', desc: '投资者俱乐部、银行贷款、小额信贷机构、拨款与补贴——我们为您的企业匹配合适的渠道。' },
+    tr: { title: 'Finansmana erişim', desc: 'Yatırımcı kulübü, banka kredisi, mikrofinans kuruluşları, hibeler ve sübvansiyonlar — işletmenize uygun kanalı buluyoruz.' },
+  },
+  {
+    icon: 'cpu',
+    kk: { title: 'Технология мен цифрландыру', desc: 'IT және жасанды интеллект шешімдеріне 50%-ға дейін жеңілдік, Kasipker Академиясы және маркетингтік қолдау.' },
+    ru: { title: 'Технологии и цифровизация', desc: 'Скидка до 50% на IT и решения искусственного интеллекта, Академия Kasipker и маркетинговая поддержка.' },
+    en: { title: 'Technology & digitalization', desc: 'Up to 50% off IT and AI solutions, the Kasipker Academy, and marketing support.' },
+    zh: { title: '技术与数字化', desc: 'IT与人工智能解决方案最高可享50%折扣，Kasipker学院及营销支持。' },
+    tr: { title: 'Teknoloji ve dijitalleşme', desc: "BT ve yapay zeka çözümlerinde %50'ye varan indirim, Kasipker Akademisi ve pazarlama desteği." },
+  },
+  {
+    icon: 'users',
+    kk: { title: 'Адам капиталы мен желі', desc: 'Kasipker Talent таланттар қоры, нетворкинг мүмкіндіктері және сіздің бизнесіңіздің беделі мен өкілдігін нығайту.' },
+    ru: { title: 'Человеческий капитал и сеть', desc: 'Пул талантов Kasipker Talent, возможности нетворкинга и укрепление репутации и представительства вашего бизнеса.' },
+    en: { title: 'Human capital & network', desc: 'The Kasipker Talent pool, networking opportunities, and stronger reputation and representation for your business.' },
+    zh: { title: '人力资本与人脉网络', desc: 'Kasipker人才库、人脉拓展机会，以及为您企业提升声誉与代表力的支持。' },
+    tr: { title: 'İnsan sermayesi ve ağ', desc: 'Kasipker Talent yetenek havuzu, networking fırsatları ve işletmenizin itibarını ve temsilini güçlendirme.' },
   },
 ];
 

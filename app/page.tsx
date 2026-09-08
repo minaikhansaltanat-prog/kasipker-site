@@ -10,9 +10,10 @@ import {
   Presentation, Coffee, UtensilsCrossed, Heart, Handshake, CircleDot,
   Mic, FileText, BookOpen, Newspaper,
   Camera, MapPin, Mail, Phone, UserPlus,
+  ShieldCheck, Scale,
 } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
-import { t, clusters, personalities, countries, partners, pickByLang } from '@/lib/translations';
+import { t, clusters, personalities, countries, partners, whyKasipkerBlocks, pickByLang } from '@/lib/translations';
 import Maps2GisButton from '@/components/Maps2GisButton';
 import EventActionModal, { EventActionMode } from '@/components/EventActionModal';
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, officeAddress } from '@/lib/contactInfo';
@@ -23,6 +24,8 @@ const fadeUp = {
 };
 
 const CLUSTER_ICONS = [Factory, Wheat, HardHat, Stethoscope, Cpu, ShoppingBag, Plane, GraduationCap, Banknote, Truck, Zap, Leaf];
+
+const WHY_ICONS = { shield: ShieldCheck, globe: Globe, scale: Scale, banknote: Banknote, cpu: Cpu, users: Users };
 
 const EVENT_TYPES = [
   {
@@ -449,6 +452,49 @@ export default function Home() {
               ))}
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* ══════ НЕГЕ KASIPKER? ══════ */}
+      <section id="why" className="py-20 bg-white">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0} variants={fadeUp}
+            className="mx-auto mb-14 max-w-3xl text-center"
+          >
+            <span className="section-eyebrow">{tr.why_eyebrow}</span>
+            <h2 className="section-title mb-6">{tr.why_title}</h2>
+            <p className="leading-relaxed text-kasipker-navy-600">{tr.why_intro}</p>
+          </motion.div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {whyKasipkerBlocks.map((block, i) => {
+              const info = pickByLang(lang, block.kk, block.ru, block.en, block.zh, block.tr);
+              const Icon = WHY_ICONS[block.icon];
+              return (
+                <motion.div
+                  key={i}
+                  initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i * 0.08} variants={fadeUp}
+                  className="card-kasipker"
+                >
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-kasipker-navy-900 text-kasipker-gold-400">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mb-2 text-lg font-extrabold text-kasipker-navy-900">{info.title}</h3>
+                  <p className="text-sm leading-relaxed text-kasipker-navy-600">{info.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0.3} variants={fadeUp}
+            className="mt-12 text-center"
+          >
+            <Link href="/contact" className="btn-gold inline-flex items-center gap-2 cursor-pointer">
+              {tr.nav_cta} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
