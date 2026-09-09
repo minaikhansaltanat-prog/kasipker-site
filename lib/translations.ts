@@ -1047,6 +1047,51 @@ export const personalities = [
     telegram: '',
     website: 'https://www.samganiits.kz/',
   },
+  {
+    id: 11,
+    photo: '/images/adil-ulan.jpg',
+    kk: {
+      name: 'Әділ Ұлан Әділұлы',
+      position: 'HR консультант, халықаралық бизнес-тренер',
+      company: 'Jimon Group',
+      bio: 'Mini MBA бағдарламасының түлегі, халықаралық бизнес-тренер және HR консультант. «Сюцай» брендімен 3000-нан астам жеке консультация өткізген. Jimon Group компаниясының топ-лидерлерінің бірі, сонымен қатар ақын.',
+      highlights: ['HR консультация', 'Халықаралық бизнес-тренинг', 'Mini MBA', 'Jimon Group', 'Ақын'],
+    },
+    ru: {
+      name: 'Адиль Улан Адилович',
+      position: 'HR-консультант, международный бизнес-тренер',
+      company: 'Jimon Group',
+      bio: 'Выпускник программы Mini MBA, международный бизнес-тренер и HR-консультант. Провёл более 3000 личных консультаций под брендом «Сюцай». Один из топ-лидеров компании Jimon Group, также пишет стихи.',
+      highlights: ['HR-консультации', 'Международный бизнес-тренинг', 'Mini MBA', 'Jimon Group', 'Поэт'],
+    },
+    en: {
+      name: 'Ulan Adil',
+      position: 'HR Consultant, International Business Trainer',
+      company: 'Jimon Group',
+      bio: 'Mini MBA graduate, international business trainer and HR consultant. Has conducted more than 3,000 personal consultations under the "Syutsai" brand. One of the top leaders at Jimon Group, and also a poet.',
+      highlights: ['HR Consulting', 'International Business Training', 'Mini MBA', 'Jimon Group', 'Poet'],
+    },
+    zh: {
+      name: '乌兰·阿迪尔',
+      position: 'HR顾问，国际商业培训师',
+      company: 'Jimon Group',
+      bio: 'Mini MBA项目毕业生，国际商业培训师兼HR顾问。以"Syutsai"品牌完成了3000多次一对一咨询。Jimon Group公司的顶尖领导者之一，同时也是一位诗人。',
+      highlights: ['HR咨询', '国际商业培训', 'Mini MBA', 'Jimon Group', '诗人'],
+    },
+    tr: {
+      name: 'Ulan Adil',
+      position: 'İK Danışmanı, Uluslararası İş Koçu',
+      company: 'Jimon Group',
+      bio: 'Mini MBA programı mezunu, uluslararası iş koçu ve İK danışmanı. "Syutsai" markası altında 3.000\'den fazla birebir danışmanlık gerçekleştirdi. Jimon Group şirketinin lider isimlerinden biri, aynı zamanda bir şair.',
+      highlights: ['İK Danışmanlığı', 'Uluslararası İş Koçluğu', 'Mini MBA', 'Jimon Group', 'Şair'],
+    },
+    categories: ['Мамандар', 'Топ-Менеджерлер'],
+    linkedin: '',
+    instagram: 'https://www.instagram.com/ulan__adil',
+    telegram: '',
+    website: '',
+    email: 'ub.company@yandex.kz',
+  },
 ];
 
 // "Неге Kasipker?" homepage section -- distilled from the internal

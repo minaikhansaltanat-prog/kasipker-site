@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import { X, Star, Globe } from 'lucide-react';
+import { X, Star, Globe, Mail } from 'lucide-react';
 import { pickByLang } from '@/lib/translations';
 
 interface PersonalityInfo {
@@ -25,6 +25,7 @@ interface Personality {
   instagram?: string;
   telegram?: string;
   website?: string;
+  email?: string;
 }
 
 // Same fixed-overlay modal pattern as components/EventActionModal.tsx
@@ -110,8 +111,17 @@ export default function PersonalityModal({
 
           <p className="text-sm text-kasipker-navy-700 leading-relaxed whitespace-pre-line">{info.bio}</p>
 
-          {(person.linkedin || person.instagram || person.telegram || person.website) && (
+          {(person.linkedin || person.instagram || person.telegram || person.website || person.email) && (
             <div className="mt-6 flex flex-wrap gap-2 border-t border-kasipker-navy-50 pt-4">
+              {person.email && (
+                <a
+                  href={`mailto:${person.email}`}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-kasipker-navy-50 border border-kasipker-navy-100 px-3 py-1.5 text-xs font-bold text-kasipker-navy-700 hover:bg-kasipker-navy-100 transition-colors cursor-pointer"
+                >
+                  <Mail className="h-3.5 w-3.5 flex-shrink-0" />
+                  {person.email}
+                </a>
+              )}
               {person.instagram && (
                 <a
                   href={person.instagram}
