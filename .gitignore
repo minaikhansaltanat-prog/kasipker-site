@@ -36,3 +36,8 @@ Thumbs.db
 # macOS artifacts
 __MACOSX/
 .DS_Store
+
+# Internal strategy brief -- confidential business detail (financials,
+# unconfirmed partnerships), never meant for the public repo. The AI
+# assistant uses a curated, safe subset from lib/ai-strategic-context.ts.
+kasipker_ai_context.md
