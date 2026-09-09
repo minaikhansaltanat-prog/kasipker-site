@@ -15,6 +15,7 @@ export default function AIAssistant() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isSending, setIsSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -25,19 +26,30 @@ export default function AIAssistant() {
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
-  }, [messages, open]);
+  }, [messages, open, isSending]);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const text = input.trim();
-    if (!text) return;
-    setMessages(prev => [...prev, { role: 'user', text }]);
+    if (!text || isSending) return;
+    const nextMessages = [...messages, { role: 'user' as const, text }];
+    setMessages(nextMessages);
     setInput('');
+    setIsSending(true);
 
-    // TODO: API дайын болғанда осы жерге нақты AI жауабын шақыру керек
-    // (мыс. POST /api/assistant), setTimeout-ты алмастыру керек.
-    setTimeout(() => {
-      setMessages(prev => [...prev, { role: 'bot', text: tr.ai_demo_reply }]);
-    }, 600);
+    try {
+      const res = await fetch('/api/assistant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: nextMessages, lang }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.reply) throw new Error(data.error || 'request_failed');
+      setMessages(prev => [...prev, { role: 'bot', text: data.reply }]);
+    } catch {
+      setMessages(prev => [...prev, { role: 'bot', text: tr.ai_error }]);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -105,12 +117,21 @@ export default function AIAssistant() {
               </div>
             </div>
           ))}
+          {isSending && (
+            <div className="flex justify-start">
+              <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm border border-kasipker-navy-100 bg-white px-3.5 py-2.5 shadow-sm">
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-kasipker-navy-300 [animation-delay:-0.2s]" />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-kasipker-navy-300 [animation-delay:-0.1s]" />
+                <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-kasipker-navy-300" />
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Coming-soon badge */}
+        {/* AI badge */}
         <div className="border-t border-kasipker-navy-50 bg-white px-4 pb-2 pt-2">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-kasipker-gold-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-kasipker-gold-700">
-            <span className="h-1.5 w-1.5 rounded-full bg-kasipker-gold-400" />
+            <Sparkles className="h-2.5 w-2.5" />
             {tr.ai_beta_badge}
           </span>
         </div>
@@ -127,12 +148,14 @@ export default function AIAssistant() {
             value={input}
             onChange={e => setInput(e.target.value)}
             placeholder={tr.ai_placeholder}
-            className="flex-1 rounded-xl border border-kasipker-navy-100 bg-kasipker-navy-50/50 px-3.5 py-2.5 text-sm text-kasipker-navy-900 placeholder:text-kasipker-navy-300 focus:outline-none focus:ring-2 focus:ring-kasipker-gold-400/50"
+            disabled={isSending}
+            className="flex-1 rounded-xl border border-kasipker-navy-100 bg-kasipker-navy-50/50 px-3.5 py-2.5 text-sm text-kasipker-navy-900 placeholder:text-kasipker-navy-300 focus:outline-none focus:ring-2 focus:ring-kasipker-gold-400/50 disabled:opacity-60"
           />
           <button
             type="submit"
             aria-label="Send"
-            className="flex h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-xl bg-kasipker-gold-400 text-kasipker-gold-900 transition-colors hover:bg-kasipker-gold-500"
+            disabled={isSending || !input.trim()}
+            className="flex h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-xl bg-kasipker-gold-400 text-kasipker-gold-900 transition-colors hover:bg-kasipker-gold-500 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Send className="h-5 w-5" />
           </button>
