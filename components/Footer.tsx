@@ -1,13 +1,15 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MapPin, Mail, Globe } from 'lucide-react';
+import { MapPin, Mail, Globe, LogIn } from 'lucide-react';
 import { useLang } from '@/lib/LangContext';
 import { t, pickByLang } from '@/lib/translations';
 import LangSwitcher from './LangSwitcher';
 import { InstagramIcon, YoutubeIcon, WhatsappIcon, TelegramIcon } from './icons/BrandIcons';
 import Maps2GisButton from './Maps2GisButton';
 import { CONTACT_EMAIL, CONTACT_PHONE_DIGITS, officeAddress } from '@/lib/contactInfo';
+
+const ADMIN_PANEL_URL = 'https://kasipker-admin-production.up.railway.app';
 
 const SOCIAL_LINKS = [
   { href: 'https://www.instagram.com/kasipker_kazakhstan', label: 'Instagram', Icon: InstagramIcon },
@@ -177,6 +179,19 @@ export default function Footer() {
           <p className="text-xs text-white/30 italic">
             {tr.footer_slogan}
           </p>
+        </div>
+
+        {/* Member / admin panel login */}
+        <div className="mt-6 flex justify-center">
+          <a
+            href={ADMIN_PANEL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/60 transition-colors hover:border-kasipker-gold-400 hover:text-kasipker-gold-400"
+          >
+            <LogIn className="h-3.5 w-3.5" />
+            {pickByLang(lang, 'Кіру', 'Войти', 'Sign in', '登录', 'Giriş')}
+          </a>
         </div>
       </div>
     </footer>
