@@ -611,6 +611,10 @@ export const clusters = [
   { icon: '🌿', kk: 'Экология', ru: 'Экология', en: 'Ecology', zh: '生态', tr: 'Ekoloji' },
 ];
 
+// Film titles are shown in the original (Russian/Kazakh) form in every language.
+const urazovFilms = (studio: string, season: string) =>
+  `«Долгое эхо» (${studio}), «Мой милый доктор» (${studio}), «Джамбул джабаев» (${studio}), «Сержан братан», «Саке», «Последний путь Абулхаир хана», «Хотя бы в кино» (${season}), «Сен маған керексің», «Беркут спецназ», «Надрез», «Красный уровень», «Обжалованию не подлежит», «Аферисты», «Вирус», «Просто мачо», «Пленники», «Возвращение в ауыл», «Аким», «Кудалар», «Мошенники», «Мектеп скорая помощь», «Шекер»`;
+
 export const personalities = [
   {
     id: 1,
@@ -1119,6 +1123,51 @@ export const personalities = [
     instagram: '',
     telegram: '',
     website: '',
+  },
+  {
+    id: 14,
+    photo: '/images/urazov-zhumagul.jpg',
+    kk: {
+      name: 'Уразов Жумагул Абдуллович',
+      position: 'Театр және кино актері',
+      company: '',
+      bio: `Театр және кино актері.\nТуған күні: 1959 жылғы 11 қыркүйек.\nТуған жері: Петропавл қ., Солтүстік Қазақстан облысы.\nБілімі: МГУ (Москва қ.).\nАктерлік қызметі: 2015 жылдан бастап.\n\nФильмографиясы (50-ден астам фильм): ${urazovFilms('Қазақфильм', '3-маусым')} және т.б.`,
+      highlights: [],
+    },
+    ru: {
+      name: 'Уразов Жумагул Абдуллович',
+      position: 'Актёр театра и кино',
+      company: '',
+      bio: `Актёр театра и кино.\nДата рождения: 11 сентября 1959 года.\nМесто рождения: г. Петропавловск, Северо-Казахстанская область.\nОбразование: МГУ (г. Москва).\nАктёрская деятельность: с 2015 года.\n\nФильмография (более 50 фильмов): ${urazovFilms('Казахфильм', '3 сезон')} и др.`,
+      highlights: [],
+    },
+    en: {
+      name: 'Zhumagul Urazov',
+      position: 'Theatre and Film Actor',
+      company: '',
+      bio: `Theatre and film actor.\nDate of birth: 11 September 1959.\nPlace of birth: Petropavlovsk, North Kazakhstan Region.\nEducation: Moscow State University (MSU), Moscow.\nActing career: since 2015.\n\nFilmography (50+ films): ${urazovFilms('Kazakhfilm', 'season 3')} and others.`,
+      highlights: [],
+    },
+    zh: {
+      name: '朱马古尔·乌拉佐夫',
+      position: '戏剧与电影演员',
+      company: '',
+      bio: `戏剧与电影演员。\n出生日期：1959年9月11日。\n出生地：北哈萨克斯坦州彼得罗巴甫洛夫斯克市。\n教育：莫斯科国立大学（莫斯科）。\n演艺生涯：自2015年起。\n\n作品（50余部影片）：${urazovFilms('Kazakhfilm', '第3季')}等。`,
+      highlights: [],
+    },
+    tr: {
+      name: 'Jumagul Urazov',
+      position: 'Tiyatro ve Film Oyuncusu',
+      company: '',
+      bio: `Tiyatro ve film oyuncusu.\nDoğum tarihi: 11 Eylül 1959.\nDoğum yeri: Petropavl, Kuzey Kazakistan Bölgesi.\nEğitim: Moskova Devlet Üniversitesi (MGU), Moskova.\nOyunculuk kariyeri: 2015'ten beri.\n\nFilmografi (50'den fazla film): ${urazovFilms('Kazakhfilm', '3. sezon')} ve diğerleri.`,
+      highlights: [],
+    },
+    categories: ['Мамандар'],
+    linkedin: '',
+    instagram: 'https://www.instagram.com/urazov.zhumagul',
+    telegram: '',
+    website: '',
+    phone: '+7 701 766 2502',
   },
 ];
 
