@@ -1106,6 +1106,20 @@ export const personalities = [
     telegram: '',
     website: '',
   },
+  {
+    id: 13,
+    photo: '/images/kim-vitaliy.jpg',
+    kk: { name: 'Ким Виталий Вячеславович', position: 'Құрылыс компаниясының бұрынғы басшысы', company: '«КазМеталлоконструкции»', bio: '2006–2018 жылдары «КазМеталлоконструкции» құрылыс компаниясының басшысы болған.', highlights: [] },
+    ru: { name: 'Ким Виталий Вячеславович', position: 'Бывший руководитель строительной компании', company: '«КазМеталлоконструкции»', bio: 'В 2006–2018 годах возглавлял строительную компанию «КазМеталлоконструкции».', highlights: [] },
+    en: { name: 'Vitaliy Kim', position: 'Former Head of a Construction Company', company: 'KazMetallokonstruktsii', bio: 'Headed the construction company KazMetallokonstruktsii from 2006 to 2018.', highlights: [] },
+    zh: { name: '维塔利·金', position: '某建筑公司前负责人', company: 'KazMetallokonstruktsii', bio: '2006年至2018年担任建筑公司KazMetallokonstruktsii（КазМеталлоконструкции）的负责人。', highlights: [] },
+    tr: { name: 'Vitaliy Kim', position: 'Bir İnşaat Şirketinin Eski Yöneticisi', company: 'KazMetallokonstruktsii', bio: '2006–2018 yılları arasında KazMetallokonstruktsii inşaat şirketinin yöneticiliğini yaptı.', highlights: [] },
+    categories: ['Бизнесмендер', 'Топ-Менеджерлер'],
+    linkedin: '',
+    instagram: '',
+    telegram: '',
+    website: '',
+  },
 ];
 
 // "Неге Kasipker?" homepage section -- distilled from the internal
