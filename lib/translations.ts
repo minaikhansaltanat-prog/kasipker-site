@@ -1092,6 +1092,20 @@ export const personalities = [
     website: '',
     email: 'ub.company@yandex.kz',
   },
+  {
+    id: 12,
+    photo: '/images/mirmanov-ilyas.jpg',
+    kk: { name: 'Мирманов Ильяс Жиенбаевич', position: 'Ардагер, НАП белді мүшесі', company: 'Kasipker Кәсіпкерлер Альянсы', bio: 'Ардагер. НАП белді мүшесі. Кәсіпкер, білікті маман.', highlights: [] },
+    ru: { name: 'Мирманов Ильяс Жиенбаевич', position: 'Ветеран, активный член НАП', company: 'Союз предпринимателей Kasipker', bio: 'Ветеран. Активный член НАП. Предприниматель, квалифицированный специалист.', highlights: [] },
+    en: { name: 'Ilyas Mirmanov', position: 'Veteran, Active Member of NAP', company: 'Kasipker Entrepreneurs Alliance', bio: 'Veteran. Active member of NAP. Entrepreneur and qualified specialist.', highlights: [] },
+    zh: { name: '伊利亚斯·米尔马诺夫', position: '老兵，NAP骨干成员', company: 'Kasipker企业家联盟', bio: '老兵。NAP骨干成员。企业家，资深专业人士。', highlights: [] },
+    tr: { name: 'İlyas Mirmanov', position: 'Gazi, NAP\'ın Aktif Üyesi', company: 'Kasipker Girişimciler İttifakı', bio: 'Gazi. NAP\'ın aktif üyesi. Girişimci ve nitelikli uzman.', highlights: [] },
+    categories: ['Бизнесмендер', 'Мамандар'],
+    linkedin: '',
+    instagram: '',
+    telegram: '',
+    website: '',
+  },
 ];
 
 // "Неге Kasipker?" homepage section -- distilled from the internal
