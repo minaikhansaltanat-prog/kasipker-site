@@ -259,7 +259,7 @@ export default function ContactPage() {
                 { Icon: MapPin, title: pickByLang(lang, 'Мекенжай', 'Адрес', 'Address', '地址', 'Adres'), text: officeAddress(lang), isAddress: true },
                 { Icon: Mail, title: 'Email', text: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
                 { Icon: Phone, title: pickByLang(lang, 'Телефон / WhatsApp', 'Телефон / WhatsApp', 'Phone / WhatsApp', '电话 / WhatsApp', 'Telefon / WhatsApp'), text: CONTACT_PHONE_DISPLAY, href: `tel:+${CONTACT_PHONE_DIGITS}` },
-                { Icon: Globe, title: pickByLang(lang, 'Сайт', 'Сайт', 'Website', '网站', 'Web Sitesi'), text: 'kasipker.kz' },
+                { Icon: Globe, title: pickByLang(lang, 'Сайт', 'Сайт', 'Website', '网站', 'Web Sitesi'), text: 'kasipkerbusiness.kz' },
                 { Icon: InstagramIcon, title: 'Instagram', text: '@kasipker_kazakhstan', href: 'https://www.instagram.com/kasipker_kazakhstan', external: true },
                 { Icon: YoutubeIcon, title: 'YouTube', text: '@kasipker.kazakhstan', href: 'https://www.youtube.com/@kasipker.kazakhstan', external: true },
               ].map((c, i) => {

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     locale: 'kk_KZ',
     siteName: 'Kasipker',
   },
-  metadataBase: new URL('https://kasipker.kz'),
+  metadataBase: new URL('https://kasipkerbusiness.kz'),
   robots: { index: true, follow: true },
 };
 

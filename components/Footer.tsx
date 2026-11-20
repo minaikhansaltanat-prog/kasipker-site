@@ -136,7 +136,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Globe className="h-4 w-4 text-kasipker-gold-400 mt-0.5 flex-shrink-0" />
-                <span>kasipker.kz</span>
+                <span>kasipkerbusiness.kz</span>
               </li>
             </ul>
 
